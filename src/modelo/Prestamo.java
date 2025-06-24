@@ -2,6 +2,8 @@ package modelo;
 
 import java.time.LocalDate;
 
+import modelo.persistencia.XlsParser;
+
 
 public class Prestamo {
 	private LocalDate fechaPrestamo;      // aff_pret_date
@@ -23,6 +25,31 @@ public class Prestamo {
 	private String tituloObra;            // tit
 	private String tipoDocumento;         // tdoc_libelle
 	private boolean prestamoCorto;        // short_loan_flag
+	
+	//Intancia prestamo desde un String con la fila del xls. campos separados por coma.
+	public Prestamo(String fila) {
+	    this.fechaPrestamo = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
+	    this.fechaDevolucion = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaDevolucion"));
+	    this.diasRetraso = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "diasRetraso"));
+
+	    this.idUsuario = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "idUsuario"));
+	    this.apellidoUsuario = XlsParser.getValorFromFilaAtributo(fila, "apellidoUsuario");
+	    this.nombreUsuario = XlsParser.getValorFromFilaAtributo(fila, "nombreUsuario");
+	    this.emailUsuario = XlsParser.getValorFromFilaAtributo(fila, "emailUsuario");
+	    this.codigoBarrasUsuario = XlsParser.getValorFromFilaAtributo(fila, "codigoBarrasUsuario");
+
+	    this.cotaEjemplar = XlsParser.getValorFromFilaAtributo(fila, "cotaEjemplar");
+	    this.codigoBarrasEjemplar = XlsParser.getValorFromFilaAtributo(fila, "codigoBarrasEjemplar");
+	    this.idFichaBibliografica = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "idFichaBibliografica"));
+	    this.idBulletin = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "idBulletin"));
+	    this.idNotice = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "idNotice"));
+
+	    this.tituloObra = XlsParser.getValorFromFilaAtributo(fila, "tituloObra");
+	    this.tipoDocumento = XlsParser.getValorFromFilaAtributo(fila, "tipoDocumento");
+	    this.prestamoCorto = Boolean.parseBoolean(XlsParser.getValorFromFilaAtributo(fila, "prestamoCorto"));
+	}
+
+	
 	public LocalDate getFechaPrestamo() {
 		return fechaPrestamo;
 	}
@@ -118,6 +145,27 @@ public class Prestamo {
 	}
 	public void setPrestamoCorto(boolean prestamoCorto) {
 		this.prestamoCorto = prestamoCorto;
+	}
+	@Override
+	public String toString() {
+	    return "Prestamo{" +
+	            "fechaPrestamo=" + fechaPrestamo +
+	            ", fechaDevolucion=" + fechaDevolucion +
+	            ", diasRetraso=" + diasRetraso +
+	            ", idUsuario=" + idUsuario +
+	            ", apellidoUsuario='" + apellidoUsuario + '\'' +
+	            ", nombreUsuario='" + nombreUsuario + '\'' +
+	            ", emailUsuario='" + emailUsuario + '\'' +
+	            ", codigoBarrasUsuario='" + codigoBarrasUsuario + '\'' +
+	            ", cotaEjemplar='" + cotaEjemplar + '\'' +
+	            ", codigoBarrasEjemplar='" + codigoBarrasEjemplar + '\'' +
+	            ", idFichaBibliografica=" + idFichaBibliografica +
+	            ", idBulletin=" + idBulletin +
+	            ", idNotice=" + idNotice +
+	            ", tituloObra='" + tituloObra + '\'' +
+	            ", tipoDocumento='" + tipoDocumento + '\'' +
+	            ", prestamoCorto=" + prestamoCorto +
+	            '}';
 	}
 
 }

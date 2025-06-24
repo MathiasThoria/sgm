@@ -1,8 +1,12 @@
 package modelo.persistencia;
 import java.util.Map;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import java.util.HashMap;
 
 import java.io.FileInputStream;
+import java.time.LocalDate;
 import java.util.Scanner;
 //Poor Obfuscated Implementation
 //Horrible Spreadsheet Format
@@ -27,10 +31,57 @@ public class XlsParser {
 	private static XlsParser instancia;
 	private Workbook libro;
 	private Sheet hoja;
-	/**
-	 * Mapea atributos y posicion
-	 */
-	private Map<String, Integer> mapaAtributos = new HashMap<>();
+	
+	//Mapea atributos y posicion	 
+	private static Map<String, Integer> mapaColumnaPosicion = new HashMap<>();
+	//iniciliza atributo estatico al cargar la clase
+	static {
+	    int pos = 0;
+	    mapaColumnaPosicion.put("fechaPrestamo", pos++);
+	    mapaColumnaPosicion.put("fechaDevolucion", pos++);
+	    mapaColumnaPosicion.put("diasRetraso", pos++);
+
+	    mapaColumnaPosicion.put("idUsuario", pos++);
+	    mapaColumnaPosicion.put("apellidoUsuario", pos++);
+	    mapaColumnaPosicion.put("nombreUsuario", pos++);
+	    mapaColumnaPosicion.put("emailUsuario", pos++);
+	    mapaColumnaPosicion.put("codigoBarrasUsuario", pos++);
+
+	    mapaColumnaPosicion.put("cotaEjemplar", pos++);
+	    mapaColumnaPosicion.put("codigoBarrasEjemplar", pos++);
+	    mapaColumnaPosicion.put("idFichaBibliografica", pos++);
+	    mapaColumnaPosicion.put("idBulletin", pos++);
+	    mapaColumnaPosicion.put("idNotice", pos++);
+
+	    mapaColumnaPosicion.put("tituloObra", pos++);
+	    mapaColumnaPosicion.put("tipoDocumento", pos++);
+	    mapaColumnaPosicion.put("prestamoCorto", pos++);
+	}
+	
+	//Mapea atributos y columnas del XLS
+	private static final Map<String, String> mapaColumnaAtributo = new HashMap<>(); 
+	//iniciliza atributo estatico al cargar la clase
+	static{
+		 mapaColumnaAtributo.put("fechaPrestamo", "aff_pret_date");
+		 mapaColumnaAtributo.put("fechaDevolucion", "aff_pret_retour");
+		 mapaColumnaAtributo.put("diasRetraso", "retard");
+
+		 mapaColumnaAtributo.put("idUsuario", "id_empr");
+		 mapaColumnaAtributo.put("apellidoUsuario", "empr_nom");
+		 mapaColumnaAtributo.put("nombreUsuario", "empr_prenom");
+		 mapaColumnaAtributo.put("emailUsuario", "empr_mail");
+		 mapaColumnaAtributo.put("codigoBarrasUsuario", "empr_cb");
+
+		 mapaColumnaAtributo.put("cotaEjemplar", "expl_cote");
+		 mapaColumnaAtributo.put("codigoBarrasEjemplar", "expl_cb");
+		 mapaColumnaAtributo.put("idFichaBibliografica", "expl_notice");
+		 mapaColumnaAtributo.put("idBulletin", "expl_bulletin");
+		 mapaColumnaAtributo.put("idNotice", "idnot");
+
+		 mapaColumnaAtributo.put("tituloObra", "tit");
+		 mapaColumnaAtributo.put("tipoDocumento", "tdoc_libelle");
+		 mapaColumnaAtributo.put("prestamoCorto", "short_loan_flag");
+	};
 	/**
 	 * Constructor privado por singleton. Solo se ejecuta desde getInstancia.
 	 * @throws Exception
@@ -41,10 +92,7 @@ public class XlsParser {
         libro = new HSSFWorkbook(archivo);
         hoja = libro.getSheetAt(0);
         archivo.close();
-        //mapeo de nombres de atributos y posicion
-        mapaAtributos.put("nombre", 0);
-        mapaAtributos.put("edad", 1);
-        mapaAtributos.put("apellido", 2);    		
+        //mapeo de nombres de atributos y posicion    
     	
 	}
 	
@@ -75,7 +123,7 @@ public class XlsParser {
 	 * 
 	 * @return Arreglo de String. Celdas separadas por coma.
 	 */
-	public String[] getFilasToString() {
+	public String[] getArchivoToArrString() {
 	    int cantidadFilas = hoja.getLastRowNum() + 1; // filas desde 0
 	    String[] lineas = new String[cantidadFilas];
 
@@ -95,9 +143,9 @@ public class XlsParser {
 	}
 	
 	
-	public String getAtributoFromFila(String fila, String atributo) {
+	public static String getValorFromFilaAtributo(String fila, String atributo) {
 		//Integer permite uso de null en la variable   
-		Integer colIndex = mapaAtributos.get(atributo.toLowerCase());	    
+		Integer colIndex = mapaColumnaPosicion.get(atributo.toLowerCase());	    
 		
 		if (colIndex != null) {   
 			String[] partes = fila.split(",");
@@ -108,6 +156,18 @@ public class XlsParser {
 		return "";
 		
 	}
+	
+	public static LocalDate parseFecha(String fechaStr) {
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    try {
+	        return LocalDate.parse(fechaStr, formatter);
+	    } catch (DateTimeParseException e) {
+	        e.printStackTrace();
+	        return null; 
+	    }
+	}
+	
+	
 	
 	
 }
