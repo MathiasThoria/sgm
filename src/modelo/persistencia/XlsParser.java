@@ -37,6 +37,7 @@ public class XlsParser {
 	//iniciliza atributo estatico al cargar la clase
 	static {
 	    int pos = 0;
+	    //ojo incremento. pasa y despues suma
 	    mapaColumnaPosicion.put("fechaPrestamo", pos++);
 	    mapaColumnaPosicion.put("fechaDevolucion", pos++);
 	    mapaColumnaPosicion.put("diasRetraso", pos++);
