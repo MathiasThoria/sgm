@@ -1,4 +1,4 @@
-package modelo.persistencia;
+package persistencia;
 
 public class ConexionBD {
 

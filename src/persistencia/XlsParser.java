@@ -1,4 +1,4 @@
-package modelo.persistencia;
+package persistencia;
 import java.util.Map;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

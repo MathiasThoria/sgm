@@ -1,4 +1,4 @@
-package modelo.persistencia;
+package persistencia;
 
 import java.io.FileInputStream;
 import java.util.Scanner;

@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-import modelo.persistencia.XlsParser;
+import persistencia.XlsParser;
 
 
 public class Prestamo {
@@ -30,8 +30,7 @@ public class Prestamo {
 	public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, int diasRetraso, int idUsuario,
 			String apellidoUsuario, String nombreUsuario, String emailUsuario, String codigoBarrasUsuario,
 			String cotaEjemplar, String codigoBarrasEjemplar, int idFichaBibliografica, int idBulletin, int idNotice,
-			String tituloObra, String tipoDocumento, boolean prestamoCorto) {
-		super();
+			String tituloObra, String tipoDocumento, boolean prestamoCorto) {		
 		this.fechaPrestamo = fechaPrestamo;
 		this.fechaDevolucion = fechaDevolucion;
 		this.diasRetraso = diasRetraso;
