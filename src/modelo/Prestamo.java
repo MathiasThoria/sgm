@@ -1,5 +1,123 @@
 package modelo;
 
+import java.time.LocalDate;
+
+
 public class Prestamo {
+	private LocalDate fechaPrestamo;      // aff_pret_date
+	private LocalDate fechaDevolucion;    // aff_pret_retour
+	private int diasRetraso;              // retard
+
+	private int idUsuario;                // id_empr
+	private String apellidoUsuario;       // empr_nom
+	private String nombreUsuario;         // empr_prenom
+	private String emailUsuario;          // empr_mail
+	private String codigoBarrasUsuario;  // empr_cb
+
+	private String cotaEjemplar;          // expl_cote
+	private String codigoBarrasEjemplar;  // expl_cb
+	private int idFichaBibliografica;     // expl_notice
+	private int idBulletin;               // expl_bulletin
+	private int idNotice;                 // idnot
+
+	private String tituloObra;            // tit
+	private String tipoDocumento;         // tdoc_libelle
+	private boolean prestamoCorto;        // short_loan_flag
+	public LocalDate getFechaPrestamo() {
+		return fechaPrestamo;
+	}
+	public void setFechaPrestamo(LocalDate fechaPrestamo) {
+		this.fechaPrestamo = fechaPrestamo;
+	}
+	public LocalDate getFechaDevolucion() {
+		return fechaDevolucion;
+	}
+	public void setFechaDevolucion(LocalDate fechaDevolucion) {
+		this.fechaDevolucion = fechaDevolucion;
+	}
+	public int getDiasRetraso() {
+		return diasRetraso;
+	}
+	public void setDiasRetraso(int diasRetraso) {
+		this.diasRetraso = diasRetraso;
+	}
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	public String getApellidoUsuario() {
+		return apellidoUsuario;
+	}
+	public void setApellidoUsuario(String apellidoUsuario) {
+		this.apellidoUsuario = apellidoUsuario;
+	}
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+	public String getEmailUsuario() {
+		return emailUsuario;
+	}
+	public void setEmailUsuario(String emailUsuario) {
+		this.emailUsuario = emailUsuario;
+	}
+	public String getCodigoBarrasUsuario() {
+		return codigoBarrasUsuario;
+	}
+	public void setCodigoBarrasUsuario(String codigoBarrasUsuario) {
+		this.codigoBarrasUsuario = codigoBarrasUsuario;
+	}
+	public String getCotaEjemplar() {
+		return cotaEjemplar;
+	}
+	public void setCotaEjemplar(String cotaEjemplar) {
+		this.cotaEjemplar = cotaEjemplar;
+	}
+	public String getCodigoBarrasEjemplar() {
+		return codigoBarrasEjemplar;
+	}
+	public void setCodigoBarrasEjemplar(String codigoBarrasEjemplar) {
+		this.codigoBarrasEjemplar = codigoBarrasEjemplar;
+	}
+	public int getIdFichaBibliografica() {
+		return idFichaBibliografica;
+	}
+	public void setIdFichaBibliografica(int idFichaBibliografica) {
+		this.idFichaBibliografica = idFichaBibliografica;
+	}
+	public int getIdBulletin() {
+		return idBulletin;
+	}
+	public void setIdBulletin(int idBulletin) {
+		this.idBulletin = idBulletin;
+	}
+	public int getIdNotice() {
+		return idNotice;
+	}
+	public void setIdNotice(int idNotice) {
+		this.idNotice = idNotice;
+	}
+	public String getTituloObra() {
+		return tituloObra;
+	}
+	public void setTituloObra(String tituloObra) {
+		this.tituloObra = tituloObra;
+	}
+	public String getTipoDocumento() {
+		return tipoDocumento;
+	}
+	public void setTipoDocumento(String tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
+	}
+	public boolean isPrestamoCorto() {
+		return prestamoCorto;
+	}
+	public void setPrestamoCorto(boolean prestamoCorto) {
+		this.prestamoCorto = prestamoCorto;
+	}
 
 }
