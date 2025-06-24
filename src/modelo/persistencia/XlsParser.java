@@ -1,5 +1,6 @@
 package modelo.persistencia;
 import java.util.Map;
+import java.util.HashMap;
 
 import java.io.FileInputStream;
 import java.util.Scanner;
@@ -29,12 +30,7 @@ public class XlsParser {
 	/**
 	 * Mapea atributos y posicion
 	 */
-	private Map<String, Integer> mapaAtributos = Map.of(
-		    "nombre", 0,
-		    "edad", 1,
-		    "sexo", 2
-		);
-	
+	private Map<String, Integer> mapaAtributos = new HashMap<>();
 	/**
 	 * Constructor privado por singleton. Solo se ejecuta desde getInstancia.
 	 * @throws Exception
@@ -45,6 +41,11 @@ public class XlsParser {
         libro = new HSSFWorkbook(archivo);
         hoja = libro.getSheetAt(0);
         archivo.close();
+        //mapeo de nombres de atributos y posicion
+        mapaAtributos.put("nombre", 0);
+        mapaAtributos.put("edad", 1);
+        mapaAtributos.put("apellido", 2);    		
+    	
 	}
 	
 	/**
@@ -69,9 +70,10 @@ public class XlsParser {
 	}
 	
 	/**
-	 * Toma las filas del archivo, separa los campos por coma. Cada fila 
-	 * es un elemento del arreglo de String.
-	 * @return Todas las filas del archivo estructurados en un arreglo de String. Celdas separadas por coma.
+	 * Devuelve el archivo xls en un arreglo de String donde cada elemento es una fila y
+	 * los campos estan separados por coma
+	 * 
+	 * @return Arreglo de String. Celdas separadas por coma.
 	 */
 	public String[] getFilasToString() {
 	    int cantidadFilas = hoja.getLastRowNum() + 1; // filas desde 0
@@ -92,14 +94,18 @@ public class XlsParser {
 	    return lineas;
 	}
 	
+	
 	public String getAtributoFromFila(String fila, String atributo) {
-		   Integer colIndex = mapaAtributos.get(atributo.toLowerCase());
-		    if (colIndex == null) return "";
-
-		    String[] partes = fila.split(",");
-		    if (colIndex >= partes.length) return "";
-
-		    return partes[colIndex].trim();
+		//Integer permite uso de null en la variable   
+		Integer colIndex = mapaAtributos.get(atributo.toLowerCase());	    
+		
+		if (colIndex != null) {   
+			String[] partes = fila.split(",");
+			if(colIndex <= partes.length)
+				return partes[colIndex].trim();
+		}
+	   
+		return "";
 		
 	}
 	
