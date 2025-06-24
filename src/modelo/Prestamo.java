@@ -26,7 +26,33 @@ public class Prestamo {
 	private String tipoDocumento;         // tdoc_libelle
 	private boolean prestamoCorto;        // short_loan_flag
 	
+	
+	public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, int diasRetraso, int idUsuario,
+			String apellidoUsuario, String nombreUsuario, String emailUsuario, String codigoBarrasUsuario,
+			String cotaEjemplar, String codigoBarrasEjemplar, int idFichaBibliografica, int idBulletin, int idNotice,
+			String tituloObra, String tipoDocumento, boolean prestamoCorto) {
+		super();
+		this.fechaPrestamo = fechaPrestamo;
+		this.fechaDevolucion = fechaDevolucion;
+		this.diasRetraso = diasRetraso;
+		this.idUsuario = idUsuario;
+		this.apellidoUsuario = apellidoUsuario;
+		this.nombreUsuario = nombreUsuario;
+		this.emailUsuario = emailUsuario;
+		this.codigoBarrasUsuario = codigoBarrasUsuario;
+		this.cotaEjemplar = cotaEjemplar;
+		this.codigoBarrasEjemplar = codigoBarrasEjemplar;
+		this.idFichaBibliografica = idFichaBibliografica;
+		this.idBulletin = idBulletin;
+		this.idNotice = idNotice;
+		this.tituloObra = tituloObra;
+		this.tipoDocumento = tipoDocumento;
+		this.prestamoCorto = prestamoCorto;
+	}
+
+
 	//Instancia prestamo desde un String con la fila del xls. campos separados por coma.
+	//no iria en controlador????
 	public Prestamo(String fila) {
 		//System.out.println(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
 	    this.fechaPrestamo = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
