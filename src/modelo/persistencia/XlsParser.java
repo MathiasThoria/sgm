@@ -37,7 +37,7 @@ public class XlsParser {
 	//iniciliza atributo estatico al cargar la clase
 	static {
 	    int pos = 0;
-	    mapaColumnaPosicion.put("fechaPrestamo", pos++);
+	    mapaColumnaPosicion.put("fechaPrestamo", pos);
 	    mapaColumnaPosicion.put("fechaDevolucion", pos++);
 	    mapaColumnaPosicion.put("diasRetraso", pos++);
 
@@ -146,14 +146,15 @@ public class XlsParser {
 	public static String getValorFromFilaAtributo(String fila, String atributo) {
 		//Integer permite uso de null en la variable   
 		Integer colIndex = mapaColumnaPosicion.get(atributo.toLowerCase());	    
-		
+		//System.out.println(colIndex);
 		if (colIndex != null) {   
 			String[] partes = fila.split(",");
 			if(colIndex <= partes.length)
+				
 				return partes[colIndex].trim();
 		}
 	   
-		return "";
+		return "err";
 		
 	}
 	
