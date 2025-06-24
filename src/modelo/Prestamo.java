@@ -26,9 +26,9 @@ public class Prestamo {
 	private String tipoDocumento;         // tdoc_libelle
 	private boolean prestamoCorto;        // short_loan_flag
 	
-	//Intancia prestamo desde un String con la fila del xls. campos separados por coma.
+	//Instancia prestamo desde un String con la fila del xls. campos separados por coma.
 	public Prestamo(String fila) {
-		System.out.println(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
+		//System.out.println(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
 	    this.fechaPrestamo = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
 	    this.fechaDevolucion = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaDevolucion"));
 	    this.diasRetraso = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "diasRetraso"));
