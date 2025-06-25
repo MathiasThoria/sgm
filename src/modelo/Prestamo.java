@@ -56,9 +56,9 @@ public class Prestamo {
 		//System.out.println(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
 	    this.fechaPrestamo = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
 	    this.fechaDevolucion = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaDevolucion"));
-	    this.diasRetraso = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "diasRetraso"));
-
-	    this.idUsuario = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "idUsuario"));
+	    this.diasRetraso = parseNumero(XlsParser.getValorFromFilaAtributo(fila, "diasRetraso"));
+	    
+	    this.idUsuario = parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idUsuario"));
 	    this.apellidoUsuario = XlsParser.getValorFromFilaAtributo(fila, "apellidoUsuario");
 	    this.nombreUsuario = XlsParser.getValorFromFilaAtributo(fila, "nombreUsuario");
 	    this.emailUsuario = XlsParser.getValorFromFilaAtributo(fila, "emailUsuario");
@@ -66,15 +66,30 @@ public class Prestamo {
 
 	    this.cotaEjemplar = XlsParser.getValorFromFilaAtributo(fila, "cotaEjemplar");
 	    this.codigoBarrasEjemplar = XlsParser.getValorFromFilaAtributo(fila, "codigoBarrasEjemplar");
-	    this.idFichaBibliografica = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "idFichaBibliografica"));
-	    this.idBulletin = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "idBulletin"));
-	    this.idNotice = Integer.parseInt(XlsParser.getValorFromFilaAtributo(fila, "idNotice"));
+	    this.idFichaBibliografica = parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idFichaBibliografica"));
+	    
+	    	    
+	    this.idBulletin = parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idBulletin"));
+	    this.idNotice = parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idNotice"));
 
 	    this.tituloObra = XlsParser.getValorFromFilaAtributo(fila, "tituloObra");
 	    this.tipoDocumento = XlsParser.getValorFromFilaAtributo(fila, "tipoDocumento");
 	    this.prestamoCorto = Boolean.parseBoolean(XlsParser.getValorFromFilaAtributo(fila, "prestamoCorto"));
 	}
 
+	private int parseNumero(String valor) {
+		
+		if(!valor.isEmpty()) {			
+			return (int)Double.parseDouble(valor);
+		}else {
+			return 0;
+		}
+			
+			
+		
+		
+	}
+	
 	
 	public LocalDate getFechaPrestamo() {
 		return fechaPrestamo;

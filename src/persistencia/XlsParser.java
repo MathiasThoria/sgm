@@ -27,7 +27,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
  * Clase Singleton con el objetivo de cargar archivo xls
  */
 public class XlsParser {
-	String rutaArchivo = "archivo.xls";
+	String rutaArchivo = "datos.xls";
 	private static XlsParser instancia;
 	private Workbook libro;
 	private Sheet hoja;
@@ -151,17 +151,17 @@ public class XlsParser {
 		System.out.println(mapaColumnaPosicion.get(atributo));
 		if (colIndex != null) {   
 			String[] partes = fila.split(",");
-			if(colIndex <= partes.length)
-				
+			if(colIndex <= partes.length)				
 				return partes[colIndex].trim();
 		}
 	   
-		return "err";
+		return "";
 		
 	}
 	
 	public static LocalDate parseFecha(String fechaStr) {
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	    System.out.println(fechaStr);
 	    try {
 	        return LocalDate.parse(fechaStr, formatter);
 	    } catch (DateTimeParseException e) {
