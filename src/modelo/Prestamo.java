@@ -9,11 +9,8 @@ public class Prestamo {
 	private LocalDate fechaDevolucion;    // aff_pret_retour
 	private int diasRetraso;              // retard
 
-	private int idUsuario;                // id_empr
-	private String apellidoUsuario;       // empr_nom
-	private String nombreUsuario;         // empr_prenom
-	private String emailUsuario;          // empr_mail
-	private String codigoBarrasUsuario;  // empr_cb
+	//Datos Usuario
+
 
 	private String cotaEjemplar;          // expl_cote
 	private String codigoBarrasEjemplar;  // expl_cb
@@ -26,18 +23,13 @@ public class Prestamo {
 	private boolean prestamoCorto;        // short_loan_flag
 	
 	
-	public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, int diasRetraso, int idUsuario,
-			String apellidoUsuario, String nombreUsuario, String emailUsuario, String codigoBarrasUsuario,
+	public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, int diasRetraso,
 			String cotaEjemplar, String codigoBarrasEjemplar, int idFichaBibliografica, int idBulletin, int idNotice,
 			String tituloObra, String tipoDocumento, boolean prestamoCorto) {		
 		this.fechaPrestamo = fechaPrestamo;
 		this.fechaDevolucion = fechaDevolucion;
 		this.diasRetraso = diasRetraso;
-		this.idUsuario = idUsuario;
-		this.apellidoUsuario = apellidoUsuario;
-		this.nombreUsuario = nombreUsuario;
-		this.emailUsuario = emailUsuario;
-		this.codigoBarrasUsuario = codigoBarrasUsuario;
+
 		this.cotaEjemplar = cotaEjemplar;
 		this.codigoBarrasEjemplar = codigoBarrasEjemplar;
 		this.idFichaBibliografica = idFichaBibliografica;
@@ -55,40 +47,21 @@ public class Prestamo {
 		//System.out.println(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
 	    this.fechaPrestamo = Datos.parseFecha(Datos.getValorFromFilaAtributo(fila, "fechaPrestamo"));
 	    this.fechaDevolucion = Datos.parseFecha(Datos.getValorFromFilaAtributo(fila, "fechaDevolucion"));
-	    this.diasRetraso = parseNumero(Datos.getValorFromFilaAtributo(fila, "diasRetraso"));
-	    
-	    this.idUsuario = parseNumero(Datos.getValorFromFilaAtributo(fila, "idUsuario"));
-	    this.apellidoUsuario = Datos.getValorFromFilaAtributo(fila, "apellidoUsuario");
-	    this.nombreUsuario = Datos.getValorFromFilaAtributo(fila, "nombreUsuario");
-	    this.emailUsuario = Datos.getValorFromFilaAtributo(fila, "emailUsuario");
-	    this.codigoBarrasUsuario = Datos.getValorFromFilaAtributo(fila, "codigoBarrasUsuario");
+	    this.diasRetraso = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "diasRetraso"));
 
 	    this.cotaEjemplar = Datos.getValorFromFilaAtributo(fila, "cotaEjemplar");
 	    this.codigoBarrasEjemplar = Datos.getValorFromFilaAtributo(fila, "codigoBarrasEjemplar");
-	    this.idFichaBibliografica = parseNumero(Datos.getValorFromFilaAtributo(fila, "idFichaBibliografica"));
+	    this.idFichaBibliografica = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "idFichaBibliografica"));
 	    
 	    	    
-	    this.idBulletin = parseNumero(Datos.getValorFromFilaAtributo(fila, "idBulletin"));
-	    this.idNotice = parseNumero(Datos.getValorFromFilaAtributo(fila, "idNotice"));
+	    this.idBulletin = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "idBulletin"));
+	    this.idNotice = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "idNotice"));
 
 	    this.tituloObra = Datos.getValorFromFilaAtributo(fila, "tituloObra");
 	    this.tipoDocumento = Datos.getValorFromFilaAtributo(fila, "tipoDocumento");
 	    this.prestamoCorto = Boolean.parseBoolean(Datos.getValorFromFilaAtributo(fila, "prestamoCorto"));
 	}
-
-	private int parseNumero(String valor) {
 		
-		if(!valor.isEmpty()) {			
-			return (int)Double.parseDouble(valor);
-		}else {
-			return 0;
-		}
-			
-			
-		
-		
-	}
-	
 	
 	public LocalDate getFechaPrestamo() {
 		return fechaPrestamo;
@@ -108,36 +81,7 @@ public class Prestamo {
 	public void setDiasRetraso(int diasRetraso) {
 		this.diasRetraso = diasRetraso;
 	}
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-	public String getApellidoUsuario() {
-		return apellidoUsuario;
-	}
-	public void setApellidoUsuario(String apellidoUsuario) {
-		this.apellidoUsuario = apellidoUsuario;
-	}
-	public String getNombreUsuario() {
-		return nombreUsuario;
-	}
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
-	}
-	public String getEmailUsuario() {
-		return emailUsuario;
-	}
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
-	}
-	public String getCodigoBarrasUsuario() {
-		return codigoBarrasUsuario;
-	}
-	public void setCodigoBarrasUsuario(String codigoBarrasUsuario) {
-		this.codigoBarrasUsuario = codigoBarrasUsuario;
-	}
+	
 	public String getCotaEjemplar() {
 		return cotaEjemplar;
 	}
@@ -192,11 +136,6 @@ public class Prestamo {
 	            "fechaPrestamo=" + fechaPrestamo +
 	            ", fechaDevolucion=" + fechaDevolucion +
 	            ", diasRetraso=" + diasRetraso +
-	            ", idUsuario=" + idUsuario +
-	            ", apellidoUsuario='" + apellidoUsuario + '\'' +
-	            ", nombreUsuario='" + nombreUsuario + '\'' +
-	            ", emailUsuario='" + emailUsuario + '\'' +
-	            ", codigoBarrasUsuario='" + codigoBarrasUsuario + '\'' +
 	            ", cotaEjemplar='" + cotaEjemplar + '\'' +
 	            ", codigoBarrasEjemplar='" + codigoBarrasEjemplar + '\'' +
 	            ", idFichaBibliografica=" + idFichaBibliografica +

@@ -153,10 +153,8 @@ public class Datos {
 			String[] partes = fila.split(",");
 			if(colIndex <= partes.length)				
 				return partes[colIndex].trim();
-		}
-	   
-		return "";
-		
+		}	   
+		return "";		
 	}
 	
 	public static LocalDate parseFecha(String fechaStr) {
@@ -167,9 +165,18 @@ public class Datos {
 	    } catch (DateTimeParseException e) {
 	        e.printStackTrace();
 	        return null; 
-	    }
+	    }	    
 	}
 	
+	public static int parseNumero(String valor) {
+		
+		if(!valor.isEmpty()) {			
+			return (int)Double.parseDouble(valor);
+		}else {
+			return 0;
+		}
+			
+	}
 	
 	
 	
