@@ -2,7 +2,7 @@ package test;
 import modelo.Prestamo;
 import persistencia.XlsParser;
 
-public class TestGeneral {
+public class TestPrestamo {
     public static void main(String[] args) throws Exception {
     	XlsParser parser =XlsParser.getInstancia();
     	String[] archivo = parser.getArchivoToArrString();  

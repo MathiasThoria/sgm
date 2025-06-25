@@ -147,8 +147,8 @@ public class XlsParser {
 	public static String getValorFromFilaAtributo(String fila, String atributo) {
 		//Integer permite uso de null en la variable   
 		Integer colIndex = mapaColumnaPosicion.get(atributo);	
-		System.out.println(atributo);
-		System.out.println(mapaColumnaPosicion.get(atributo));
+		//System.out.println(atributo);
+		//System.out.println(mapaColumnaPosicion.get(atributo));
 		if (colIndex != null) {   
 			String[] partes = fila.split(",");
 			if(colIndex <= partes.length)				
@@ -161,7 +161,7 @@ public class XlsParser {
 	
 	public static LocalDate parseFecha(String fechaStr) {
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	    System.out.println(fechaStr);
+	    //System.out.println(fechaStr);
 	    try {
 	        return LocalDate.parse(fechaStr, formatter);
 	    } catch (DateTimeParseException e) {
