@@ -22,7 +22,12 @@ public class Prestamos {
 	}
 	
 	public String toString() {
-		return listaPrestamos.toString();	
+		String aux="";
+		for(Prestamo p : listaPrestamos) {
+			aux+=p.toString();
+			aux+="\n";
+		}
+		return aux;
 	}
 	
 }
