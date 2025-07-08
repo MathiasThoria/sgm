@@ -7,7 +7,7 @@ import persistencia.XlsParser;
 public class Prestamo {
 	private LocalDate fechaPrestamo;      // aff_pret_date
 	private LocalDate fechaDevolucion;    // aff_pret_retour
-	private int diasRetraso;              // retard
+	private boolean retraso;              // retard
 
 	//Datos Usuario
 
@@ -23,12 +23,12 @@ public class Prestamo {
 	private boolean prestamoCorto;        // short_loan_flag
 	
 	
-	public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, int diasRetraso,
+	public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, boolean diasRetraso,
 			String cotaEjemplar, String codigoBarrasEjemplar, int idFichaBibliografica, int idBulletin, int idNotice,
 			String tituloObra, String tipoDocumento, boolean prestamoCorto) {		
 		this.fechaPrestamo = fechaPrestamo;
 		this.fechaDevolucion = fechaDevolucion;
-		this.diasRetraso = diasRetraso;
+		this.retraso = diasRetraso;
 
 		this.cotaEjemplar = cotaEjemplar;
 		this.codigoBarrasEjemplar = codigoBarrasEjemplar;
@@ -41,26 +41,6 @@ public class Prestamo {
 	}
 
 
-	//Instancia prestamo desde un String con la fila del xls. campos separados por coma.
-	//no iria en controlador????
-	public Prestamo(String fila) {
-		//System.out.println(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
-	    this.fechaPrestamo = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
-	    this.fechaDevolucion = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaDevolucion"));
-	    this.diasRetraso = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "diasRetraso"));
-
-	    this.cotaEjemplar = XlsParser.getValorFromFilaAtributo(fila, "cotaEjemplar");
-	    this.codigoBarrasEjemplar = XlsParser.getValorFromFilaAtributo(fila, "codigoBarrasEjemplar");
-	    this.idFichaBibliografica = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idFichaBibliografica"));
-	    
-	    	    
-	    this.idBulletin = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idBulletin"));
-	    this.idNotice = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idNotice"));
-
-	    this.tituloObra = XlsParser.getValorFromFilaAtributo(fila, "tituloObra");
-	    this.tipoDocumento = XlsParser.getValorFromFilaAtributo(fila, "tipoDocumento");
-	    this.prestamoCorto = Boolean.parseBoolean(XlsParser.getValorFromFilaAtributo(fila, "prestamoCorto"));
-	}
 		
 	
 	public LocalDate getFechaPrestamo() {
@@ -75,11 +55,11 @@ public class Prestamo {
 	public void setFechaDevolucion(LocalDate fechaDevolucion) {
 		this.fechaDevolucion = fechaDevolucion;
 	}
-	public int getDiasRetraso() {
-		return diasRetraso;
+	public boolean getDiasRetraso() {
+		return retraso;
 	}
-	public void setDiasRetraso(int diasRetraso) {
-		this.diasRetraso = diasRetraso;
+	public void setDiasRetraso(boolean retraso) {
+		this.retraso = retraso;
 	}
 	
 	public String getCotaEjemplar() {
@@ -132,10 +112,10 @@ public class Prestamo {
 	}
 	@Override
 	public String toString() {
-	    return "Prestamo{" +
+	    return "Prestamo[" +
 	            "fechaPrestamo=" + fechaPrestamo +
 	            ", fechaDevolucion=" + fechaDevolucion +
-	            ", diasRetraso=" + diasRetraso +
+	            ", diasRetraso=" + retraso +
 	            ", cotaEjemplar='" + cotaEjemplar + '\'' +
 	            ", codigoBarrasEjemplar='" + codigoBarrasEjemplar + '\'' +
 	            ", idFichaBibliografica=" + idFichaBibliografica +
@@ -144,7 +124,7 @@ public class Prestamo {
 	            ", tituloObra='" + tituloObra + '\'' +
 	            ", tipoDocumento='" + tipoDocumento + '\'' +
 	            ", prestamoCorto=" + prestamoCorto +
-	            '}';
+	            ']';
 	}
 
 }

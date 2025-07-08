@@ -17,8 +17,9 @@ public class Usuario {
 		this.nombreUsuario = nombreUsuario;
 		this.emailUsuario = emailUsuario;
 		this.codigoBarrasUsuario = codigoBarrasUsuario;
+		this.listaPrestamos = listaPrestamos;
 	}
-	
+	/*
 	public Usuario(String fila) {
 	    this.idUsuario = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idUsuario"));
 	    this.apellidoUsuario = XlsParser.getValorFromFilaAtributo(fila, "apellidoUsuario");
@@ -29,9 +30,9 @@ public class Usuario {
 	    //Para crear un usuario es necesario por lo menos un prestamo 
 	    //No es responsabilidad de Usuario si existen mas prestamos (se controla de afuera)
 	    this.listaPrestamos=new Prestamos();
-	    this.listaPrestamos.addPrestamo(new Prestamo(fila));	    
+	    this.listaPrestamos.agregarPrestamo(new Prestamo(fila));	    
 	}
-	
+	*/
 	public int getIdUsuario() {
 		return idUsuario;
 	}

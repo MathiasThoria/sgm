@@ -17,7 +17,7 @@ public class Prestamos {
 		this.listaPrestamos = listaPrestamos;
 	}
 	
-	public void addPrestamo(Prestamo p){
+	public void agregarPrestamo(Prestamo p){
 		listaPrestamos.add(p);
 	}
 	
