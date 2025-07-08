@@ -7,13 +7,19 @@ import java.time.format.DateTimeParseException;
 
 import modelo.*;
 
+/**
+ * Responsabilidades: 
+ * - Cargar datos del xls al string
+ * - Devolver String formateados de las colecciones 
+ */
 public class ManejadorDatos {
 	Usuarios coleccionUsuario;
 	Datos archivoXls;
 	
 	public ManejadorDatos() throws Exception {
 		archivoXls = new Datos();//queda en cadena el archivo cargado		
-		coleccionUsuario = new Usuarios();//crea lista vacia		
+		coleccionUsuario = new Usuarios();//crea lista vacia	
+		//coleccionUsuario = parserDatosToUsuarios();
 	}
 	
 	public Usuarios getColeccionUsuario() {
@@ -23,7 +29,7 @@ public class ManejadorDatos {
 	public Usuarios parserDatosToUsuarios() {
 		String datosCrudos = archivoXls.getCadena();
 	    String[] filas = datosCrudos.split(";");
-
+	    coleccionUsuario=new Usuarios();
 	    
 	    for (String fila : filas) {
 	        if (!fila.isEmpty()) { 
@@ -92,11 +98,13 @@ public class ManejadorDatos {
 		            // Si el usuario existe solo agrega prestamo
 		            //
 
-		            usuario.getListaPrestamos().agregarPrestamo(prestamo);
-	
-		            if (!coleccionUsuario.existeIdUsuario(usuario.getId()))
+		            //usuario.getListaPrestamos().agregarPrestamo(prestamo);
+		            // ojo hay que cheeuquar tambien si existe el prestamo de ese usuario
+		            //  el prestamo que quiero agregar
+		            if (!coleccionUsuario.existeIdUsuario(usuario.getId())) {
+		            	usuario.getListaPrestamos().agregarPrestamo(prestamo);		            
 		            	coleccionUsuario.agregarUsuario(usuario);
-		            else
+		            }else
 		            	coleccionUsuario.buscarUsuario(usuario.getId())
 		            	.getListaPrestamos()
 		            	.agregarPrestamo(prestamo);
@@ -135,5 +143,33 @@ public class ManejadorDatos {
 		}
 			
 	}
+	
+	 public String obtenerUsuariosComoString() {
+    	 
+    	 String s="";    	 
+         for (Usuario u : coleccionUsuario.getColeccionUsuario()) {
+             s+="Usuario: " + u.getNombre() + " | ID: " + u.getId();
+             
+             for (Prestamo p : u.getListaPrestamos().getListaPrestamos()) {
+            	 s+=" \n  → " + p.getTituloObra() + " (" + p.getFechaPrestamo() + " → " + p.getFechaDevolucion() + ")";
+             }
+             
+         }
+         return s;
+    }
+    public String obtenerUsuarioPorIdComoString(int id) {      
+    	String s="";
+        Usuario encontrado = coleccionUsuario.buscarUsuario(id);
+        if (encontrado != null) {
+            s+="Usuario: " + encontrado.getNombre();
+            for (Prestamo p : encontrado.getListaPrestamos().getListaPrestamos()) {
+            	s+="\n   → " + p.getTituloObra();
+            }
+        } else {
+            s+="Usuario no encontrado.";
+        }
+        return s;
+    }
+	
 	
 }

@@ -15,19 +15,19 @@ public class Vista {
     }
 
     public void iniciar() {
-        int opcion = -1;
-        while (opcion != 3) {
+        String opcion = "";
+        while (!opcion.equals("3")) {
             mostrarMenu();
-            opcion = Integer.parseInt(sc.nextLine());
+            opcion = sc.nextLine();
 
             switch (opcion) {
-                case 1:
+                case "1":
                     mostrarUsuarios();
                     break;
-                case 2:
+                case "2":
                     buscarUsuarioPorId();
                     break;
-                case 3:
+                case "3":
                     System.out.println(" Hasta luego!");
                     break;
                 default:
@@ -45,30 +45,14 @@ public class Vista {
     }
 
     private void mostrarUsuarios() {
-        Usuarios usuarios = controlador.obtenerUsuariosDesdeArchivo();
-        for (Usuario u : usuarios.getColeccionUsuario()) {
-            System.out.println("Usuario: " + u.getNombre() + " | ID: " + u.getId());
-            
-            for (Prestamo p : u.getListaPrestamos().getListaPrestamos()) {
-                System.out.println("   → " + p.getTituloObra() + " (" + p.getFechaPrestamo() + " → " + p.getFechaDevolucion() + ")");
-            }
-            System.out.println();
-        }
+       System.out.println(controlador.obtenerUsuariosComoString());
     }
 
     private void buscarUsuarioPorId() {
         System.out.print("Ingrese el ID del usuario: ");
         int idBuscado = Integer.parseInt(sc.nextLine());
-
-        Usuario encontrado = controlador.getManejadorDatos().getColeccionUsuario().buscarUsuario(idBuscado);
-        if (encontrado != null) {
-            System.out.println("Usuario: " + encontrado.getNombre());
-            for (Prestamo p : encontrado.getListaPrestamos().getListaPrestamos()) {
-                System.out.println("   → " + p.getTituloObra());
-            }
-        } else {
-            System.out.println("Usuario no encontrado.");
-        }
+        System.out.println(controlador.obtenerUsuarioPorIdComoString(idBuscado));
+       
     }
 
     public static void main(String[] args) throws Exception {

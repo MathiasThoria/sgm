@@ -1,8 +1,10 @@
 package controlador;
 
 import logica.ManejadorDatos;
-import modelo.Usuarios;
-
+/**
+ * Responsabilidades: 
+ * - orquestar entre vista y logica  
+ **/
 public class Controlador {	
     private ManejadorDatos manejadorDatos;
 
@@ -10,11 +12,18 @@ public class Controlador {
         manejadorDatos = new ManejadorDatos();
     }
 
-    public Usuarios obtenerUsuariosDesdeArchivo() {
-        return manejadorDatos.parserDatosToUsuarios();
+    public void actualizarUsuariosDesdeArchivo() {
+        manejadorDatos.parserDatosToUsuarios();
+    }   
+
+    public String obtenerUsuariosComoString() {
+    	actualizarUsuariosDesdeArchivo();
+    	return manejadorDatos.obtenerUsuariosComoString();
     }
-    public ManejadorDatos getManejadorDatos() {
-    	return manejadorDatos;
+    public String obtenerUsuarioPorIdComoString(int id) {      
+    	actualizarUsuariosDesdeArchivo();
+    	return manejadorDatos.obtenerUsuarioPorIdComoString(id);    	
     }
+    
 }
 
