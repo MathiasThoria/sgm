@@ -25,14 +25,14 @@ public class Usuarios {
 	}
 	public boolean existeIdUsuario(int id) {
 		for (Usuario u : coleccionUsuario) {
-			if (u.getIdUsuario() == id)
+			if (u.getId() == id)
 				return true;
 		}
 		return false;
 	}
 	public Usuario buscarUsuario(int id) {
 		for (Usuario u : coleccionUsuario) {
-			if (u.getIdUsuario() == id)
+			if (u.getId() == id)
 				return u;
 		}
 		return null;

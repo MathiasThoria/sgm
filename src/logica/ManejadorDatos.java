@@ -84,9 +84,9 @@ public class ManejadorDatos {
 		            		parseNumero(campos[10]),
 		            		parseNumero(campos[11]),
 		            		parseNumero(campos[12]),
-		            		campos[13],
 		            		campos[14],
-		            		Boolean.parseBoolean(campos[15]));
+		            		campos[15],
+		            		Boolean.parseBoolean(campos[16]));
 	
 		            // Si el usuario no existe agrega a coleccion
 		            // Si el usuario existe solo agrega prestamo
@@ -94,10 +94,10 @@ public class ManejadorDatos {
 
 		            usuario.getListaPrestamos().agregarPrestamo(prestamo);
 	
-		            if (!coleccionUsuario.existeIdUsuario(usuario.getIdUsuario()))
+		            if (!coleccionUsuario.existeIdUsuario(usuario.getId()))
 		            	coleccionUsuario.agregarUsuario(usuario);
 		            else
-		            	coleccionUsuario.buscarUsuario(usuario.getIdUsuario())
+		            	coleccionUsuario.buscarUsuario(usuario.getId())
 		            	.getListaPrestamos()
 		            	.agregarPrestamo(prestamo);
 	

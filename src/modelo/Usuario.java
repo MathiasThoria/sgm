@@ -4,19 +4,19 @@ import persistencia.XlsParser;
 
 public class Usuario {
 	private int idUsuario;                // id_empr
-	private String apellidoUsuario;       // empr_nom
-	private String nombreUsuario;         // empr_prenom
-	private String emailUsuario;          // empr_mail
-	private String codigoBarrasUsuario;  // empr_cb
+	private String apellido;       // empr_nom
+	private String nombre;         // empr_prenom
+	private String email;          // empr_mail
+	private String codigoBarras;  // empr_cb
 	private Prestamos listaPrestamos;
 	
 	public Usuario(int idUsuario, String apellidoUsuario, String nombreUsuario, String emailUsuario,
 			String codigoBarrasUsuario, Prestamos listaPrestamos) {		
 		this.idUsuario = idUsuario;
-		this.apellidoUsuario = apellidoUsuario;
-		this.nombreUsuario = nombreUsuario;
-		this.emailUsuario = emailUsuario;
-		this.codigoBarrasUsuario = codigoBarrasUsuario;
+		this.apellido = apellidoUsuario;
+		this.nombre = nombreUsuario;
+		this.email = emailUsuario;
+		this.codigoBarras = codigoBarrasUsuario;
 		this.listaPrestamos = listaPrestamos;
 	}
 	/*
@@ -33,35 +33,35 @@ public class Usuario {
 	    this.listaPrestamos.agregarPrestamo(new Prestamo(fila));	    
 	}
 	*/
-	public int getIdUsuario() {
+	public int getId() {
 		return idUsuario;
 	}
-	public void setIdUsuario(int idUsuario) {
+	public void setId(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	public String getApellidoUsuario() {
-		return apellidoUsuario;
+	public String getApellido() {
+		return apellido;
 	}
-	public void setApellidoUsuario(String apellidoUsuario) {
-		this.apellidoUsuario = apellidoUsuario;
+	public void setApellido(String apellidoUsuario) {
+		this.apellido = apellidoUsuario;
 	}
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getNombre() {
+		return nombre;
 	}
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setNombre(String nombreUsuario) {
+		this.nombre = nombreUsuario;
 	}
-	public String getEmailUsuario() {
-		return emailUsuario;
+	public String getEmail() {
+		return email;
 	}
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
+	public void setEmail(String emailUsuario) {
+		this.email = emailUsuario;
 	}
-	public String getCodigoBarrasUsuario() {
-		return codigoBarrasUsuario;
+	public String getCodigoBarras() {
+		return codigoBarras;
 	}
-	public void setCodigoBarrasUsuario(String codigoBarrasUsuario) {
-		this.codigoBarrasUsuario = codigoBarrasUsuario;
+	public void setCodigoBarras(String codigoBarrasUsuario) {
+		this.codigoBarras = codigoBarrasUsuario;
 	}	
 	public Prestamos getListaPrestamos() {
 		return this.listaPrestamos;
@@ -69,8 +69,8 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", apellidoUsuario=" + apellidoUsuario + ", nombreUsuario="
-				+ nombreUsuario + ", emailUsuario=" + emailUsuario + ", codigoBarrasUsuario=" + codigoBarrasUsuario
+		return "Usuario [idUsuario=" + idUsuario + ", apellidoUsuario=" + apellido + ", nombreUsuario="
+				+ nombre + ", emailUsuario=" + email + ", codigoBarrasUsuario=" + codigoBarras
 				+ ", listaPrestamos=" + listaPrestamos + "]";
 	}
 	

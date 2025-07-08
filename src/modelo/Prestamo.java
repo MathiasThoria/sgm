@@ -23,9 +23,18 @@ public class Prestamo {
 	private boolean prestamoCorto;        // short_loan_flag
 	
 	
-	public Prestamo(LocalDate fechaPrestamo, LocalDate fechaDevolucion, boolean diasRetraso,
-			String cotaEjemplar, String codigoBarrasEjemplar, int idFichaBibliografica, int idBulletin, int idNotice,
-			String tituloObra, String tipoDocumento, boolean prestamoCorto) {		
+	public Prestamo(LocalDate fechaPrestamo, 
+			LocalDate fechaDevolucion, 
+			boolean diasRetraso,
+			String cotaEjemplar, 
+			String codigoBarrasEjemplar, 
+			int idFichaBibliografica, 
+			int idBulletin, 
+			int idNotice,
+			String tituloObra, 
+			String tipoDocumento, 
+			boolean prestamoCorto) {
+		
 		this.fechaPrestamo = fechaPrestamo;
 		this.fechaDevolucion = fechaDevolucion;
 		this.retraso = diasRetraso;
