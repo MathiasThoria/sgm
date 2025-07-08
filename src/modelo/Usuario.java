@@ -1,6 +1,6 @@
 package modelo;
 
-import persistencia.Datos;
+import persistencia.XlsParser;
 
 public class Usuario {
 	private int idUsuario;                // id_empr
@@ -20,11 +20,11 @@ public class Usuario {
 	}
 	
 	public Usuario(String fila) {
-	    this.idUsuario = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "idUsuario"));
-	    this.apellidoUsuario = Datos.getValorFromFilaAtributo(fila, "apellidoUsuario");
-	    this.nombreUsuario = Datos.getValorFromFilaAtributo(fila, "nombreUsuario");
-	    this.emailUsuario = Datos.getValorFromFilaAtributo(fila, "emailUsuario");
-	    this.codigoBarrasUsuario = Datos.getValorFromFilaAtributo(fila, "codigoBarrasUsuario");
+	    this.idUsuario = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idUsuario"));
+	    this.apellidoUsuario = XlsParser.getValorFromFilaAtributo(fila, "apellidoUsuario");
+	    this.nombreUsuario = XlsParser.getValorFromFilaAtributo(fila, "nombreUsuario");
+	    this.emailUsuario = XlsParser.getValorFromFilaAtributo(fila, "emailUsuario");
+	    this.codigoBarrasUsuario = XlsParser.getValorFromFilaAtributo(fila, "codigoBarrasUsuario");
 	    
 	    //Para crear un usuario es necesario por lo menos un prestamo 
 	    //No es responsabilidad de Usuario si existen mas prestamos (se controla de afuera)

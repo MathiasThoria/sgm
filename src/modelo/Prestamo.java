@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-import persistencia.Datos;
+import persistencia.XlsParser;
 
 public class Prestamo {
 	private LocalDate fechaPrestamo;      // aff_pret_date
@@ -45,21 +45,21 @@ public class Prestamo {
 	//no iria en controlador????
 	public Prestamo(String fila) {
 		//System.out.println(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
-	    this.fechaPrestamo = Datos.parseFecha(Datos.getValorFromFilaAtributo(fila, "fechaPrestamo"));
-	    this.fechaDevolucion = Datos.parseFecha(Datos.getValorFromFilaAtributo(fila, "fechaDevolucion"));
-	    this.diasRetraso = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "diasRetraso"));
+	    this.fechaPrestamo = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaPrestamo"));
+	    this.fechaDevolucion = XlsParser.parseFecha(XlsParser.getValorFromFilaAtributo(fila, "fechaDevolucion"));
+	    this.diasRetraso = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "diasRetraso"));
 
-	    this.cotaEjemplar = Datos.getValorFromFilaAtributo(fila, "cotaEjemplar");
-	    this.codigoBarrasEjemplar = Datos.getValorFromFilaAtributo(fila, "codigoBarrasEjemplar");
-	    this.idFichaBibliografica = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "idFichaBibliografica"));
+	    this.cotaEjemplar = XlsParser.getValorFromFilaAtributo(fila, "cotaEjemplar");
+	    this.codigoBarrasEjemplar = XlsParser.getValorFromFilaAtributo(fila, "codigoBarrasEjemplar");
+	    this.idFichaBibliografica = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idFichaBibliografica"));
 	    
 	    	    
-	    this.idBulletin = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "idBulletin"));
-	    this.idNotice = Datos.parseNumero(Datos.getValorFromFilaAtributo(fila, "idNotice"));
+	    this.idBulletin = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idBulletin"));
+	    this.idNotice = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idNotice"));
 
-	    this.tituloObra = Datos.getValorFromFilaAtributo(fila, "tituloObra");
-	    this.tipoDocumento = Datos.getValorFromFilaAtributo(fila, "tipoDocumento");
-	    this.prestamoCorto = Boolean.parseBoolean(Datos.getValorFromFilaAtributo(fila, "prestamoCorto"));
+	    this.tituloObra = XlsParser.getValorFromFilaAtributo(fila, "tituloObra");
+	    this.tipoDocumento = XlsParser.getValorFromFilaAtributo(fila, "tipoDocumento");
+	    this.prestamoCorto = Boolean.parseBoolean(XlsParser.getValorFromFilaAtributo(fila, "prestamoCorto"));
 	}
 		
 	

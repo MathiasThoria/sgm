@@ -1,12 +1,12 @@
 package test;
 import modelo.Prestamo;
 import modelo.Prestamos;
-import persistencia.Datos;
+import persistencia.XlsParser;
 
 public class TestPrestamos {
 
 	public static void main(String[] args)throws Exception {
-		Datos parser =Datos.getInstancia();
+		XlsParser parser =XlsParser.getInstancia();
         
         //Creamos Prestamo desde archvio y agregamos a lista
 		String[] archivo = parser.getArchivoToArrString();

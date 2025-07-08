@@ -26,9 +26,9 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 /**
  * Clase Singleton con el objetivo de cargar archivo xls
  */
-public class Datos {
+public class XlsParser {
 	String rutaArchivo = "datos.xls";
-	private static Datos instancia;
+	private static XlsParser instancia;
 	private Workbook libro;
 	private Sheet hoja;
 	
@@ -88,7 +88,7 @@ public class Datos {
 	 * @throws Exception
 	 */
 	
-	private Datos() throws Exception{
+	private XlsParser() throws Exception{
         FileInputStream archivo = new FileInputStream(rutaArchivo);
         libro = new HSSFWorkbook(archivo);
         hoja = libro.getSheetAt(0);
@@ -102,9 +102,9 @@ public class Datos {
 	 * @return instancia estatica
 	 * @throws Exception
 	 */
-	public static Datos getInstancia() throws Exception {
+	public static XlsParser getInstancia() throws Exception {
 	        if (instancia == null) {
-	            instancia = new Datos();
+	            instancia = new XlsParser();
 	        }
 	        return instancia;
 	}
@@ -115,7 +115,7 @@ public class Datos {
 	 * @throws Exception
 	 */
 	public static void actualizarArchivo() throws Exception {
-        instancia = new Datos();
+        instancia = new XlsParser();
 	}
 	
 	/**
