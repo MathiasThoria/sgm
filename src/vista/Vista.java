@@ -7,14 +7,15 @@ import java.util.Scanner;
 
 public class Vista {
     private Controlador controlador;
-    private Scanner sc;
+    
 
-    public Vista() throws Exception {
-        controlador = new Controlador();
-        sc = new Scanner(System.in);
+    public Vista() throws Exception {    	
+    	controlador = new Controlador();       
+        
     }
 
     public void iniciar() {
+    	Scanner sc=new Scanner(System.in);
         String opcion = "";
         while (!opcion.equals("3")) {
             mostrarMenu();
@@ -49,6 +50,7 @@ public class Vista {
     }
 
     private void buscarUsuarioPorId() {
+    	Scanner sc=new Scanner(System.in);
         System.out.print("Ingrese el ID del usuario: ");
         int idBuscado = Integer.parseInt(sc.nextLine());
         System.out.println(controlador.obtenerUsuarioPorIdComoString(idBuscado));

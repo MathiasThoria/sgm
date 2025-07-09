@@ -1,6 +1,6 @@
 package modelo;
 
-import persistencia.XlsParser;
+
 
 public class Usuario {
 	private int idUsuario;                // id_empr
@@ -10,8 +10,12 @@ public class Usuario {
 	private String codigoBarras;  // empr_cb
 	private Prestamos listaPrestamos;
 	
-	public Usuario(int idUsuario, String apellidoUsuario, String nombreUsuario, String emailUsuario,
-			String codigoBarrasUsuario, Prestamos listaPrestamos) {		
+	public Usuario(int idUsuario,
+			String apellidoUsuario,
+			String nombreUsuario,
+			String emailUsuario,
+			String codigoBarrasUsuario,
+			Prestamos listaPrestamos) {		
 		this.idUsuario = idUsuario;
 		this.apellido = apellidoUsuario;
 		this.nombre = nombreUsuario;
@@ -19,20 +23,7 @@ public class Usuario {
 		this.codigoBarras = codigoBarrasUsuario;
 		this.listaPrestamos = listaPrestamos;
 	}
-	/*
-	public Usuario(String fila) {
-	    this.idUsuario = XlsParser.parseNumero(XlsParser.getValorFromFilaAtributo(fila, "idUsuario"));
-	    this.apellidoUsuario = XlsParser.getValorFromFilaAtributo(fila, "apellidoUsuario");
-	    this.nombreUsuario = XlsParser.getValorFromFilaAtributo(fila, "nombreUsuario");
-	    this.emailUsuario = XlsParser.getValorFromFilaAtributo(fila, "emailUsuario");
-	    this.codigoBarrasUsuario = XlsParser.getValorFromFilaAtributo(fila, "codigoBarrasUsuario");
-	    
-	    //Para crear un usuario es necesario por lo menos un prestamo 
-	    //No es responsabilidad de Usuario si existen mas prestamos (se controla de afuera)
-	    this.listaPrestamos=new Prestamos();
-	    this.listaPrestamos.agregarPrestamo(new Prestamo(fila));	    
-	}
-	*/
+
 	public int getId() {
 		return idUsuario;
 	}

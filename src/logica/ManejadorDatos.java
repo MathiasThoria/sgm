@@ -13,8 +13,8 @@ import modelo.*;
  * - Devolver String formateados de las colecciones 
  */
 public class ManejadorDatos {
-	Usuarios coleccionUsuario;
-	Datos archivoXls;
+	private Usuarios coleccionUsuario;
+	private Datos archivoXls;
 	
 	public ManejadorDatos() throws Exception {
 		archivoXls = new Datos();//queda en cadena el archivo cargado		
@@ -121,7 +121,7 @@ public class ManejadorDatos {
 	}
 	
 	
-	public static LocalDate parseFecha(String fechaStr) {
+	public LocalDate parseFecha(String fechaStr) {
 	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	    //System.out.println(fechaStr);
 	    try {
@@ -132,7 +132,7 @@ public class ManejadorDatos {
 	    }	    
 	}
 	
-	public static int parseNumero(String valor) {
+	public int parseNumero(String valor) {
 		//System.out.println("-"+valor+valor.equals(" "));
 		
 		//cuando una celda viene vacia no es "" sino " "
