@@ -82,8 +82,8 @@ public class ManejadorDatos {
 		            
 		            
 		            Prestamo prestamo = new Prestamo(
-		            		parseFecha(campos[0]), 
-		            		parseFecha(campos[1]), 
+		            		new Fecha(campos[0]), 
+		            		new Fecha(campos[1]), 
 		            		Boolean.parseBoolean(campos[2]),
 		            		campos[8],
 		            		campos[9],

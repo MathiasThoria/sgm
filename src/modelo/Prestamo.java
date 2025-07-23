@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import persistencia.XlsParser;
 
 public class Prestamo {
-	private LocalDate fechaPrestamo;      // aff_pret_date
-	private LocalDate fechaDevolucion;    // aff_pret_retour
+	private Fecha fechaPrestamo;      // aff_pret_date
+	private Fecha fechaDevolucion;    // aff_pret_retour
 	private boolean retraso;              // retard
 
 	//Datos Usuario
@@ -23,8 +23,8 @@ public class Prestamo {
 	private boolean prestamoCorto;        // short_loan_flag
 	
 	
-	public Prestamo(LocalDate fechaPrestamo, 
-			LocalDate fechaDevolucion, 
+	public Prestamo(Fecha fechaPrestamo, 
+			Fecha fechaDevolucion, 
 			boolean diasRetraso,
 			String cotaEjemplar, 
 			String codigoBarrasEjemplar, 
@@ -52,16 +52,16 @@ public class Prestamo {
 
 		
 	
-	public LocalDate getFechaPrestamo() {
+	public Fecha getFechaPrestamo() {
 		return fechaPrestamo;
 	}
-	public void setFechaPrestamo(LocalDate fechaPrestamo) {
+	public void setFechaPrestamo(Fecha fechaPrestamo) {
 		this.fechaPrestamo = fechaPrestamo;
 	}
-	public LocalDate getFechaDevolucion() {
+	public Fecha getFechaDevolucion() {
 		return fechaDevolucion;
 	}
-	public void setFechaDevolucion(LocalDate fechaDevolucion) {
+	public void setFechaDevolucion(Fecha fechaDevolucion) {
 		this.fechaDevolucion = fechaDevolucion;
 	}
 	public boolean getDiasRetraso() {
