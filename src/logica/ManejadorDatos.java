@@ -14,7 +14,8 @@ import modelo.*;
  */
 public class ManejadorDatos {
 	private Usuarios coleccionUsuario;
-	private Datos archivoXls;
+	private Datos archivoXls;	
+	
 	
 	public ManejadorDatos() throws Exception {
 		archivoXls = new Datos();//queda en cadena el archivo cargado		
@@ -27,17 +28,18 @@ public class ManejadorDatos {
 	}
 	
 	public Usuarios parserDatosToUsuarios() {
+			
 		String datosCrudos = archivoXls.getCadena();
 	    String[] filas = datosCrudos.split(";");
 	    coleccionUsuario=new Usuarios();
-	    
+	    boolean encabezado=true;
 	    for (String fila : filas) {
-	        if (!fila.isEmpty()) { 
-	
-		        String[] campos = fila.split(",");
-		     
-	
-		        try {
+	        if (encabezado) {	        
+	        	encabezado=false;
+	        }else {	
+	        
+		        String[] campos = fila.split(",");      
+	            try {
 		            /* Parsear datos del usuario		          
 					 * Asignar la posicion directamente es endeble
 					 * Queda para hacer un mapping como tenias antes, que vincule como teniamos en XlsParser anterior
@@ -68,7 +70,7 @@ public class ManejadorDatos {
 					// falta chequear que campos no esten vaciois porq sino tira
 					// Exception en los cambios de tipo  
 					//
-
+	
 		            Usuario usuario = new Usuario(
 		            		parseNumero(campos[3]),
 		            		campos[4],
@@ -97,7 +99,7 @@ public class ManejadorDatos {
 		            // Si el usuario no existe agrega a coleccion
 		            // Si el usuario existe solo agrega prestamo
 		            //
-
+	
 		            //usuario.getListaPrestamos().agregarPrestamo(prestamo);
 		            // ojo hay que cheeuquar tambien si existe el prestamo de ese usuario
 		            //  el prestamo que quiero agregar
@@ -113,6 +115,7 @@ public class ManejadorDatos {
 		            System.out.println("Error al procesar fila: " + fila);
 		            e.printStackTrace();
 		        }
+
 	        }
 	    }
 
@@ -153,7 +156,7 @@ public class ManejadorDatos {
              for (Prestamo p : u.getListaPrestamos().getListaPrestamos()) {
             	 s+=" \n  → " + p.getTituloObra() + " (" + p.getFechaPrestamo() + " → " + p.getFechaDevolucion() + ")";
              }
-             
+             s+="\n";
          }
          return s;
     }
