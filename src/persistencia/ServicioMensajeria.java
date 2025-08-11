@@ -11,12 +11,12 @@ public class ServicioMensajeria {
 	private static String clave = "wjvj lssx adib dinn";
 	
 	private static String destino;
-	private static String asunto;
-	private static String textoMensaje;	
-	private static String cuerpoHtml;
-	private static String rutaAdjunto;
+	private static String asunto="";
+	private static String textoMensaje="";	
+	private static String cuerpoHtml="";
+	private static String rutaAdjunto="";
 	
-	public static void enviar(String textoMensaje, String destino) {		
+	public static boolean enviar(String textoMensaje, String destino) {		
 		// Cuerpo HTML del correo
        /*	String cuerpoHtml = "<h2 style='color: navy;'>Hola desde Java</h2> "
 	 		+ "<p>Este es un correo <strong>HTML</strong> con archivo adjunto.<br> "
@@ -35,7 +35,24 @@ public class ServicioMensajeria {
                 return new PasswordAuthentication(micorreo, clave);
             }
         });
-        
+        try {
+            Message mail = new MimeMessage(sesion);
+            mail.setFrom(new InternetAddress(micorreo));
+            mail.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destino));
+            mail.setSubject(asunto);
+            
+            // Solo texto simple - sin multipart
+            mail.setText(textoMensaje);
+            
+            Transport.send(mail);
+            System.out.println("Correo enviado correctamente a: " + destino);
+            return true;
+            
+        } catch (MessagingException e) {
+            System.err.println("Error al enviar correo: " + e.getMessage());
+            return false;
+        }
+        /* PROBAR LUEGO
         try {
         	 Message mail = new MimeMessage(sesion);
         	 mail.setFrom(new InternetAddress(micorreo));
@@ -45,6 +62,8 @@ public class ServicioMensajeria {
         	// Parte de texto
              //MimeBodyPart cuerpoTexto = new MimeBodyPart();
              //cuerpoTexto.setText(mensaje);
+             
+        	 cuerpoHtml=textoMensaje;
              
              MimeBodyPart parteHtml = new MimeBodyPart();
              parteHtml.setContent(cuerpoHtml, "text/html; charset=utf-8");
@@ -70,7 +89,7 @@ public class ServicioMensajeria {
         catch (IOException e) {
         	e.printStackTrace();
         }
-	
+	*/
 
 	}
 }
