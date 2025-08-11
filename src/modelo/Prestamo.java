@@ -7,7 +7,7 @@ import persistencia.XlsParser;
 public class Prestamo {
 	private Fecha fechaPrestamo;      // aff_pret_date
 	private Fecha fechaDevolucion;    // aff_pret_retour
-	private boolean retraso;              // retard
+	private int retraso;              // retard
 
 	private String cotaEjemplar;          // expl_cote
 	private String codigoBarrasEjemplar;  // expl_cb
@@ -22,7 +22,7 @@ public class Prestamo {
 	
 	public Prestamo(Fecha fechaPrestamo, 
 			Fecha fechaDevolucion, 
-			boolean diasRetraso,
+			int diasRetraso,
 			String cotaEjemplar, 
 			String codigoBarrasEjemplar, 
 			int idFichaBibliografica, 
@@ -61,10 +61,10 @@ public class Prestamo {
 	public void setFechaDevolucion(Fecha fechaDevolucion) {
 		this.fechaDevolucion = fechaDevolucion;
 	}
-	public boolean getDiasRetraso() {
+	public int getDiasRetraso() {
 		return retraso;
 	}
-	public void setDiasRetraso(boolean retraso) {
+	public void setDiasRetraso(int retraso) {
 		this.retraso = retraso;
 	}
 	

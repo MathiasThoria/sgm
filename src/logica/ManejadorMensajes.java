@@ -1,0 +1,197 @@
+package logica;
+
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
+
+import modelo.*;
+import persistencia.ServicioMensajeria;
+
+/**
+ * Responsabilidades:
+ * - Procesar usuarios deudores y enviar mensajes
+ * - Generar texto de mensajes automáticamente
+ * - Coordinar con ServicioMensajeria
+ * - Registrar historial de mensajes enviados
+ */
+public class ManejadorMensajes {
+    private Historias historialMensajes;
+    
+    public ManejadorMensajes() {
+        this.historialMensajes = new Historias();
+    }
+    
+    public Historias getHistorialMensajes() {
+        return historialMensajes;
+    }
+    
+    /**
+     * Método principal: procesa todos los usuarios y envía mensajes
+     * @param usuarios Colección de usuarios deudores
+     * @return Resumen de envíos realizados
+     */
+    public String procesarEnvioMensajes(Usuarios usuarios) {
+        String resultado = "=== PROCESO DE ENVÍO DE MENSAJES ===\n\n";
+        
+        int enviados = 0;
+        int errores = 0;
+        
+        for (Usuario usuario : usuarios.getColeccionUsuario()) {
+            try {
+                // 1. Calcular días de retraso para cada préstamo
+                Map<String, Integer> prestamosAtrasados = calcularPrestamosAtrasados(usuario);
+                
+                // 2. Solo enviar si tiene préstamos atrasados
+                if (!prestamosAtrasados.isEmpty()) {
+                    // 3. Generar texto del mensaje
+                    String textoMensaje = generarTextoMensaje(usuario, prestamosAtrasados);
+                    
+                    // 4. Intentar envío
+                    boolean enviado = ServicioMensajeria.enviar(textoMensaje, usuario.getEmail());
+                    
+                    if (enviado) {
+                        // 5. Registrar en historial si fue exitoso
+                        MensajeEnviado mensaje = new MensajeEnviado(
+                            0, // ID se asigna automáticamente en Historias
+                            obtenerFechaActual(),
+                            usuario.getId(),
+                            usuario.getEmail(),
+                            prestamosAtrasados,
+                            textoMensaje
+                        );
+                        
+                        historialMensajes.agregarMensaje(mensaje);
+                        
+                        resultado += "✓ ENVIADO: " + usuario.getNombre() + 
+                                   " (" + usuario.getEmail() + ") - " + 
+                                   prestamosAtrasados.size() + " libro(s) atrasado(s)\n";
+                        enviados++;
+                        
+                    } else {
+                        resultado += "✗ ERROR: No se pudo enviar a " + usuario.getNombre() + 
+                                   " (" + usuario.getEmail() + ")\n";
+                        errores++;
+                    }
+                } else {
+                    resultado += "→ SIN ATRASOS: " + usuario.getNombre() + 
+                               " - No tiene préstamos vencidos\n";
+                }
+                
+            } catch (Exception e) {
+                resultado += "✗ EXCEPCIÓN: Error procesando usuario " + usuario.getNombre() + 
+                           " - " + e.getMessage() + "\n";
+                errores++;
+            }
+        }
+        
+        // Resumen final
+        resultado += "\n=== RESUMEN ===\n";
+        resultado += "Mensajes enviados: " + enviados + "\n";
+        resultado += "Errores: " + errores + "\n";
+        resultado += "Total procesados: " + usuarios.getColeccionUsuario().size() + "\n";
+        
+        return resultado;
+    }
+    
+    /**
+     * Calcula qué préstamos están atrasados y por cuántos días
+     */
+    private Map<String, Integer> calcularPrestamosAtrasados(Usuario usuario) {
+        Map<String, Integer> prestamosAtrasados = new HashMap<>();
+        Fecha fechaActual = obtenerFechaActual();
+        
+        for (Prestamo prestamo : usuario.getListaPrestamos().getListaPrestamos()) {
+            // Calcular días de diferencia usando tu método de Fecha
+            long diasDiferencia = fechaActual.diferencia(prestamo.getFechaDevolucion());
+            
+            // Si la diferencia es positiva, está atrasado
+            if (diasDiferencia > 0) {
+                prestamosAtrasados.put(
+                    prestamo.getCodigoBarrasEjemplar(), 
+                    (int) diasDiferencia
+                );
+            }
+        }
+        
+        return prestamosAtrasados;
+    }
+    
+    /**
+     * Genera el texto del mensaje personalizado para cada usuario
+     */
+    private String generarTextoMensaje(Usuario usuario, Map<String, Integer> prestamosAtrasados) {
+        String mensaje = "Estimado/a " + usuario.getNombre() + " " + usuario.getApellido() + ",\n\n";
+        mensaje += "Le escribimos desde la Biblioteca para recordarle que tiene los siguientes materiales vencidos:\n\n";
+        
+        // Buscar títulos de los libros atrasados
+        for (Prestamo prestamo : usuario.getListaPrestamos().getListaPrestamos()) {
+            String codigoBarras = prestamo.getCodigoBarrasEjemplar();
+            if (prestamosAtrasados.containsKey(codigoBarras)) {
+                int diasAtraso = prestamosAtrasados.get(codigoBarras);
+                mensaje += "• " + prestamo.getTituloObra() +
+                          " (Código: " + codigoBarras + ")" +
+                          " - " + diasAtraso + " día(s) de atraso" +
+                          " - Vencía: " + prestamo.getFechaDevolucion() + "\n";
+            }
+        }
+        
+        mensaje += "\nPor favor, acérquese a la biblioteca a la brevedad para regularizar su situación.\n";
+        mensaje += "Recuerde que los retrasos pueden generar sanciones según el reglamento.\n\n";
+        mensaje += "Saludos cordiales,\n";
+        mensaje += "Equipo de Biblioteca\n";
+        mensaje += "---\n";
+        mensaje += "Este es un mensaje automático, por favor no responder.";
+        
+        return mensaje;
+    }
+    
+    /**
+     * Obtiene la fecha actual usando tu clase Fecha personalizada
+     */
+    private Fecha obtenerFechaActual() {
+        LocalDate hoy = LocalDate.now();
+        return new Fecha(hoy.getDayOfMonth(), hoy.getMonthValue(), hoy.getYear());
+    }
+    
+    /**
+     * Obtener historial de mensajes como String formateado
+     */
+    public String obtenerHistorialMensajesComoString() {
+        if (historialMensajes.mensajesEnviados.isEmpty()) {
+            return "No hay mensajes enviados en el historial.";
+        }
+        
+        String resultado = "=== HISTORIAL DE MENSAJES ENVIADOS ===\n\n";
+        
+        for (MensajeEnviado mensaje : historialMensajes.mensajesEnviados) {
+            resultado += "ID: " + mensaje.getId() +
+                        " | Fecha: " + mensaje.getFechaEnvio() +
+                        " | Usuario ID: " + mensaje.getIdUsuario() +
+                        " | Email: " + mensaje.getCorreo() +
+                        " | Libros: " + mensaje.getPrestamosALaFecha().size() + "\n";
+        }
+        
+        return resultado;
+    }
+    
+    /**
+     * Buscar mensajes por usuario específico
+     */
+    public String obtenerMensajesPorUsuarioComoString(int idUsuario) {
+        Historias mensajesUsuario = historialMensajes.buscarMensajesPorUsuario(idUsuario);
+        
+        if (mensajesUsuario.mensajesEnviados.isEmpty()) {
+            return "No se encontraron mensajes para el usuario ID: " + idUsuario;
+        }
+        
+        String resultado = "=== MENSAJES DEL USUARIO ID: " + idUsuario + " ===\n\n";
+        
+        for (MensajeEnviado mensaje : mensajesUsuario.mensajesEnviados) {
+            resultado += "Fecha: " + mensaje.getFechaEnvio() +
+                        " | Email: " + mensaje.getCorreo() +
+                        " | Libros atrasados: " + mensaje.getPrestamosALaFecha().size() + "\n";
+        }
+        
+        return resultado;
+    }
+}
