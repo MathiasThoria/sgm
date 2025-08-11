@@ -7,14 +7,14 @@ import java.io.IOException;
 
 
 public class ServicioMensajeria {
-	String micorreo = "tallerINET2025@gmail.com";
-	String clave = "wjvj lssx adib dinn";
+	private static String micorreo = "tallerINET2025@gmail.com";
+	private static String clave = "wjvj lssx adib dinn";
 	
-	String destino;
-	String asunto;
-	String textoMensaje;	
-	String cuerpoHtml;
-	String rutaAdjunto;
+	private static String destino;
+	private static String asunto;
+	private static String textoMensaje;	
+	private static String cuerpoHtml;
+	private static String rutaAdjunto;
 	
 	public static void enviar(String textoMensaje, String destino) {		
 		// Cuerpo HTML del correo
