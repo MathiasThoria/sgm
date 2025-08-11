@@ -157,7 +157,7 @@ public class ManejadorMensajes {
     /**
      * Obtener historial de mensajes como String formateado
      */
-    public String obtenerHistorialMensajesComoString() {
+    public String obtenerHistoricoMensajes() {
         if (historialMensajes.getMensajesEnviados().isEmpty()) {
             return "No hay mensajes enviados en el historial.";
         }

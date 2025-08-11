@@ -29,6 +29,9 @@ public class Controlador {
     public String procesarMensajesDeUsuarios() {
     	return manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     }
+    public String obtenerHistoricoMensajes() {
+    	return manejadorMensajes.obtenerHistoricoMensajes();
+    }
     
 }
 

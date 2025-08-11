@@ -17,7 +17,7 @@ public class Vista {
     public void iniciar() {
     	Scanner sc=new Scanner(System.in);
         String opcion = "";
-        while (!opcion.equals("4")) {
+        while (!opcion.equals("0")) {
             mostrarMenu();
             opcion = sc.nextLine();
 
@@ -32,6 +32,9 @@ public class Vista {
                     procesarMensajes();
                     break;
                 case "4":
+                	listarHistoricoMensajes();
+                	break;
+                case "0":
                 	System.out.println(" Hasta luego!");
                 default:
                     System.out.println(" Opción inválida");
@@ -41,10 +44,11 @@ public class Vista {
 
     private void mostrarMenu() {
         System.out.println("\n====== MENÚ PRINCIPAL ======");
+        System.out.println("0. Salir");
         System.out.println("1. Mostrar todos los usuarios y sus préstamos");
         System.out.println("2. Buscar usuario por ID");
         System.out.println("3. Procesar Mensajes");
-        System.out.println("4. Salir");
+        System.out.println("4. Obtener historico mensajes");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -63,7 +67,9 @@ public class Vista {
     	System.out.println(controlador.procesarMensajesDeUsuarios());
     }
     
-    
+    private void listarHistoricoMensajes() {
+    	System.out.println(controlador.obtenerHistoricoMensajes());
+    }
     public static void main(String[] args) throws Exception {
         new Vista().iniciar();
     }
