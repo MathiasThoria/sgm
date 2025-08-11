@@ -17,7 +17,7 @@ public class Vista {
     public void iniciar() {
     	Scanner sc=new Scanner(System.in);
         String opcion = "";
-        while (!opcion.equals("3")) {
+        while (!opcion.equals("4")) {
             mostrarMenu();
             opcion = sc.nextLine();
 
@@ -29,7 +29,7 @@ public class Vista {
                     buscarUsuarioPorId();
                     break;
                 case "3":
-                    
+                    procesarMensajes();
                     break;
                 case "4":
                 	System.out.println(" Hasta luego!");
@@ -59,8 +59,13 @@ public class Vista {
         System.out.println(controlador.obtenerUsuarioPorIdComoString(idBuscado));
        
     }
-
+    private void procesarMensajes() {
+    	System.out.println(controlador.procesarMensajesDeUsuarios());
+    }
+    
+    
     public static void main(String[] args) throws Exception {
         new Vista().iniciar();
     }
+    
 }

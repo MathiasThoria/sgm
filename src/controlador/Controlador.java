@@ -1,15 +1,17 @@
 package controlador;
 
-import logica.ManejadorDatos;
+import logica.*;
 /**
  * Responsabilidades: 
  * - orquestar entre vista y logica  
  **/
 public class Controlador {	
     private ManejadorDatos manejadorDatos;
+    private ManejadorMensajes manejadorMensajes;
 
     public Controlador() throws Exception {
-        manejadorDatos = new ManejadorDatos();
+        this.manejadorDatos = new ManejadorDatos();
+        this.manejadorMensajes = new ManejadorMensajes();
     }
 
     public void actualizarUsuariosDesdeArchivo() {
@@ -23,6 +25,9 @@ public class Controlador {
     public String obtenerUsuarioPorIdComoString(int id) {      
     	actualizarUsuariosDesdeArchivo();
     	return manejadorDatos.obtenerUsuarioPorIdComoString(id);    	
+    }
+    public String procesarMensajesDeUsuarios() {
+    	return manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     }
     
 }
