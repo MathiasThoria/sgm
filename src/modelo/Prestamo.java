@@ -9,9 +9,6 @@ public class Prestamo {
 	private Fecha fechaDevolucion;    // aff_pret_retour
 	private boolean retraso;              // retard
 
-	//Datos Usuario
-
-
 	private String cotaEjemplar;          // expl_cote
 	private String codigoBarrasEjemplar;  // expl_cb
 	private int idFichaBibliografica;     // expl_notice

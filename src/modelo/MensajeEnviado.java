@@ -1,33 +1,76 @@
 package modelo;
 
+import java.util.Map;
+
 public class MensajeEnviado {
-	Usuario usuario;
-	String textoMensaje;
+	int id;
 	Fecha fechaEnvio;
+	int idUsuario;
+	String correo;
 	
+	// Representa diccionario con k libro y v dias de atraso
+	// k - codigoDeBarrasEjemplar
+	// v - cantidad de dias de atraso a la fecha de enviado el mensaje	
+	Map<Integer,Integer> prestamosALaFecha; 
+	//almacenamos ejemplar o publicacion??	
+	//consideramos almacenar individualmente los id para tener registro posterior, sin necesidad de que exista instancia.
 	
-	public MensajeEnviado(Usuario usuario, String textoMensaje, Fecha fechaEnvio) {		
-		this.usuario = usuario;
-		this.textoMensaje = textoMensaje;
+	String textoMensaje; // necesario?
+	
+	public MensajeEnviado(int id,Fecha fechaEnvio, int idUsuario,String correo, Map<Integer, Integer> prestamosALaFecha,
+			String textoMensaje) {
+		this.id=id;
 		this.fechaEnvio = fechaEnvio;
-	}
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	public String getTextoMensaje() {
-		return textoMensaje;
-	}
-	public void setTextoMensaje(String textoMensaje) {
+		this.idUsuario = idUsuario;
+		this.correo=correo;
+		this.prestamosALaFecha = prestamosALaFecha;
 		this.textoMensaje = textoMensaje;
 	}
+	
+	public void setId(int id) {
+		this.id=id;
+	}
+	
+	public int getId() {
+		return this.id;
+	}
+
 	public Fecha getFechaEnvio() {
 		return fechaEnvio;
 	}
+
 	public void setFechaEnvio(Fecha fechaEnvio) {
 		this.fechaEnvio = fechaEnvio;
+	}
+
+	public int getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(int idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+	public void setCorreo(String correo) {
+		this.correo=correo;
+	}
+	public String getCorreo() {
+		return this.correo;
+	}
+	
+	public Map<Integer, Integer> getPrestamosALaFecha() {
+		return prestamosALaFecha;
+	}
+
+	public void setPrestamosALaFecha(Map<Integer, Integer> prestamosALaFecha) {
+		this.prestamosALaFecha = prestamosALaFecha;
+	}
+
+	public String getTextoMensaje() {
+		return textoMensaje;
+	}
+
+	public void setTextoMensaje(String textoMensaje) {
+		this.textoMensaje = textoMensaje;
 	}
 	
 }
