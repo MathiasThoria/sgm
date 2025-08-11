@@ -11,13 +11,13 @@ public class MensajeEnviado {
 	// Representa diccionario con k libro y v dias de atraso
 	// k - codigoDeBarrasEjemplar
 	// v - cantidad de dias de atraso a la fecha de enviado el mensaje	
-	Map<Integer,Integer> prestamosALaFecha; 
+	Map<String,Integer> prestamosALaFecha; 
 	//almacenamos ejemplar o publicacion??	
 	//consideramos almacenar individualmente los id para tener registro posterior, sin necesidad de que exista instancia.
 	
 	String textoMensaje; // necesario?
 	
-	public MensajeEnviado(int id,Fecha fechaEnvio, int idUsuario,String correo, Map<Integer, Integer> prestamosALaFecha,
+	public MensajeEnviado(int id,Fecha fechaEnvio, int idUsuario,String correo, Map<String, Integer> prestamosALaFecha,
 			String textoMensaje) {
 		this.id=id;
 		this.fechaEnvio = fechaEnvio;
@@ -57,11 +57,11 @@ public class MensajeEnviado {
 		return this.correo;
 	}
 	
-	public Map<Integer, Integer> getPrestamosALaFecha() {
+	public Map<String, Integer> getPrestamosALaFecha() {
 		return prestamosALaFecha;
 	}
 
-	public void setPrestamosALaFecha(Map<Integer, Integer> prestamosALaFecha) {
+	public void setPrestamosALaFecha(Map<String, Integer> prestamosALaFecha) {
 		this.prestamosALaFecha = prestamosALaFecha;
 	}
 

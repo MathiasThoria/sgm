@@ -14,4 +14,31 @@ public class Historias {
 		this.mensajesEnviados.add(mensaje);
 	}
 	
+	
+	public Historias buscarMensajesPorUsuario(int idUsuario) {
+	    Historias resultado = new Historias();
+	    for (MensajeEnviado msg : mensajesEnviados) {
+	        if (msg.getIdUsuario() == idUsuario) {
+	            resultado.mensajesEnviados.add(msg); // Acceso directo porque si uso agregar me modifica id (asigna automaticamente)
+	        }
+	    }
+	    return resultado;
+	}
+
+	public MensajeEnviado buscarMensajePorId(int id) {
+		for (MensajeEnviado msg : mensajesEnviados) {
+			if (msg.getId() == id) {
+				return msg;
+			}
+		}
+		return null;
+	}
+
+	public String toString() {
+		String s = "";
+		for (MensajeEnviado msg : mensajesEnviados) {
+			s += msg.toString() + "\n";
+		}
+		return s;
+	}
 }
