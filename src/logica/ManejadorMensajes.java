@@ -38,19 +38,20 @@ public class ManejadorMensajes {
         
         for (Usuario usuario : usuarios.getColeccionUsuario()) {
             try {
-                // 1. Calcular días de retraso para cada préstamo
+                // Calcular días de retraso para cada préstamo -- en caso que retard no funcione
+            	// comprueba que xls tenga retard actualizado
                 Map<String, Integer> prestamosAtrasados = calcularPrestamosAtrasados(usuario);
                 
-                // 2. Solo enviar si tiene préstamos atrasados
+                // Solo enviar si tiene préstamos atrasados
                 if (!prestamosAtrasados.isEmpty()) {
-                    // 3. Generar texto del mensaje
+                    // Generar texto del mensaje
                     String textoMensaje = generarTextoMensaje(usuario, prestamosAtrasados);
                     
-                    // 4. Intentar envío
+                    // Intentar envío
                     boolean enviado = ServicioMensajeria.enviar(textoMensaje, usuario.getEmail());
                     
                     if (enviado) {
-                        // 5. Registrar en historial si fue exitoso
+                        // Registrar en historial si fue exitoso
                         MensajeEnviado mensaje = new MensajeEnviado(
                             0, // ID se asigna automáticamente en Historias
                             obtenerFechaActual(),
@@ -62,23 +63,23 @@ public class ManejadorMensajes {
                         
                         historialMensajes.agregarMensaje(mensaje);
                         
-                        resultado += "✓ ENVIADO: " + usuario.getNombre() + 
+                        resultado += " ENVIADO: " + usuario.getNombre() + 
                                    " (" + usuario.getEmail() + ") - " + 
                                    prestamosAtrasados.size() + " libro(s) atrasado(s)\n";
                         enviados++;
                         
                     } else {
-                        resultado += "✗ ERROR: No se pudo enviar a " + usuario.getNombre() + 
+                        resultado += " ERROR: No se pudo enviar a " + usuario.getNombre() + 
                                    " (" + usuario.getEmail() + ")\n";
                         errores++;
                     }
                 } else {
-                    resultado += "→ SIN ATRASOS: " + usuario.getNombre() + 
+                    resultado += " SIN ATRASOS: " + usuario.getNombre() + 
                                " - No tiene préstamos vencidos\n";
                 }
                 
             } catch (Exception e) {
-                resultado += "✗ EXCEPCIÓN: Error procesando usuario " + usuario.getNombre() + 
+                resultado += " EXCEPCIÓN: Error procesando usuario " + usuario.getNombre() + 
                            " - " + e.getMessage() + "\n";
                 errores++;
             }
@@ -88,7 +89,7 @@ public class ManejadorMensajes {
         resultado += "\n=== RESUMEN ===\n";
         resultado += "Mensajes enviados: " + enviados + "\n";
         resultado += "Errores: " + errores + "\n";
-        resultado += "Total procesados: " + usuarios.getColeccionUsuario().size() + "\n";
+      
         
         return resultado;
     }
@@ -157,13 +158,13 @@ public class ManejadorMensajes {
      * Obtener historial de mensajes como String formateado
      */
     public String obtenerHistorialMensajesComoString() {
-        if (historialMensajes.mensajesEnviados.isEmpty()) {
+        if (historialMensajes.getMensajesEnviados().isEmpty()) {
             return "No hay mensajes enviados en el historial.";
         }
         
         String resultado = "=== HISTORIAL DE MENSAJES ENVIADOS ===\n\n";
         
-        for (MensajeEnviado mensaje : historialMensajes.mensajesEnviados) {
+        for (MensajeEnviado mensaje : historialMensajes.getMensajesEnviados()) {
             resultado += "ID: " + mensaje.getId() +
                         " | Fecha: " + mensaje.getFechaEnvio() +
                         " | Usuario ID: " + mensaje.getIdUsuario() +
@@ -180,13 +181,13 @@ public class ManejadorMensajes {
     public String obtenerMensajesPorUsuarioComoString(int idUsuario) {
         Historias mensajesUsuario = historialMensajes.buscarMensajesPorUsuario(idUsuario);
         
-        if (mensajesUsuario.mensajesEnviados.isEmpty()) {
+        if (mensajesUsuario.getMensajesEnviados().isEmpty()) {
             return "No se encontraron mensajes para el usuario ID: " + idUsuario;
         }
         
         String resultado = "=== MENSAJES DEL USUARIO ID: " + idUsuario + " ===\n\n";
         
-        for (MensajeEnviado mensaje : mensajesUsuario.mensajesEnviados) {
+        for (MensajeEnviado mensaje : mensajesUsuario.getMensajesEnviados()) {
             resultado += "Fecha: " + mensaje.getFechaEnvio() +
                         " | Email: " + mensaje.getCorreo() +
                         " | Libros atrasados: " + mensaje.getPrestamosALaFecha().size() + "\n";

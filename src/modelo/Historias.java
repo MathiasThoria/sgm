@@ -33,6 +33,9 @@ public class Historias {
 		}
 		return null;
 	}
+	public LinkedList<MensajeEnviado> getMensajesEnviados(){
+		return mensajesEnviados;
+	}
 
 	public String toString() {
 		String s = "";

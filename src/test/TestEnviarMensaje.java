@@ -5,7 +5,7 @@ public class TestEnviarMensaje {
 	
 	public static void main(String [] args) {
 		String textoMensaje = "Hola mi mensaje";
-		String destino ="mathiassoriapiro@gmail.com";
+		String destino ="eltartamudo01@gmail.com";
 		System.out.println(persistencia.ServicioMensajeria.enviar(textoMensaje,destino));
 		
 	}

@@ -29,8 +29,10 @@ public class Vista {
                     buscarUsuarioPorId();
                     break;
                 case "3":
-                    System.out.println(" Hasta luego!");
+                    
                     break;
+                case "4":
+                	System.out.println(" Hasta luego!");
                 default:
                     System.out.println(" Opción inválida");
             }
@@ -41,7 +43,8 @@ public class Vista {
         System.out.println("\n====== MENÚ PRINCIPAL ======");
         System.out.println("1. Mostrar todos los usuarios y sus préstamos");
         System.out.println("2. Buscar usuario por ID");
-        System.out.println("3. Salir");
+        System.out.println("3. Procesar Mensajes");
+        System.out.println("4. Salir");
         System.out.print("Seleccione una opción: ");
     }
 
