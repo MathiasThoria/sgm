@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class UsuarioSistemaBD {
 	
-	public String Alta(int id, String perfil, String contraseña) {
+	public static String Alta(int id, String perfil, String contraseña) {
 		String retorno = "";
 		ConexionBD conex = new ConexionBD();
 		Connection cn = conex.conectar();
@@ -14,7 +14,7 @@ public class UsuarioSistemaBD {
 		try (PreparedStatement statement = cn.prepareStatement(sql)){
 			statement.setInt(1, id);
 			statement.setString(2, perfil);
-			statement.setString(2, contraseña);
+			statement.setString(3, contraseña);
 			statement.executeUpdate();
 			retorno = "Usuario del sistema dado de alta con éxito";
 		} catch (SQLException e) {
@@ -24,7 +24,7 @@ public class UsuarioSistemaBD {
 		return retorno;
 	}
 	
-	public String Baja(int id) {
+	public static String Baja(int id) {
 		String retorno = "";
 		ConexionBD conex = new ConexionBD();
 		Connection cn = conex.conectar();
@@ -40,7 +40,7 @@ public class UsuarioSistemaBD {
 		return retorno;
 	}
 	
-	public String Modificar(int id, String perfil, String contraseña) {
+	public static String Modificar(int id, String perfil, String contraseña) {
 		String retorno = "";
 		ConexionBD conex = new ConexionBD();
 		Connection cn = conex.conectar();

@@ -27,5 +27,6 @@
 	<classpathentry kind="lib" path="lib/poi-4.1.2/ooxml-lib/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta/jakarta.activation-2.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/jakarta/jakarta.mail-2.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/BD/mysql-connector-j-8.3.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
