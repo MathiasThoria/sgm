@@ -149,16 +149,7 @@ public class ManejadorDatos {
 	
 	 public String obtenerUsuariosComoString() {
     	 
-    	 String s="";    	 
-         for (Usuario u : coleccionUsuario.getColeccionUsuario()) {
-             s+="Usuario: " + u.getNombre() + " | ID: " + u.getId();
-             
-             for (Prestamo p : u.getListaPrestamos().getListaPrestamos()) {
-            	 s+=" \n  → " + p.getTituloObra() + " (" + p.getFechaPrestamo() + " → " + p.getFechaDevolucion() + ")";
-             }
-             s+="\n";
-         }
-         return s;
+    	return coleccionUsuario.toString();
     }
     public String obtenerUsuarioPorIdComoString(int id) {      
     	String s="";

@@ -39,12 +39,17 @@ public class Usuarios {
 	}
 	
 	public String toString() {
-		String s="";
-		for(Usuario u : coleccionUsuario) {
-			s+=u.toString();
-			s+="\n";
-		}
-		return s;
+		 String s="";    	 
+         for (Usuario u : coleccionUsuario) {
+             s+="Usuario: " + u.getNombre() + " | ID: " + u.getId();
+             
+             for (Prestamo p : u.getListaPrestamos().getListaPrestamos()) {
+            	 s+=" \n  → " + p.getTituloObra() + " (" + p.getFechaPrestamo() + " → " + p.getFechaDevolucion() + ")";
+             }
+             s+="\n";
+         }
+         return s;
+		
 	}
 	
 }
