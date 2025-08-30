@@ -40,12 +40,12 @@ public class ManejadorMensajes {
             try {
                 // Calcular días de retraso para cada préstamo -- en caso que retard no funcione
             	// comprueba que xls tenga retard actualizado
-                Map<String, Integer> prestamosAtrasados = calcularPrestamosAtrasados(usuario);
+                String titulosYDias = calcularPrestamosAtrasados(usuario);
                 
                 // Solo enviar si tiene préstamos atrasados
-                if (!prestamosAtrasados.isEmpty()) {
+                if (!titulosYDias.isEmpty()) {
                     // Generar texto del mensaje
-                    String textoMensaje = generarTextoMensaje(usuario, prestamosAtrasados);
+                    String textoMensaje = generarTextoMensaje(usuario, titulosYDias);
                     
                     // Intentar envío
                     ServicioMensajeria sm = new ServicioMensajeria();
@@ -58,15 +58,14 @@ public class ManejadorMensajes {
                             obtenerFechaActual(),
                             usuario.getId(),
                             usuario.getEmail(),
-                            prestamosAtrasados,
+                            titulosYDias,
                             textoMensaje
                         );
                         
                         historialMensajes.agregarMensaje(mensaje);
                         
                         resultado += " ENVIADO: " + usuario.getNombre() + 
-                                   " (" + usuario.getEmail() + ") - " + 
-                                   prestamosAtrasados.size() + " libro(s) atrasado(s)\n";
+                                   " (" + usuario.getEmail();
                         enviados++;
                         
                     } else {
@@ -97,35 +96,40 @@ public class ManejadorMensajes {
     
     /**
      * Calcula qué préstamos están atrasados y por cuántos días
+     * Devuelve String con titulo y dias de atraso
      */
-    private Map<String, Integer> calcularPrestamosAtrasados(Usuario usuario) {
-        Map<String, Integer> prestamosAtrasados = new HashMap<>();
+    private String calcularPrestamosAtrasados(Usuario usuario) {
+    	
+        String prestamosAtrasados = "";
         Fecha fechaActual = obtenerFechaActual();
+        long diasTotal=0, diasDiferencia=0;
         
         for (Prestamo prestamo : usuario.getListaPrestamos().getListaPrestamos()) {
             // Calcular días de diferencia usando tu método de Fecha
-            long diasDiferencia = fechaActual.diferencia(prestamo.getFechaDevolucion());
+            diasDiferencia = fechaActual.diferencia(prestamo.getFechaDevolucion());
             
             // Si la diferencia es positiva, está atrasado
             if (diasDiferencia > 0) {
-                prestamosAtrasados.put(
-                    prestamo.getCodigoBarrasEjemplar(), 
-                    (int) diasDiferencia
-                );
+                if (!prestamosAtrasados.isEmpty())
+                	prestamosAtrasados+=",";
+                
+            	prestamosAtrasados += prestamo.getTituloObra();
+                diasTotal+=diasDiferencia;           
+                		
             }
         }
         
-        return prestamosAtrasados;
+        return prestamosAtrasados + ". Con un total de " + diasTotal + "de atraso.\n";
     }
     
     /**
      * Genera el texto del mensaje personalizado para cada usuario
      */
-    private String generarTextoMensaje(Usuario usuario, Map<String, Integer> prestamosAtrasados) {
+    private String generarTextoMensaje(Usuario usuario, String titulosYDias) {
         String mensaje = "Estimado/a " + usuario.getNombre() + " " + usuario.getApellido() + ",\n\n";
         mensaje += "Le escribimos desde la Biblioteca para recordarle que tiene los siguientes materiales vencidos:\n\n";
-        
-        // Buscar títulos de los libros atrasados
+        mensaje += titulosYDias;
+        /*
         for (Prestamo prestamo : usuario.getListaPrestamos().getListaPrestamos()) {
             String codigoBarras = prestamo.getCodigoBarrasEjemplar();
             if (prestamosAtrasados.containsKey(codigoBarras)) {
@@ -135,7 +139,7 @@ public class ManejadorMensajes {
                           " - " + diasAtraso + " día(s) de atraso" +
                           " - Vencía: " + prestamo.getFechaDevolucion() + "\n";
             }
-        }
+        }*/
         
         mensaje += "\nPor favor, acérquese a la biblioteca a la brevedad para regularizar su situación.\n";
         mensaje += "Recuerde que los retrasos pueden generar sanciones según el reglamento.\n\n";
@@ -170,7 +174,7 @@ public class ManejadorMensajes {
                         " | Fecha: " + mensaje.getFechaEnvio() +
                         " | Usuario ID: " + mensaje.getIdUsuario() +
                         " | Email: " + mensaje.getCorreo() +
-                        " | Libros: " + mensaje.getPrestamosALaFecha().size() + "\n";
+                        " | Libros: " + mensaje.getTitulosYDias() + "\n";
         }
         
         return resultado;
@@ -191,7 +195,7 @@ public class ManejadorMensajes {
         for (MensajeEnviado mensaje : mensajesUsuario.getMensajesEnviados()) {
             resultado += "Fecha: " + mensaje.getFechaEnvio() +
                         " | Email: " + mensaje.getCorreo() +
-                        " | Libros atrasados: " + mensaje.getPrestamosALaFecha().size() + "\n";
+                        " | Libros atrasados: " + mensaje.getTitulosYDias() + "\n";
         }
         
         return resultado;
