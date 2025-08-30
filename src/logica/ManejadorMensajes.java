@@ -10,10 +10,12 @@ import persistencia.ServicioMensajeria;
 /**
  * Responsabilidades:
  * - Procesar usuarios deudores y enviar mensajes
- * - Generar texto de mensajes automáticamente
+ * - Generar plantilla de texto de mensajes automáticamente
  * - Coordinar con ServicioMensajeria
  * - Registrar historial de mensajes enviados
  */
+
+
 public class ManejadorMensajes {
     private Historias historialMensajes;
     
