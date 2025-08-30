@@ -7,16 +7,19 @@ import java.io.IOException;
 
 
 public class ServicioMensajeria {
-	private static String micorreo = "tallerINET2025@gmail.com";
-	private static String clave = "wjvj lssx adib dinn";
+	private String micorreo = "tallerINET2025@gmail.com";
+	private String clave = "wjvj lssx adib dinn";	
+	private String destino;
+	private String asunto="";
+	private String textoMensaje="";	
+	private String cuerpoHtml="";
+	private String rutaAdjunto="";
 	
-	private static String destino;
-	private static String asunto="";
-	private static String textoMensaje="";	
-	private static String cuerpoHtml="";
-	private static String rutaAdjunto="";
 	
-	public static boolean enviar(String textoMensaje, String destino) {		
+	public ServicioMensajeria() {		
+	}
+	
+	public boolean enviar(String textoMensaje, String destino) {		
 		// Cuerpo HTML del correo
        /*	String cuerpoHtml = "<h2 style='color: navy;'>Hola desde Java</h2> "
 	 		+ "<p>Este es un correo <strong>HTML</strong> con archivo adjunto.<br> "

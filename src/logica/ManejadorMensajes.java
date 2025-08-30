@@ -29,7 +29,7 @@ public class ManejadorMensajes {
      * Método principal: procesa todos los usuarios y envía mensajes
      * @param usuarios Colección de usuarios deudores
      * @return Resumen de envíos realizados
-     */
+     */ 
     public String procesarEnvioMensajes(Usuarios usuarios) {
         String resultado = "=== PROCESO DE ENVÍO DE MENSAJES ===\n\n";
         

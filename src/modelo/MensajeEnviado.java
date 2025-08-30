@@ -3,10 +3,10 @@ package modelo;
 import java.util.Map;
 
 public class MensajeEnviado {
-	int id;
-	Fecha fechaEnvio;
-	int idUsuario;
-	String correo;
+	private int id;	
+	private Fecha fechaEnvio;
+	private int idUsuario;
+	private String correo;
 	
 	// Representa diccionario con k libro y v dias de atraso
 	// k - codigoDeBarrasEjemplar

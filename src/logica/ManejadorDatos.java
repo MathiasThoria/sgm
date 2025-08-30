@@ -165,14 +165,19 @@ public class ManejadorDatos {
         Usuario encontrado = coleccionUsuario.buscarUsuario(id);
         if (encontrado != null) {
             s+="Usuario: " + encontrado.getNombre();
+            // pedir toString de prestamos
             for (Prestamo p : encontrado.getListaPrestamos().getListaPrestamos()) {
             	s+="\n   → " + p.getTituloObra();
             }
         } else {
             s+="Usuario no encontrado.";
-        }
+        } 
         return s;
     }
 	
-	
+/**alta de usario
+   baja de usuario   
+   
+    **/
+    
 }
