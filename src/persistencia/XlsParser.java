@@ -21,13 +21,32 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Cell;    
 import org.apache.poi.hssf.usermodel.HSSFWorkbook; 
 
+/**
+ * 
+ * 
+ * 
+ * 
+ * Ya no usamos
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
+
 //HELP: https://poi.apache.org/components/spreadsheet/quick-guide.html#Iterator
 
 /**
  * Clase Singleton con el objetivo de cargar archivo xls
  */
 public class XlsParser {
-	String rutaArchivo = "datos.xls";
+	private String rutaArchivo = "datos.xls";
 	private static XlsParser instancia;
 	private Workbook libro;
 	private Sheet hoja;

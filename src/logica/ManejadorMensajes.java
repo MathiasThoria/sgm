@@ -48,7 +48,8 @@ public class ManejadorMensajes {
                     String textoMensaje = generarTextoMensaje(usuario, prestamosAtrasados);
                     
                     // Intentar envío
-                    boolean enviado = ServicioMensajeria.enviar(textoMensaje, usuario.getEmail());
+                    ServicioMensajeria sm = new ServicioMensajeria();
+                    boolean enviado = sm.enviar(textoMensaje, usuario.getEmail());
                     
                     if (enviado) {
                         // Registrar en historial si fue exitoso

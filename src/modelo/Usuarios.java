@@ -3,7 +3,7 @@ package modelo;
 import java.util.LinkedList;
 
 public class Usuarios {
-	LinkedList<Usuario> coleccionUsuario;
+	private LinkedList<Usuario> coleccionUsuario;
 
 	public Usuarios(LinkedList<Usuario> coleccionUsuario) {		
 		this.coleccionUsuario = coleccionUsuario;

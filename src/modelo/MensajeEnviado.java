@@ -15,7 +15,7 @@ public class MensajeEnviado {
 	//almacenamos ejemplar o publicacion??	
 	//consideramos almacenar individualmente los id para tener registro posterior, sin necesidad de que exista instancia.
 	
-	String textoMensaje; // necesario?
+	private String textoMensaje; // necesario?
 	
 	public MensajeEnviado(int id,Fecha fechaEnvio, int idUsuario,String correo, Map<String, Integer> prestamosALaFecha,
 			String textoMensaje) {
