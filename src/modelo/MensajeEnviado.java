@@ -10,7 +10,7 @@ public class MensajeEnviado {
 
 	private String titulosYDias; 
 	
-	private String textoMensaje; // necesario?
+	//private String textoMensaje; // necesario?
 	
 	public MensajeEnviado(int id, Fecha fechaEnvio, int idUsuario, String correo,String titulosYDias,
 			String textoMensaje) {
@@ -19,7 +19,7 @@ public class MensajeEnviado {
 		this.idUsuario = idUsuario;
 		this.correo=correo;
 		this.titulosYDias = titulosYDias;
-		this.textoMensaje = textoMensaje;
+		//this.textoMensaje = textoMensaje;
 	}
 	
 	public void setId(int id) {
@@ -57,14 +57,6 @@ public class MensajeEnviado {
 	}
 	public void setTitulosYDias(String tyd) {
 		this.titulosYDias=tyd;
-	}
-	
-	public String getTextoMensaje() {
-		return textoMensaje;
-	}
-
-	public void setTextoMensaje(String textoMensaje) {
-		this.textoMensaje = textoMensaje;
 	}
 	
 }
