@@ -45,7 +45,7 @@ public class UsuarioSistemaBD {
 			
 		
 		String sql = "UPDATE usuariosistema SET perfil = ?, contrasenia = ? WHERE id = ?";
-		cn.ejecutarUpdate(sql, id,perfil, contraseña);	
+		cn.ejecutarUpdate(sql, perfil, contraseña, id);	
 		return retorno;
 	}
 	
