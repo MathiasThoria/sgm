@@ -60,10 +60,27 @@
   - Diagrama de clases (implementación).
 - La interfaz puede ser por consola, no se requiere GUI todavía.
 
-## 07/09 - Implementacion de correcciones  
+### 07/08 - Implementacion de correcciones  
 - Se implementan correcciones dadas por tutor. 
 - Se impelmentan primeras versiones de vista-controlador-logica. Se intenta
 - distribuir corrrectamente las responsabilidades en cada capa. Quedan dudas al respecto.
 - Las capas se comunican mayoritariamente mediante Strings.
 - Resta reflexionar sobre "historial" o registro de deudas para el seguimeinto de morosos,
 - lo cual fue mencionado por el tutor para su posterior analisis.
+
+### 30/8
+
+- Datos gestiona la conexion con el Xls.
+- Servicio de Mensajeria se encarga de la conexion con el servidor de correo y el envio de mails.
+- ManejadorMensajes se encarga de levantar los datos del modelo y solicitar a ServicioMensajeria
+- ConexionBD se encarga de conexion a la base de datos, cerrarla, ejecutar querys y updates.
+- MenasjeEnviado es una clase que representa el mensaje automaticamente enviado. Tiene un String
+para guardar los titulos que se adeudan y la suma de dias. Esto ultimo fue bajo solicitud del tutor (se 
+reemplazo map que representaban titulos y dias de atraso). 
+- Historias es una coleccion que guarda los mensajes.
+- UsuariosSistemaBD se encarga de preparar el SQL para solicitar su ejecucion al ConexionBD
+- XlsParser obsoleto
+- En el paquete test tenemos pruebas para cada nueva implementacion. Se ejecutan por separado.
+
+
+

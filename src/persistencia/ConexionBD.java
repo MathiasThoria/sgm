@@ -81,6 +81,7 @@ public class ConexionBD {
 	    cerrarConexion();
 	    return retorno;
 	}
+	
 	public ResultSet ejecutarQuery(String sql, Object... params) {
 	    conectar();
 	    try {
