@@ -16,30 +16,35 @@ public class Vista {
 
     public void iniciar() {
     	Scanner sc=new Scanner(System.in);
-        String opcion = "";
-        while (!opcion.equals("0")) {
+        int opcion = 0;
+        do{
             mostrarMenu();
-            opcion = sc.nextLine();
+            opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
-                case "1":
+                case 1:
                     mostrarUsuarios();
                     break;
-                case "2":
+                case 2:
                     buscarUsuarioPorId();
                     break;
-                case "3":
+                case 3:
                     procesarMensajes();
                     break;
-                case "4":
+                case 4:
                 	listarHistoricoMensajes();
                 	break;
-                case "0":
+                case 5:
+                	VistaUsuariosDelSistema usuariosDelSistemaMenu = new VistaUsuariosDelSistema(controlador);
+                	usuariosDelSistemaMenu.menu();
+                	break;
+                case 0:
                 	System.out.println(" Hasta luego!");
                 default:
                     System.out.println(" Opción inválida");
             }
-        }
+        }while(opcion!=0);
     }
 
     private void mostrarMenu() {
@@ -49,6 +54,7 @@ public class Vista {
         System.out.println("2. Buscar usuario por ID");
         System.out.println("3. Procesar Mensajes");
         System.out.println("4. Obtener historico mensajes");
+        System.out.println("5. Administracion de usuarios del sistema");
         System.out.print("Seleccione una opción: ");
     }
 
@@ -70,6 +76,11 @@ public class Vista {
     private void listarHistoricoMensajes() {
     	System.out.println(controlador.obtenerHistoricoMensajes());
     }
+
+    
+    
+    
+    
     public static void main(String[] args) throws Exception {
         new Vista().iniciar();
     }
