@@ -9,8 +9,8 @@ import modelo.*;
 
 /**
  * Responsabilidades: 
- * - Cargar datos del xls al string
- * - Devolver String formateados de las colecciones 
+ * - Consumir el String devuelto por ServicioDatos para convertirlo en instancias del Modelo
+ * - 
  */
 public class ManejadorDatos {
 	private Usuarios coleccionUsuario;
