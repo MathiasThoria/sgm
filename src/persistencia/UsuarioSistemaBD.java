@@ -9,8 +9,7 @@ import java.sql.SQLException;
 public class UsuarioSistemaBD {
 	
 	private ServicioBD cn;
-	
-	
+		
 	public UsuarioSistemaBD() {	
 			cn=new ServicioBD(); //Constructor no conecta. Llamara conectar()
 	}

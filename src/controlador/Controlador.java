@@ -8,10 +8,12 @@ import logica.*;
 public class Controlador {	
     private ManejadorDatos manejadorDatos;
     private ManejadorMensajes manejadorMensajes;
+    private ManejadorBD manejadorBD;
 
     public Controlador() throws Exception {
         this.manejadorDatos = new ManejadorDatos();
         this.manejadorMensajes = new ManejadorMensajes();
+        this.manejadorBD = new ManejadorBD();
     }
 
     public void actualizarUsuariosDesdeArchivo() {
