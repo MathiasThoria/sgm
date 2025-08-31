@@ -50,6 +50,10 @@ public class UsuarioSistemaBD {
 		return retorno;
 	}
 	
+	public String mostrar() {
+		String sql = "SELECT * FROM usuariosistema";		
+		return cn.ejecutarQuery(sql);		
+	}
 	
 	
 	

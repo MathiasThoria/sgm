@@ -82,14 +82,40 @@ public class ConexionBD {
 	    return retorno;
 	}
 	
-	public ResultSet ejecutarQuery(String sql, Object... params) {
-	    conectar();
+	
+	/*
+	 * Si devuelve resultSet hay que cerrar conexion despues de consumirla
+	 * Si devuleve String hay que parsear afuera
+	 * */
+	public String ejecutarQuery(String sql, Object... params) {
+	    String resultado = "";
+		conectar();
+	    
 	    try {
 	        PreparedStatement statement = getConexion().prepareStatement(sql);
 	        for (int i = 0; i < params.length; i++) {
 	            statement.setObject(i + 1, params[i]);
 	        }
-	        return statement.executeQuery(); // Devuelve resultados
+	        
+	        
+	        ResultSet rs = statement.executeQuery();
+	        int columnas = rs.getMetaData().getColumnCount();
+	        
+	        while (rs.next()) {
+	            for (int i = 1; i <= columnas; i++) {
+	            	System.out.println(rs.getString(i));
+	                resultado+=rs.getString(i);
+	                if (i < columnas) {
+	                    resultado+=", ";
+	                }
+	            }
+	            resultado+="\n";
+	        }
+	        rs.close();    
+	        
+	        
+	        return resultado;
+	        //return statement.executeQuery(); 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	        return null;
