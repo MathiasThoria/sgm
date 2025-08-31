@@ -9,11 +9,11 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-public class Datos {
+public class ServicioDatos {
 	private String rutaArchivo = "datos.xls";
 	private String cadena = "";
 
-	public Datos()throws Exception{
+	public ServicioDatos()throws Exception{
 		
 	    FileInputStream archivo = new FileInputStream(rutaArchivo);
 	    Workbook libro = new HSSFWorkbook(archivo);

@@ -14,11 +14,11 @@ import modelo.*;
  */
 public class ManejadorDatos {
 	private Usuarios coleccionUsuario;
-	private Datos archivoXls;	
+	private ServicioDatos archivoXls;	
 	
 	
 	public ManejadorDatos() throws Exception {
-		archivoXls = new Datos();//queda en cadena el archivo cargado		
+		archivoXls = new ServicioDatos();//queda en cadena el archivo cargado		
 		coleccionUsuario = new Usuarios();//crea lista vacia	
 		//coleccionUsuario = parserDatosToUsuarios();
 	}
