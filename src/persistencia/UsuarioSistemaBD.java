@@ -8,11 +8,11 @@ import java.sql.SQLException;
 // Si queremos usar PreparedStatment, el supuesto ejecutarSQL quedaria complicado de parametros, por ahora dejarlos asi
 public class UsuarioSistemaBD {
 	
-	private ConexionBD cn;
+	private ServicioBD cn;
 	
 	
 	public UsuarioSistemaBD() {	
-			cn=new ConexionBD(); //Constructor no conecta. Llamara conectar()
+			cn=new ServicioBD(); //Constructor no conecta. Llamara conectar()
 	}
 	
 	

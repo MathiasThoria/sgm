@@ -13,7 +13,7 @@ estaria bueno un metodo para ejecutar SQL. Entiendo que usar Statement es insegu
 habria que ver como hacerlo con PreparedStatement
 */
 
-public class ConexionBD {
+public class ServicioBD {
 	private final String Controlador = "com.mysql.cj.jdbc.Driver";
 	private final String Url = "jdbc:mysql://localhost:3306/sgm";
 	private final String User = "root"; 
@@ -31,7 +31,7 @@ public class ConexionBD {
 	//Este bloque carga el controlador una única vez(Static).
 	*/
 	
-	public ConexionBD() {
+	public ServicioBD() {
 		conexion=null;
 	}
 	
