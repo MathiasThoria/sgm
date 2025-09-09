@@ -58,7 +58,14 @@ import controlador.Controlador;
 	    	System.out.println(controlador.obtenerHistoricoMensajes());
 	    }
 	    private void listarHistoricoMensajesPorUsuario() {
-	    	System.out.println(controlador.obtenerHistoricoMensajesPorIdUsuario());
+	    	Scanner sc=new Scanner(System.in);
+	    	int id=0;
+	    	System.out.print("Ingrese Id de Deudor:");
+	    	id=sc.nextInt();
+	    	sc.nextLine();
+	    	
+	    	System.out.println(controlador.obtenerHistoricoMensajesPorIdUsuario(id));
+	    	
 	    }
 
 }
