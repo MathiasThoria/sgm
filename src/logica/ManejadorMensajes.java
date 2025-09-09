@@ -21,8 +21,8 @@ public class ManejadorMensajes {
     private Historias mensajesSinPersistir; // este atributo sirve para actualizar la BD. luego de realizar persistencia se vacia.
     private ServicioMensajeria sm;
     
-    public ManejadorMensajes() {
-        this.historialMensajes = new Historias();
+    public ManejadorMensajes(Historias historias) {
+        this.historialMensajes = historias;
         this.sm = new ServicioMensajeria();
         this.mensajesSinPersistir = new Historias();
     }

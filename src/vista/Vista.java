@@ -1,6 +1,7 @@
 package vista;
 
-import modelo.*;
+//import modelo.*;
+import logica.*;
 
 import java.util.Scanner;
 

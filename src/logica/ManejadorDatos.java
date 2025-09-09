@@ -17,9 +17,9 @@ public class ManejadorDatos {
 	private ServicioDatos archivoXls;	
 	
 	
-	public ManejadorDatos() throws Exception {
+	public ManejadorDatos(Usuarios usuarios) throws Exception {
 		archivoXls = new ServicioDatos();//queda en cadena el archivo cargado		
-		coleccionUsuario = new Usuarios();//crea lista vacia	
+		coleccionUsuario = usuarios;	
 		//coleccionUsuario = parserDatosToUsuarios();
 	}
 	

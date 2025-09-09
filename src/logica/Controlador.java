@@ -1,5 +1,5 @@
 package logica;
-
+import modelo.*;
 /**
  * Responsabilidades: 
  * - orquestar entre vista y logica
@@ -10,11 +10,20 @@ public class Controlador {
     private ManejadorDatos manejadorDatos;
     private ManejadorMensajes manejadorMensajes;
     private ManejadorBD manejadorBD;
-
+    private Historias historias;
+    private Usuarios usuarios;
+    
+    
     public Controlador() throws Exception {
-        this.manejadorDatos = new ManejadorDatos();
-        this.manejadorMensajes = new ManejadorMensajes();
+        
+        this.historias= new Historias();
+        this.usuarios = new Usuarios();
+        
+        this.manejadorDatos = new ManejadorDatos(usuarios);
+        this.manejadorMensajes = new ManejadorMensajes(historias);
         this.manejadorBD = new ManejadorBD();
+        
+        
         // Esto podria estar en cada manejador, pero para que sea explicito:
         actualizarUsuariosDesdeArchivo();
         actualizarHistoriasDesdeBD();
