@@ -24,21 +24,21 @@ public class Vista {
 
             switch (opcion) {
                 case 1:
-                    mostrarUsuarios();
+                    VistaDeudores vDeudores= new VistaDeudores(controlador);
+                    vDeudores.menu();
                     break;
                 case 2:
-                    buscarUsuarioPorId();
+                    VistaLibrosAdeudados vLibrosAdeudados= new VistaLibrosAdeudados(controlador);
+                    vLibrosAdeudados.menu();
                     break;
                 case 3:
-                    procesarMensajes();
+                	VistaMensajeria vMensajeria = new VistaMensajeria(controlador);
+                	vMensajeria.menu();                    
                     break;
                 case 4:
-                	listarHistoricoMensajes();
-                	break;
-                case 5:
                 	VistaUsuariosDelSistema usuariosDelSistemaMenu = new VistaUsuariosDelSistema(controlador);
                 	usuariosDelSistemaMenu.menu();
-                	break;
+                	break;                
                 case 0:
                 	System.out.println(" Hasta luego!");
                 default:
@@ -49,12 +49,17 @@ public class Vista {
 
     private void mostrarMenu() {
         System.out.println("\n====== MENÚ PRINCIPAL ======");
-        System.out.println("0. Salir");
+       /* System.out.println("0. Salir");
         System.out.println("1. Mostrar todos los usuarios y sus préstamos");
         System.out.println("2. Buscar usuario por ID");
         System.out.println("3. Procesar Mensajes");
         System.out.println("4. Obtener historico mensajes");
-        System.out.println("5. Administracion de usuarios del sistema");
+        System.out.println("5. Administracion de usuarios del sistema");*/
+        System.out.println("0. Salir");
+        System.out.println("1. Deudores");
+        System.out.println("2. Libros Adeudados");
+        System.out.println("3. Mensajeria");
+        System.out.println("4. Usuarios del Sistema");        
         System.out.print("Seleccione una opción: ");
     }
 

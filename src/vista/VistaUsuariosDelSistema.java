@@ -11,11 +11,12 @@ public class VistaUsuariosDelSistema {
 	}
 	
 	public void menu() {
-		int opcion= 0;
-		do {
+		int opcion= 0;		
+		Scanner sc=new Scanner(System.in);		
+		do {			
 			mostrarMenu();
-			opcion=obtenerOpcion();
-			
+			opcion = sc.nextInt();
+            sc.nextLine();
 			switch(opcion) {
 			case 1:
 				
@@ -38,8 +39,7 @@ public class VistaUsuariosDelSistema {
 
 			}
 		
-		}while(opcion!=0);
-			
+		}while(opcion!=0);	
 		
 	}
 	
