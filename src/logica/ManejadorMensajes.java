@@ -186,7 +186,7 @@ public class ManejadorMensajes {
     /**
      * Buscar mensajes por usuario específico
      */
-    public String obtenerMensajesPorUsuarioComoString(int idUsuario) {
+    public String obtenerMensajesPorIdUsuario(int idUsuario) {
         Historias mensajesUsuario = historialMensajes.buscarMensajesPorUsuario(idUsuario);
         
         if (mensajesUsuario.getMensajesEnviados().isEmpty()) {
@@ -203,4 +203,8 @@ public class ManejadorMensajes {
         
         return resultado;
     }
+    
+    
+    
+    
 }

@@ -28,6 +28,9 @@ import controlador.Controlador;
 					case 2:
 						procesarMensajes();
 					break;
+					case 3:
+						listarHistoricoMensajesPorUsuario();
+					break;
 					default:
 					break;		
 				}
@@ -53,6 +56,9 @@ import controlador.Controlador;
 	    
 	    private void listarHistoricoMensajes() {
 	    	System.out.println(controlador.obtenerHistoricoMensajes());
+	    }
+	    private void listarHistoricoMensajesPorUsuario() {
+	    	System.out.println(controlador.obtenerHistoricoMensajesPorIdUsuario());
 	    }
 
 }

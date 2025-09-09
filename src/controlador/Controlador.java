@@ -35,5 +35,9 @@ public class Controlador {
     	return manejadorMensajes.obtenerHistoricoMensajes();
     }
     
+    public String obtenerHistoricoMensajesPorIdUsuario(int id) {
+    	return manejadorMensajes.obtenerMensajesPorIdUsuario(id);
+    }
+    
 }
 
