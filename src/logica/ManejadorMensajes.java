@@ -18,9 +18,11 @@ import persistencia.ServicioMensajeria;
 
 public class ManejadorMensajes {
     private Historias historialMensajes;
+    private ServicioMensajeria sm;
     
     public ManejadorMensajes() {
         this.historialMensajes = new Historias();
+        this.sm = new ServicioMensajeria();
     }
     
     public Historias getHistorialMensajes() {
@@ -50,8 +52,7 @@ public class ManejadorMensajes {
                     String textoMensaje = generarTextoMensaje(usuario, titulosYDias);
                     
                     // Intentar envío
-                    ServicioMensajeria sm = new ServicioMensajeria();
-                    boolean enviado = sm.enviar(textoMensaje, usuario.getEmail());
+                    boolean enviado = this.sm.enviar(textoMensaje, usuario.getEmail());
                     
                     if (enviado) {
                         // Registrar en historial si fue exitoso

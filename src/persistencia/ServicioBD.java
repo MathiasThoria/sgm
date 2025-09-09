@@ -103,7 +103,7 @@ public class ServicioBD {
 	        
 	        while (rs.next()) {
 	            for (int i = 1; i <= columnas; i++) {
-	            	System.out.println(rs.getString(i));
+	            	//System.out.println(rs.getString(i));
 	                resultado+=rs.getString(i);
 	                if (i < columnas) {
 	                    resultado+=", ";
@@ -113,13 +113,14 @@ public class ServicioBD {
 	        }
 	        rs.close();    
 	        
-	        
-	        return resultado;
 	        //return statement.executeQuery(); 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
-	        return null;
+	        resultado = null;
 	    }
+	    
+	    cerrarConexion();
+	    return resultado;
 	}
 
 
