@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 31, 2025 at 03:08 AM
+-- Generation Time: Sep 10, 2025 at 12:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mensajes_enviados`
+-- Table structure for table `historias`
 --
 
-CREATE TABLE `mensajes_enviados` (
+CREATE TABLE `historias` (
   `id` int(11) NOT NULL,
   `fechaEnvio` date NOT NULL,
   `idUsuario` int(11) NOT NULL,
@@ -52,9 +52,9 @@ CREATE TABLE `usuariosistema` (
 --
 
 --
--- Indexes for table `mensajes_enviados`
+-- Indexes for table `historias`
 --
-ALTER TABLE `mensajes_enviados`
+ALTER TABLE `historias`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -68,9 +68,9 @@ ALTER TABLE `usuariosistema`
 --
 
 --
--- AUTO_INCREMENT for table `mensajes_enviados`
+-- AUTO_INCREMENT for table `historias`
 --
-ALTER TABLE `mensajes_enviados`
+ALTER TABLE `historias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 

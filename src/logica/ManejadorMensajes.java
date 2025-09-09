@@ -17,7 +17,8 @@ import persistencia.ServicioMensajeria;
 
 
 public class ManejadorMensajes {
-    private Historias historialMensajes;
+    private Historias historialMensajes;    
+    private Historias mensajesSinPersistir; // este atributo sirve para actualizar la BD. luego de realizar persistencia se vacia.
     private ServicioMensajeria sm;
     
     public ManejadorMensajes() {
@@ -66,6 +67,7 @@ public class ManejadorMensajes {
                         );
                         
                         historialMensajes.agregarMensaje(mensaje);
+                        mensajesSinPersistir.agregarMensaje(mensaje);
                         
                         resultado += " ENVIADO: " + usuario.getNombre() + 
                                    " (" + usuario.getEmail();
@@ -198,7 +200,9 @@ public class ManejadorMensajes {
         return resultado;
     }
     
-    
+    public Historias getMensajesSinPersistir() {
+    	return mensajesSinPersistir;
+    }
     
     
 }

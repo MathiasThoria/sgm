@@ -32,9 +32,20 @@ public class Controlador {
     	return manejadorDatos.obtenerUsuarioPorIdComoString(id);    	
     }
     public int procesarMensajesDeUsuarios() {
+    	/*
+    	 * Para persistir los nuuevos mensajes tenemos 3 opciones:
+    	 * 1.Ejecutar UPDATE con mensajes ya exisitentes y nuevos, BD niega los duplicados por id.
+    	 * 2.Consultar BD y ejecutar UPDATE de diferencia
+    	 * 3.Hacer la solicitud de persisitencia dentro de ManejadorMensajes (mala separacion de responsabilidades, mejor en controlador)
+    	 * 4.Devolver desde el proceso procesarEnvioMensajes un Historial con mensajes nuevos. (mayor acoplamiento)
+    	 * 5.Almacenar en ManejadorMensajes un atributo de tipo Historial que contenga mensajes nuevos.
+    	 *     	 *
+    	 * Se opta por la ultima que conserva separacion de responsabilidades y comunicacion limpia en capa. Dificultad: puede 
+    	 * ser confuso mantener un estado en manejadorDeMensajes. 
+    	*/
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     	if ( res > 0 )
-    		manejadorBD.actualizarHistoricoMensajes();
+    		manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //mensaje persistido->mensaje borrado de mensajesSinPersistir    	
     	return res;
     }
     public String obtenerHistoricoMensajes() {
