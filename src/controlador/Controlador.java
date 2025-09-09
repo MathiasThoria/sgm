@@ -16,13 +16,17 @@ public class Controlador {
         this.manejadorDatos = new ManejadorDatos();
         this.manejadorMensajes = new ManejadorMensajes();
         this.manejadorBD = new ManejadorBD();
+        // Esto podria estar en cada manejador, pero para que sea explicito:
         actualizarUsuariosDesdeArchivo();
+        actualizarHistoriasDesdeBD();
     }
 
     public void actualizarUsuariosDesdeArchivo() {
         manejadorDatos.parserDatosToUsuarios();
     }   
-
+    public void actualizarHistoriasDesdeBD() {
+    	manejadorBD.actualizarModelo();
+    }
     public String obtenerUsuariosComoString() {
     	
     	return manejadorDatos.obtenerUsuariosComoString();

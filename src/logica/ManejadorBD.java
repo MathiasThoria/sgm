@@ -6,7 +6,12 @@ import persistencia.HistoriasBD;
 
 public class ManejadorBD {
 	
-	HistoriasBD historiasBD= new HistoriasBD();
+	HistoriasBD historiasBD;
+	
+	public ManejadorBD() {
+		historiasBD= new HistoriasBD();
+		
+	}
 	
 	
 	public int persistirMensajesNuevos(Historias nuevos) {
@@ -29,5 +34,18 @@ public class ManejadorBD {
 			}
 		}		
 		return persistidos;
+	}
+	
+	public int actualizarModelo() {
+		/*
+		 * select de historias con id mensaje > al ultimo del modelo
+		 * 
+		 * */
+		
+		//System.out.println(historiasBD.obtenerMayorDeId(10));
+		
+		
+		
+		return 1;
 	}
 }

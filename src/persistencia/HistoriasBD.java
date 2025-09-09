@@ -21,5 +21,12 @@ public class HistoriasBD {
 		return cn.ejecutarUpdate(sql, fechaEnvio.toSqlDate(), idUsuario, correo, titulosYDias);
 		
 	}
-	
+	public String obtener() {
+		String sql = "SELECT * FROM historias";		
+		return cn.ejecutarQuery(sql);
+	}
+	public String obtenerMayorDeId(int id) {
+		String sql = "SELECT * FROM historias WHERE id > ?";		
+		return cn.ejecutarQuery(sql,id);
+	}
 }
