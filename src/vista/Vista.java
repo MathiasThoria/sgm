@@ -1,9 +1,10 @@
 package vista;
 
-import controlador.Controlador;
 import modelo.*;
 
 import java.util.Scanner;
+
+import logica.Controlador;
 
 public class Vista {
     private Controlador controlador;

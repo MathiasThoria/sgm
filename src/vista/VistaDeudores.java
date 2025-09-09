@@ -1,6 +1,7 @@
 package vista;
-import controlador.Controlador;
 import java.util.Scanner;
+
+import logica.Controlador;
 
 public class VistaDeudores {
 

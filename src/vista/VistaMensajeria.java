@@ -2,7 +2,7 @@ package vista;
 
 import java.util.Scanner;
 
-import controlador.Controlador;
+import logica.Controlador;
 	
 	public class VistaMensajeria {
 	private Controlador controlador;

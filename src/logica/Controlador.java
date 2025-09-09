@@ -1,6 +1,5 @@
-package controlador;
+package logica;
 
-import logica.*;
 /**
  * Responsabilidades: 
  * - orquestar entre vista y logica

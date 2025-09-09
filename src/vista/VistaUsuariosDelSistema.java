@@ -1,7 +1,7 @@
 package vista;
 import java.util.Scanner;
 
-import controlador.Controlador;
+import logica.Controlador;
 
 public class VistaUsuariosDelSistema {
 	private Controlador controlador;
