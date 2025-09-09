@@ -41,7 +41,10 @@ public class Controlador {
     	 * 5.Almacenar en ManejadorMensajes un atributo de tipo Historial que contenga mensajes nuevos.
     	 *     	 *
     	 * Se opta por la ultima que conserva separacion de responsabilidades y comunicacion limpia en capa. Dificultad: puede 
-    	 * ser confuso mantener un estado en manejadorDeMensajes. 
+    	 * ser confuso mantener un estado en manejadorDeMensajes.
+    	 * 
+    	 * 6. Posibilidad de manejar id null de cada nuevo mensaje en Historias como filtro.
+    	 * (id es null en nuevos porque lo maneja autoincremental la BD) 
     	*/
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     	if ( res > 0 )

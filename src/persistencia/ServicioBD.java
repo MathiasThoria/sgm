@@ -64,22 +64,24 @@ public class ServicioBD {
 	
 	
 	
-	public String ejecutarUpdate(String sql, Object... params) {
-	    String retorno = "";
+	public boolean ejecutarUpdate(String sql, Object... params) {
+	    boolean ok = false;
 	    conectar();
 	    
 	    try (PreparedStatement statement = conexion.prepareStatement(sql)) {
 	        for (int i = 0; i < params.length; i++) {
 	            statement.setObject(i + 1, params[i]);
 	        }
-	        statement.executeUpdate();
-	        retorno = "Operación realizada con éxito";
+	        if (statement.executeUpdate()>0)
+	        	ok=true;
+	        
 	    } catch (SQLException e) {
-	        retorno = e.getMessage();
+	        System.out.println(e.getMessage());
 	    }
 	    
-	    cerrarConexion();
-	    return retorno;
+	    cerrarConexion();	    
+	    System.out.println(ok);
+	    return ok;
 	}
 	
 	

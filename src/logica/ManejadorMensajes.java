@@ -24,6 +24,7 @@ public class ManejadorMensajes {
     public ManejadorMensajes() {
         this.historialMensajes = new Historias();
         this.sm = new ServicioMensajeria();
+        this.mensajesSinPersistir = new Historias();
     }
     
     public Historias getHistorialMensajes() {

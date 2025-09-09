@@ -1,17 +1,33 @@
 package logica;
 
 import modelo.Historias;
+import modelo.MensajeEnviado;
+import persistencia.HistoriasBD;
 
 public class ManejadorBD {
-
+	
+	HistoriasBD historiasBD= new HistoriasBD();
 	
 	
-	public int  persistirMensajesNuevos(Historias nuevos) {
+	public int persistirMensajesNuevos(Historias nuevos) {
 		int persistidos=0;
+		boolean ok=false;
 		//borrar mensajes persistidos
 		if (!nuevos.getMensajesEnviados().isEmpty()){
-			
-		}
+			for (MensajeEnviado mensaje : nuevos.getMensajesEnviados()) {			
+				ok = historiasBD.alta(mensaje.getFechaEnvio(), 
+						mensaje.getIdUsuario(),
+						mensaje.getCorreo(),
+						mensaje.getTitulosYDias());
+				if (ok) {				
+					persistidos++;
+					//falta borrar mensajes de Historias
+					nuevos.getMensajesEnviados().remove(mensaje);
+				}else { 
+					System.out.println("Error en guardado en BD de mensaje " + mensaje.toString());
+				}
+			}
+		}		
 		return persistidos;
 	}
 }

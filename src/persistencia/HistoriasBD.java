@@ -1,5 +1,6 @@
 package persistencia;
 
+import modelo.Fecha;
 
 public class HistoriasBD {
 	private ServicioBD cn;
@@ -8,18 +9,17 @@ public class HistoriasBD {
 		cn=new ServicioBD();
 	}
 	 //capa de persistencia no sabe del modelo, los campos son de la BD
-	public void alta(int id, 
-			String fechaEnvio,
+	public boolean alta( 
+			Fecha fechaEnvio,
 			int idUsuario,
 			String correo,
 			String titulosYDias) {
 		
-		String retorno = "";						
 		
-		String sql = "INSERT INTO historias VALUES (?,?,?)";		
-		cn.ejecutarUpdate(sql, id, fechaEnvio, idUsuario, correo, titulosYDias);
 		
-				
+		String sql = "INSERT INTO historias (fechaEnvio,idUsuario,correo,titulosYDias) VALUES (?,?,?,?)";		
+		return cn.ejecutarUpdate(sql, fechaEnvio.toSqlDate(), idUsuario, correo, titulosYDias);
+		
 	}
 	
 }
