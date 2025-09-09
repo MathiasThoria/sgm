@@ -31,9 +31,11 @@ public class Controlador {
     	
     	return manejadorDatos.obtenerUsuarioPorIdComoString(id);    	
     }
-    public String procesarMensajesDeUsuarios() {
-    	
-    	return manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
+    public int procesarMensajesDeUsuarios() {
+    	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
+    	if ( res > 0 )
+    		manejadorBD.actualizarHistoricoMensajes();
+    	return res;
     }
     public String obtenerHistoricoMensajes() {
     	

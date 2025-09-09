@@ -44,14 +44,14 @@ import controlador.Controlador;
 			System.out.println("0.Salir");		
 			System.out.println("1. Listar historico de mensajes");
 			System.out.println("2. Enviar mensajes de correo a cada Deudor");
-			System.out.println("3.");
+			System.out.println("3. Listar mensajes por id de Deudor");
 			System.out.println("4.");
 			System.out.println("5.");
 			System.out.print("Seleccione una opcion: ");
 		}
 		
 	    private void procesarMensajes() {
-	    	System.out.println(controlador.procesarMensajesDeUsuarios());
+	    	System.out.println("Mensajes enviados:" + controlador.procesarMensajesDeUsuarios());
 	    }
 	    
 	    private void listarHistoricoMensajes() {

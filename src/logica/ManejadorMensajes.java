@@ -34,7 +34,7 @@ public class ManejadorMensajes {
      * @param usuarios Colección de usuarios deudores
      * @return Resumen de envíos realizados
      */ 
-    public String procesarEnvioMensajes(Usuarios usuarios) {
+    public int procesarEnvioMensajes(Usuarios usuarios) {
         String resultado = "=== PROCESO DE ENVÍO DE MENSAJES ===\n\n";
         
         int enviados = 0;
@@ -87,14 +87,8 @@ public class ManejadorMensajes {
                 errores++;
             }
         }
-        
-        // Resumen final
-        resultado += "\n=== RESUMEN ===\n";
-        resultado += "Mensajes enviados: " + enviados + "\n";
-        resultado += "Errores: " + errores + "\n";
-      
-        
-        return resultado;
+        System.out.println(resultado);
+        return enviados;
     }
     
     /**
