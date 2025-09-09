@@ -18,9 +18,17 @@ public class VistaDeudores {
 			opcion = sc.nextInt();
 	        sc.nextLine();
 			switch(opcion) {
+				case 0:
+					System.out.println("Saliendo de Menu Deudores.");
+				break;
 				case 1:
+					mostrarUsuarios();
+				break;
+				case 2:
+					buscarUsuarioPorId();	
 				break;
 				default:
+					System.out.println("Opcion inválida.");
 				break;		
 			}
 			
@@ -28,13 +36,25 @@ public class VistaDeudores {
 	}
 	
 	public void mostrarMenu() {
+		System.out.println();
 		System.out.println("========MENU DEUDORES==========\n");
 		System.out.println("0.Salir");		
-		System.out.println("1.");
-		System.out.println("2.");
+		System.out.println("1.Mostrar Todos los Deudores y sus préstamos");
+		System.out.println("2.Buscar Deudor por Id");
 		System.out.println("3.");
 		System.out.println("4.");
 		System.out.println("5.");
-		System.out.println("Seleccione una opcion:");
+		System.out.print("Seleccione una opcion: ");
 	}
+	private void mostrarUsuarios() {
+	       System.out.println(controlador.obtenerUsuariosComoString());
+	}
+    private void buscarUsuarioPorId() {
+    	Scanner sc=new Scanner(System.in);
+        System.out.print("Ingrese el ID del usuario: ");
+        int idBuscado = Integer.parseInt(sc.nextLine());
+        
+        System.out.println(controlador.obtenerUsuarioPorIdComoString(idBuscado));
+       
+    }
 }

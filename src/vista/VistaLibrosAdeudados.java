@@ -18,7 +18,11 @@ public class VistaLibrosAdeudados {
 				opcion = sc.nextInt();
 	            sc.nextLine();
 				switch(opcion) {
+					case 0:
+						System.out.println("Saliendo de Menu Libros Adeudados");						
+					break;
 					case 1:
+						
 					break;
 					default:
 					break;		
@@ -28,6 +32,8 @@ public class VistaLibrosAdeudados {
 		}
 		
 		public void mostrarMenu() {
+			System.out.println();
+			
 			System.out.println("========MENU LIBROS ADEUDADOS==========\n");
 			System.out.println("0.Salir");		
 			System.out.println("1.");
@@ -35,6 +41,6 @@ public class VistaLibrosAdeudados {
 			System.out.println("3.");
 			System.out.println("4.");
 			System.out.println("5.");
-			System.out.println("Seleccione una opcion:");
+			System.out.print("Seleccione una opcion: ");
 		}
 }

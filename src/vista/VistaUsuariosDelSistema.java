@@ -53,7 +53,7 @@ public class VistaUsuariosDelSistema {
 		System.out.println("3.Modificar Usuario");
 		System.out.println("4.Mostrar Usuarios");
 		System.out.println("5.");
-		System.out.println("Seleccione una opcion:");
+		System.out.print("Seleccione una opcion: ");
 	}
 	
 	public int obtenerOpcion() {

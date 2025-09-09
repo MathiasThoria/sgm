@@ -19,7 +19,14 @@ import controlador.Controlador;
 				opcion = sc.nextInt();
 	            sc.nextLine();
 				switch(opcion) {
+					case 0:
+						System.out.println("Saliendo de menú Mensajería.");
+					break;
 					case 1:
+						listarHistoricoMensajes();
+					break;
+					case 2:
+						procesarMensajes();
 					break;
 					default:
 					break;		
@@ -29,13 +36,23 @@ import controlador.Controlador;
 		}
 		
 		public void mostrarMenu() {
+			System.out.println();
 			System.out.println("========MENU MENSAJERIA==========\n");
 			System.out.println("0.Salir");		
-			System.out.println("1.");
-			System.out.println("2.");
+			System.out.println("1. Listar historico de mensajes");
+			System.out.println("2. Enviar mensajes de correo a cada Deudor");
 			System.out.println("3.");
 			System.out.println("4.");
 			System.out.println("5.");
-			System.out.println("Seleccione una opcion:");
+			System.out.print("Seleccione una opcion: ");
 		}
+		
+	    private void procesarMensajes() {
+	    	System.out.println(controlador.procesarMensajesDeUsuarios());
+	    }
+	    
+	    private void listarHistoricoMensajes() {
+	    	System.out.println(controlador.obtenerHistoricoMensajes());
+	    }
+
 }
