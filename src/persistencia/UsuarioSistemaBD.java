@@ -49,7 +49,7 @@ public class UsuarioSistemaBD {
 		return retorno;
 	}
 	
-	public String mostrar() {
+	public String obtenerTodo() {
 		String sql = "SELECT * FROM usuariosistema";		
 		return cn.ejecutarQuery(sql);		
 	}

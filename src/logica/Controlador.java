@@ -14,7 +14,8 @@ public class Controlador {
     private ManejadorMensajes manejadorMensajes;
     private ManejadorBD manejadorBD;
     private Historias historias;
-    private Usuarios usuarios;    
+    private Usuarios usuarios;
+    private UsuarioSistema usuariosSistema;
     
     public Controlador() throws Exception {
         
@@ -26,13 +27,12 @@ public class Controlador {
         this.manejadorBD = new ManejadorBD(usuarios,historias);        
         
         // Esto podria estar en cada manejador, pero para que sea explicito:
-        actualizarUsuariosDesdeArchivo();
-        actualizarHistoriasDesdeBD();
+        
+        actualizarModeloDesdeDatosXls();
+        actualizarModeloDesdeBD();
     }
 
-    public void actualizarUsuariosDesdeArchivo() {
-        manejadorDatos.parserDatosToUsuarios();
-    }   
+    
     public void actualizarHistoriasDesdeBD() {
     	manejadorBD.actualizarModelo();
     }
@@ -61,7 +61,7 @@ public class Controlador {
     	*/
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     	if ( res > 0 )
-    		manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //mensaje persistido->mensaje borrado de mensajesSinPersistir    	
+    		manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //mensaje que se persiste es mensaje borrado de mensajesSinPersistir    	
     	return res;
     }
     
@@ -75,6 +75,12 @@ public class Controlador {
     
     public void borrarTodasHistoriasBD() {
     	manejadorBD.borrarTodasHistoriasBD();
+    }
+    public void actualizarModeloDesdeBD() {
+    	manejadorBD.actualizarModelo();
+    }
+    public void actualizarModeloDesdeDatosXls() {
+    	manejadorDatos.actualizarModelo();
     }
 }
 

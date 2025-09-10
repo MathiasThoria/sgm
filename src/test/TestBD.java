@@ -19,7 +19,7 @@ public class TestBD {
 		// MODIFICA
 		System.out.println(usuBD.modificar(usu1.getId(),"modificado",usu1.getContraseña()));
 		// Mostrar Usuarios
-		System.out.println(usuBD.mostrar());
+		System.out.println(usuBD.obtenerTodo());
 		
 		// BAJA
 		System.out.println(usuBD.baja(usu1.getId()));

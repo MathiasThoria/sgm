@@ -135,7 +135,9 @@ public class ManejadorDatos {
         } 
         return s;
     }
-	
+	public void actualizarModelo() {
+		parserDatosToUsuarios();
+	}
 /**alta de usario
    baja de usuario   
    
