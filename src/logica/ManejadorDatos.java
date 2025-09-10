@@ -39,37 +39,10 @@ public class ManejadorDatos {
 	        }else {	
 	        
 		        String[] campos = fila.split(",");      
-	            try {
-		            /* Parsear datos del usuario		          
-					 * Asignar la posicion directamente es endeble
-					 * Queda para hacer un mapping como tenias antes, que vincule como teniamos en XlsParser anterior
-					 *    
-					    "fechaPrestamo", 0);
-					    "fechaDevolucion", 1);
-					    "diasRetraso", 2);
-				
-					    "idUsuario", 3);
-					    "apellidoUsuario", 4);
-					    "nombreUsuario", 5);
-					    "emailUsuario", 6);
-					    "codigoBarrasUsuario", 7);
-				
-					    "cotaEjemplar", 8);
-					    "codigoBarrasEjemplar", 9);
-					    "idFichaBibliografica", 10);
-					    "idBulletin", 11);
-					    "idNotice", 12);
-				
-					    "tituloObra", 13);
-					    "tipoDocumento", 14);
-					    "prestamoCorto", 15);
-					}
-					 * 
-					 * */
+	            try {	            
 		        	
 					// falta chequear que campos no esten vaciois porq sino tira
-					// Exception en los cambios de tipo  
-					//
+					// Exception en los cambios de tipo 			
 	
 		            Usuario usuario = new Usuario(
 		            		parseNumero(campos[3]),
@@ -80,8 +53,6 @@ public class ManejadorDatos {
 		            		new Prestamos());
 	
 		            // Parsear datos del préstamo
-		            
-		            
 		            
 		            Prestamo prestamo = new Prestamo(
 		            		new Fecha(campos[0]), 
@@ -97,8 +68,7 @@ public class ManejadorDatos {
 		            		Boolean.parseBoolean(campos[16]));
 	
 		            // Si el usuario no existe agrega a coleccion
-		            // Si el usuario existe solo agrega prestamo
-		            //
+		            // Si el usuario existe solo agrega prestamo		            
 	
 		            //usuario.getListaPrestamos().agregarPrestamo(prestamo);
 		            // ojo hay que cheeuquar tambien si existe el prestamo de ese usuario

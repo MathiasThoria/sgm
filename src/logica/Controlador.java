@@ -3,8 +3,11 @@ import modelo.*;
 /**
  * Responsabilidades: 
  * - orquestar entre vista y logica
+ * - mantener instancias de modelo
+ * - mantener instancias de manejadores
  * 
- *   Por ahora la actualizacion del archiov xls al modelo se hace 1 vez al inciiar el programa (en constructor)
+ * Los manejadores tienen inyeccion de dependencia (le "paso" usuarios y historias para que lo tnegan como atributo)
+ * Al instanciar el controlador se actualiza el modelo desde BD y xls
  **/
 public class Controlador {	
     private ManejadorDatos manejadorDatos;

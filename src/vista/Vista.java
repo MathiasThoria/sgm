@@ -1,6 +1,5 @@
 package vista;
 
-//import modelo.*;
 import logica.*;
 
 import java.util.Scanner;
@@ -11,8 +10,8 @@ public class Vista {
     private Controlador controlador;
     
 
-    public Vista() throws Exception {    	
-    	controlador = new Controlador();       
+    public Vista(Controlador controlador) throws Exception {    	
+    	this.controlador = controlador;       
         
     }
 
@@ -63,8 +62,5 @@ public class Vista {
         System.out.print("Seleccione una opción: ");
     }
     
-    public static void main(String[] args) throws Exception {
-        new Vista().iniciar();
-    }
-    
+
 }
