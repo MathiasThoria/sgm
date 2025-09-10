@@ -14,8 +14,7 @@ public class Controlador {
     private ManejadorMensajes manejadorMensajes;
     private ManejadorBD manejadorBD;
     private Historias historias;
-    private Usuarios usuarios;
-    
+    private Usuarios usuarios;    
     
     public Controlador() throws Exception {
         
@@ -24,8 +23,7 @@ public class Controlador {
         
         this.manejadorDatos = new ManejadorDatos(usuarios);
         this.manejadorMensajes = new ManejadorMensajes(historias);
-        this.manejadorBD = new ManejadorBD(usuarios,historias);
-        
+        this.manejadorBD = new ManejadorBD(usuarios,historias);        
         
         // Esto podria estar en cada manejador, pero para que sea explicito:
         actualizarUsuariosDesdeArchivo();
@@ -38,14 +36,14 @@ public class Controlador {
     public void actualizarHistoriasDesdeBD() {
     	manejadorBD.actualizarModelo();
     }
-    public String obtenerUsuariosComoString() {
-    	
+    public String obtenerUsuariosComoString() {    	
     	return manejadorDatos.obtenerUsuariosComoString();
     }
-    public String obtenerUsuarioPorIdComoString(int id) {      
-    	
+    
+    public String obtenerUsuarioPorIdComoString(int id) {   	
     	return manejadorDatos.obtenerUsuarioPorIdComoString(id);    	
     }
+    
     public int procesarMensajesDeUsuarios() {
     	/*
     	 * Para persistir los nuuevos mensajes tenemos 3 opciones:
@@ -66,15 +64,15 @@ public class Controlador {
     		manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //mensaje persistido->mensaje borrado de mensajesSinPersistir    	
     	return res;
     }
-    public String obtenerHistoricoMensajes() {
-    	
+    
+    public String obtenerHistoricoMensajes() {    	
     	return manejadorMensajes.obtenerHistoricoMensajes();
     }
     
-    public String obtenerHistoricoMensajesPorIdUsuario(int id) {
-    	
+    public String obtenerHistoricoMensajesPorIdUsuario(int id) {    	
     	return manejadorMensajes.obtenerMensajesPorIdUsuario(id);
     }
+    
     public void borrarTodasHistoriasBD() {
     	manejadorBD.borrarTodasHistoriasBD();
     }

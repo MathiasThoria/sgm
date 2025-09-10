@@ -38,7 +38,7 @@ public class ServicioBD {
 	public Connection conectar() {		
 		try {
 			conexion = DriverManager.getConnection(Url,User,Pass);
-			System.out.println("Conexion establecida.");
+			//System.out.println("Conexion establecida.");
 		} catch(SQLException e) {
 			System.out.println("Error al establecer la conexion.");
 		}
@@ -80,7 +80,7 @@ public class ServicioBD {
 	    }
 	    
 	    cerrarConexion();	    
-	    System.out.println(ok);
+	   // System.out.println(ok);
 	    return ok;
 	}
 	

@@ -1,8 +1,9 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+
 
 import modelo.Fecha;
 import modelo.Historias;
@@ -28,19 +29,24 @@ public class ManejadorBD {
 		boolean ok=false;
 		//borrar mensajes persistidos
 		if (!nuevos.getMensajesEnviados().isEmpty()){
-			for (MensajeEnviado mensaje : nuevos.getMensajesEnviados()) {			
-				ok = historiasBD.alta(mensaje.getFechaEnvio(), 
-						mensaje.getIdUsuario(),
-						mensaje.getCorreo(),
-						mensaje.getTitulosYDias());
-				if (ok) {				
-					persistidos++;
-					//falta borrar mensajes de Historias
-					nuevos.getMensajesEnviados().remove(mensaje);
-				}else { 
-					System.out.println("Error en guardado en BD de mensaje " + mensaje.toString());
-				}
+			//usamos iterator para poder borrar
+			Iterator<MensajeEnviado> it = nuevos.getMensajesEnviados().iterator();
+			while (it.hasNext()) {
+			    MensajeEnviado mensaje = it.next();
+			    ok = historiasBD.alta(
+			            mensaje.getFechaEnvio(),
+			            mensaje.getIdUsuario(),
+			            mensaje.getCorreo(),
+			            mensaje.getTitulosYDias()
+			    );
+			    if (ok) {
+			        persistidos++;
+			        it.remove();
+			    } else {
+			        System.out.println("Error en guardado en BD de mensaje " + mensaje.toString());
+			    }
 			}
+
 		}		
 		return persistidos;
 	}
