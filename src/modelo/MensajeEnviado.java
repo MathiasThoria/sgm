@@ -12,7 +12,11 @@ public class MensajeEnviado {
 	
 	//private String textoMensaje; // necesario?
 	
-	public MensajeEnviado(int id, Fecha fechaEnvio, int idUsuario, String correo,String titulosYDias,
+	public MensajeEnviado(int id, 
+			Fecha fechaEnvio, 
+			int idUsuario, 
+			String correo,
+			String titulosYDias,
 			String textoMensaje) {
 		this.id=id;
 		this.fechaEnvio = fechaEnvio;

@@ -22,10 +22,15 @@ public class Fecha {
 	}
 	public Fecha(String f) {
 		String[] arrf = new String[3]; 
-		arrf=f.split("/");
-		dia=Integer.parseInt(arrf[0]);
-		mes=Integer.parseInt(arrf[1]);
-		anio=Integer.parseInt(arrf[2]);
+		if (f.contains("/")) {
+			arrf=f.split("/");
+		}else {
+			arrf=f.split("-");
+		}		
+		
+		dia=Integer.parseInt(arrf[0].trim());
+		mes=Integer.parseInt(arrf[1].trim());
+		anio=Integer.parseInt(arrf[2].trim());
 		
 	}
 	

@@ -75,6 +75,8 @@ public class Controlador {
     	
     	return manejadorMensajes.obtenerMensajesPorIdUsuario(id);
     }
-    
+    public void borrarTodasHistoriasBD() {
+    	manejadorBD.borrarTodasHistoriasBD();
+    }
 }
 

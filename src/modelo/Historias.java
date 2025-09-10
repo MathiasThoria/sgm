@@ -36,6 +36,15 @@ public class Historias {
 	public LinkedList<MensajeEnviado> getMensajesEnviados(){
 		return mensajesEnviados;
 	}
+	public int buscarUltimoId() {
+		int resultado=0;
+		for (MensajeEnviado msg : mensajesEnviados) {
+	        if (msg.getIdUsuario() > resultado) {
+	            resultado = msg.getIdUsuario(); 
+	        }
+	    }
+	    return resultado;
+	}
 
 	public String toString() {
 		String s = "";

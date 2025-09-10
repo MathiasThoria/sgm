@@ -25,8 +25,15 @@ public class HistoriasBD {
 		String sql = "SELECT * FROM historias";		
 		return cn.ejecutarQuery(sql);
 	}
+	/*
+	 * Devuelve mensajes posteriores a un id
+	 * */
 	public String obtenerMayorDeId(int id) {
 		String sql = "SELECT * FROM historias WHERE id > ?";		
 		return cn.ejecutarQuery(sql,id);
+	}
+	public boolean borrarTodo() {
+		String sql = "DELETE FROM historias;";
+		return cn.ejecutarUpdate(sql);
 	}
 }

@@ -31,6 +31,8 @@ import logica.Controlador;
 					case 3:
 						listarHistoricoMensajesPorUsuario();
 					break;
+					case 4:
+						borrarTodasHistoriasBD();
 					default:
 					break;		
 				}
@@ -45,7 +47,7 @@ import logica.Controlador;
 			System.out.println("1. Listar historico de mensajes");
 			System.out.println("2. Enviar mensajes de correo a cada Deudor");
 			System.out.println("3. Listar mensajes por id de Deudor");
-			System.out.println("4.");
+			System.out.println("4. Borrar todas las historias de la BD");
 			System.out.println("5.");
 			System.out.print("Seleccione una opcion: ");
 		}
@@ -66,6 +68,9 @@ import logica.Controlador;
 	    	
 	    	System.out.println(controlador.obtenerHistoricoMensajesPorIdUsuario(id));
 	    	
+	    }
+	    public void borrarTodasHistoriasBD() {
+	    	controlador.borrarTodasHistoriasBD();
 	    }
 
 }
