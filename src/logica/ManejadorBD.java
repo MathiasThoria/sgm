@@ -1,15 +1,19 @@
 package logica;
 
 import modelo.Historias;
+import modelo.Usuarios;
 import modelo.MensajeEnviado;
 import persistencia.HistoriasBD;
 
 public class ManejadorBD {
-	
+	Historias historias;
+	Usuarios usuarios;
 	HistoriasBD historiasBD;
 	
-	public ManejadorBD() {
+	public ManejadorBD(Usuarios usuarios, Historias historias) {
 		historiasBD= new HistoriasBD();
+		this.usuarios=usuarios;
+		this.historias=historias;
 		
 	}
 	

@@ -21,7 +21,7 @@ public class Controlador {
         
         this.manejadorDatos = new ManejadorDatos(usuarios);
         this.manejadorMensajes = new ManejadorMensajes(historias);
-        this.manejadorBD = new ManejadorBD();
+        this.manejadorBD = new ManejadorBD(usuarios,historias);
         
         
         // Esto podria estar en cada manejador, pero para que sea explicito:
