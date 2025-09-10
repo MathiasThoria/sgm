@@ -28,7 +28,7 @@ public class VistaUsuariosDelSistema {
 				
 				break;
 			case 4:
-				
+				mostrarUsuarios();
 				break;
 			case 5:
 				
@@ -51,8 +51,7 @@ public class VistaUsuariosDelSistema {
 		System.out.println("1.Alta Usuario");
 		System.out.println("2.Baja Usuario");
 		System.out.println("3.Modificar Usuario");
-		System.out.println("4.Mostrar Usuarios");
-		System.out.println("5.");
+		System.out.println("4.Mostrar Usuarios");		
 		System.out.print("Seleccione una opcion: ");
 	}
 	
@@ -64,5 +63,7 @@ public class VistaUsuariosDelSistema {
         return opcion; 
 	}
 	
-	
+	public void mostrarUsuarios() {
+		System.out.println(controlador.obtenerUsuariosDelSistema());
+	}
 }

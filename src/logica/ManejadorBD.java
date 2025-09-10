@@ -51,9 +51,9 @@ public class ManejadorBD {
 		return persistidos;
 	}
 	/*
-	 * lee la BD y actualiza el modelo
+	 * lee la BD y actualiza solo mensajes nuevos de modelo
 	 */
-	public int actualizarModelo() {	
+	public int actualizarMensajesNuevosAModelo() {	
 		
 		//para verificar que solo traigo mensajes que no estan en memoria, obtengo solo los posteriores al ultimo id en memoria.
 		String mensajesNuevos = historiasBD.obtenerMayorDeId(historias.buscarUltimoId());
@@ -78,6 +78,30 @@ public class ManejadorBD {
 		
 		return 1;
 	}
+	
+	public void cargarModelo() {
+		//historias.getMensajesEnviados().clear();
+
+		String mensajesNuevos = historiasBD.obtener();	
+		
+		// parseo desde mensajesNuevos -> modelo Historias
+		String[] listaMensajes = mensajesNuevos.split("\n");
+		for(String m : listaMensajes) {
+			if (!m.equals("")) {
+				String[] columnasMensaje = m.split(","); 
+				MensajeEnviado msj = new MensajeEnviado(Integer.parseInt(columnasMensaje[0].trim()),
+						new Fecha(columnasMensaje[1]),
+						Integer.parseInt(columnasMensaje[2].trim()),
+						columnasMensaje[3],
+						columnasMensaje[4],
+						columnasMensaje[4]);
+						
+				historias.agregarMensaje(msj);
+			}
+		}
+			
+	}
+	
 	
 	public void borrarTodasHistoriasBD() {
 		historiasBD.borrarTodo();

@@ -53,4 +53,7 @@ public class Historias {
 		}
 		return s;
 	}
+	public void borrarTodo() {
+		mensajesEnviados.clear();
+	}
 }

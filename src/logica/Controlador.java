@@ -15,13 +15,13 @@ public class Controlador {
     private ManejadorBD manejadorBD;
     private Historias historias;
     private Usuarios usuarios;
-    private UsuarioSistema usuariosSistema;
+    private UsuariosSistema usuariosSistema;
     
     public Controlador() throws Exception {
         
         this.historias= new Historias();
         this.usuarios = new Usuarios();
-        
+        this.usuariosSistema = new UsuariosSistema();
         this.manejadorDatos = new ManejadorDatos(usuarios);
         this.manejadorMensajes = new ManejadorMensajes(historias);
         this.manejadorBD = new ManejadorBD(usuarios,historias);        
@@ -31,11 +31,8 @@ public class Controlador {
         actualizarModeloDesdeDatosXls();
         actualizarModeloDesdeBD();
     }
-
-    
-    public void actualizarHistoriasDesdeBD() {
-    	manejadorBD.actualizarModelo();
-    }
+   
+   
     public String obtenerUsuariosComoString() {    	
     	return manejadorDatos.obtenerUsuariosComoString();
     }
@@ -75,12 +72,19 @@ public class Controlador {
     
     public void borrarTodasHistoriasBD() {
     	manejadorBD.borrarTodasHistoriasBD();
+    	
     }
     public void actualizarModeloDesdeBD() {
-    	manejadorBD.actualizarModelo();
+    	manejadorBD.cargarModelo();
     }
     public void actualizarModeloDesdeDatosXls() {
-    	manejadorDatos.actualizarModelo();
+    	manejadorDatos.cargarModelo();
+    }
+    public void borrarModelo() {
+    	historias.borrarTodo();
+    }
+    public String obtenerUsuariosDelSistema() {
+    	usuariosDelSistema.
     }
 }
 

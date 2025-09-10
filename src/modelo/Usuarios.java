@@ -51,5 +51,7 @@ public class Usuarios {
          return s;
 		
 	}
-	
+	public void borrarTodo() {
+		coleccionUsuario.clear();
+	}
 }
