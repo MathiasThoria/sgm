@@ -34,6 +34,7 @@ public class ManejadorBD {
 		//borrar mensajes persistidos
 		if (!nuevos.getMensajesEnviados().isEmpty()){
 			//usamos iterator para poder borrar
+			// Revisar si es necesario usar el iterator o se puede simplificar para que la defensa sea sencilla
 			Iterator<MensajeEnviado> it = nuevos.getMensajesEnviados().iterator();
 			while (it.hasNext()) {
 			    MensajeEnviado mensaje = it.next();

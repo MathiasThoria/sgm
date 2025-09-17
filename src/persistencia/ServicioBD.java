@@ -59,8 +59,7 @@ public class ServicioBD {
 	}
 	
 	
-	//pedir autorizacion
-	
+	// Sacar Object para no complicar la defensa
 	
 	
 	
