@@ -12,9 +12,9 @@ import modelo.MensajeEnviado;
 import persistencia.HistoriasBD;
 
 public class ManejadorBD {
-	Historias historias;
-	Usuarios usuarios;
-	HistoriasBD historiasBD;
+	private Historias historias;
+	private Usuarios usuarios;
+	private HistoriasBD historiasBD;
 	
 	public ManejadorBD(Usuarios usuarios, Historias historias) {
 		historiasBD= new HistoriasBD();
@@ -51,7 +51,7 @@ public class ManejadorBD {
 		return persistidos;
 	}
 	/*
-	 * lee la BD y actualiza solo mensajes nuevos de modelo
+	 * deprecated
 	 */
 	public int actualizarMensajesNuevosAModelo() {	
 		
@@ -83,13 +83,14 @@ public class ManejadorBD {
 		//historias.getMensajesEnviados().clear();
 
 		String mensajesNuevos = historiasBD.obtener();	
+		MensajeEnviado msj=null;
 		
 		// parseo desde mensajesNuevos -> modelo Historias
 		String[] listaMensajes = mensajesNuevos.split("\n");
 		for(String m : listaMensajes) {
 			if (!m.equals("")) {
 				String[] columnasMensaje = m.split(","); 
-				MensajeEnviado msj = new MensajeEnviado(Integer.parseInt(columnasMensaje[0].trim()),
+				msj = new MensajeEnviado(Integer.parseInt(columnasMensaje[0].trim()),
 						new Fecha(columnasMensaje[1]),
 						Integer.parseInt(columnasMensaje[2].trim()),
 						columnasMensaje[3],
@@ -99,6 +100,8 @@ public class ManejadorBD {
 				historias.agregarMensaje(msj);
 			}
 		}
+		
+		historias.setUltimoId(msj.getId());
 			
 	}
 	

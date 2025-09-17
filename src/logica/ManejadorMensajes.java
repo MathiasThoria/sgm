@@ -55,11 +55,14 @@ public class ManejadorMensajes {
                     
                     // Intentar envío
                     boolean enviado = this.sm.enviar(textoMensaje, usuario.getEmail());
-                    
+                    //boolean enviado=true;
                     if (enviado) {
                         // Registrar en historial si fue exitoso
+                    	
+                    	historialMensajes.setUltimoId(historialMensajes.getUltimoId()+1);
+                    	
                         MensajeEnviado mensaje = new MensajeEnviado(
-                            0, // ID se asigna automáticamente en Historias
+                            historialMensajes.getUltimoId(), // ID se asigna automáticamente en Historias
                             obtenerFechaActual(),
                             usuario.getId(),
                             usuario.getEmail(),

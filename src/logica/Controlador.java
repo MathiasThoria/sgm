@@ -58,7 +58,7 @@ public class Controlador {
     	*/
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     	if ( res > 0 )
-    		manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //mensaje que se persiste es mensaje borrado de mensajesSinPersistir    	
+    		manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //ALERTA - mensaje que se persiste es mensaje borrado de mensajesSinPersistir    	
     	return res;
     }
     
@@ -83,8 +83,8 @@ public class Controlador {
     public void borrarModelo() {
     	historias.borrarTodo();
     }
-    public String obtenerUsuariosDelSistema() {
-    	usuariosDelSistema.
-    }
+    /*public String obtenerUsuariosDelSistema() {
+    	//usuariosDelSistema.
+    }*/
 }
 

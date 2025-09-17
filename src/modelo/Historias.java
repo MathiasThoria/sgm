@@ -4,13 +4,17 @@ import java.util.LinkedList;
 
 public class Historias {
 	private LinkedList<MensajeEnviado> mensajesEnviados;
+	private int ultimoId;
 	
 	public Historias() {
 		mensajesEnviados=new LinkedList<MensajeEnviado>();
+		this.ultimoId = 0;
 	}
 	/*Agrega mensaje a coleccion. Modifica id a autonumerico*/
 	public void agregarMensaje(MensajeEnviado mensaje) {
-		mensaje.setId(this.mensajesEnviados.size()+1);
+		
+		
+		
 		this.mensajesEnviados.add(mensaje);
 	}
 	
@@ -56,4 +60,12 @@ public class Historias {
 	public void borrarTodo() {
 		mensajesEnviados.clear();
 	}
+	public void setUltimoId(int i) {
+		ultimoId = i; 
+	}
+	
+	public int getUltimoId() {
+		return ultimoId;
+	}
+	
 }

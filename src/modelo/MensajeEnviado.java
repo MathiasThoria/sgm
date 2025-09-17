@@ -3,7 +3,7 @@ package modelo;
 import java.util.Map;
 
 public class MensajeEnviado {
-	private int id;	
+	private int id;	//es la unica forma de distinguir un mensaje de otro, si es que se puedee mandar varios mail por dia
 	private Fecha fechaEnvio;
 	private int idUsuario;
 	private String correo;	

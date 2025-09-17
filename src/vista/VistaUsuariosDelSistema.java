@@ -19,19 +19,19 @@ public class VistaUsuariosDelSistema {
             sc.nextLine();
 			switch(opcion) {
 			case 1:
-				
+				//en construccion
 				break;
 			case 2:
-	
+				//en construccion
 				break;
 			case 3:
-				
+				//en construccion
 				break;
 			case 4:
 				mostrarUsuarios();
 				break;
 			case 5:
-				
+				//en construccion
 				break;
 			default:
 				System.out.println("Ingrese una opcion valida.");
@@ -64,6 +64,6 @@ public class VistaUsuariosDelSistema {
 	}
 	
 	public void mostrarUsuarios() {
-		System.out.println(controlador.obtenerUsuariosDelSistema());
+	//	System.out.println(controlador.obtenerUsuariosDelSistema());
 	}
 }
