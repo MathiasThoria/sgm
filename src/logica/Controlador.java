@@ -24,12 +24,13 @@ public class Controlador {
         this.usuariosSistema = new UsuariosSistema();
         this.manejadorDatos = new ManejadorDatos(usuarios);
         this.manejadorMensajes = new ManejadorMensajes(historias);
-        this.manejadorBD = new ManejadorBD(usuarios,historias);        
+        this.manejadorBD = new ManejadorBD(usuariosSistema,historias);        
         
         // Esto podria estar en cada manejador, pero para que sea explicito:
         
         actualizarModeloDesdeDatosXls();
-        actualizarModeloDesdeBD();
+        // Este método quedó en desuso por ahora
+        //actualizarModeloDesdeBD(); 
     }
    
    

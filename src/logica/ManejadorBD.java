@@ -8,17 +8,21 @@ import java.util.Iterator;
 import modelo.Fecha;
 import modelo.Historias;
 import modelo.Usuarios;
+import modelo.UsuariosSistema;
 import modelo.MensajeEnviado;
 import persistencia.HistoriasBD;
+import persistencia.UsuarioSistemaBD;
 
 public class ManejadorBD {
 	private Historias historias;
-	private Usuarios usuarios;
 	private HistoriasBD historiasBD;
+	private UsuariosSistema usuariosSistema;
+	private UsuarioSistemaBD usuarioSistemaBD;
 	
-	public ManejadorBD(Usuarios usuarios, Historias historias) {
-		historiasBD= new HistoriasBD();
-		this.usuarios=usuarios;
+	public ManejadorBD(UsuariosSistema usuariosSistema, Historias historias) {
+		this.historiasBD= new HistoriasBD();
+		this.usuarioSistemaBD = new UsuarioSistemaBD();
+		this.usuariosSistema=usuariosSistema;
 		this.historias=historias;
 		
 	}
@@ -101,6 +105,8 @@ public class ManejadorBD {
 			}
 		}
 		
+		
+		// Guardo el último id generado en la BD
 		historias.setUltimoId(msj.getId());
 			
 	}
