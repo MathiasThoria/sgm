@@ -57,6 +57,7 @@ import logica.Controlador;
 	    }
 	    
 	    private void listarHistoricoMensajes() {
+	    	System.out.println("---------Historico de Mensajes Enviados--------");
 	    	System.out.println(controlador.obtenerHistoricoMensajes());
 	    }
 	    private void listarHistoricoMensajesPorUsuario() {
@@ -65,7 +66,7 @@ import logica.Controlador;
 	    	System.out.print("Ingrese Id de Deudor:");
 	    	id=sc.nextInt();
 	    	sc.nextLine();
-	    	
+	    	System.out.println("-------Lista de mensajes por usuario-------");
 	    	System.out.println(controlador.obtenerHistoricoMensajesPorIdUsuario(id));
 	    	
 	    }

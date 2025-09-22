@@ -25,9 +25,29 @@ public class ManejadorBD {
 		this.usuariosSistema=usuariosSistema;
 		this.historias=historias;
 		
+	}	
+	
+	/*
+	 * Persiste todos los mensajes posteriores al ultimo id de BD
+	 * */
+	public int persistirMensajesNuevos() {	
+		int ultimo = ultimoIdHistorias();	
+		for(MensajeEnviado m : historias.getMensajesEnviados()) {			
+			if (m.getId()>ultimo) {				
+				historiasBD.alta(
+			            m.getFechaEnvio(),
+			            m.getIdUsuario(),
+			            m.getCorreo(),
+			            m.getTitulosYDias()
+			    );
+			}		
+		}	
+		return 1;
 	}
 	
-	/* Este metodo hace uso de la coleccion "buffer" mensajesNuevos, que realiza una copia
+	/* (Deprecated)
+	 * 
+	 * Este metodo hace uso de la coleccion "buffer" mensajesNuevos, que realiza una copia
 	 * de cada mensaje enviado
 	 */
 	public int persistirMensajesNuevos(Historias nuevos) {
@@ -57,34 +77,6 @@ public class ManejadorBD {
 		}		
 		return persistidos;
 	}
-	
-	/*Sobrecarga de implementacion con coleccion
-	 * Obtiene ultimo id en BD
-	 * Obtiene todos los mensajes en modelo a partir de ese Id.
-	 * Persiste esos mensajes
-	 * */
-	public int persistirMensajesNuevos() {		
-		
-		int ultimo = ultimoIdHistorias();
-	
-		for(MensajeEnviado m : historias.getMensajesEnviados()) {			
-			if (m.getId()>ultimo) {
-				
-				
-				historiasBD.alta(
-			            m.getFechaEnvio(),
-			            m.getIdUsuario(),
-			            m.getCorreo(),
-			            m.getTitulosYDias()
-			    );
-			}
-			
-		}
-		
-	
-		return 1;
-	}
-	
 	/*
 	 * deprecated
 	 */

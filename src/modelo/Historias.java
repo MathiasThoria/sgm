@@ -15,12 +15,26 @@ public class Historias {
 		this.mensajesEnviados.add(mensaje);
 	}
 	
-	
-	public Historias buscarMensajesPorUsuario(int idUsuario) {
-	    Historias resultado = new Historias();
+	public String obtenerMensajes(){
+		String resultado="";
+		for (MensajeEnviado msg : mensajesEnviados) {	     
+            resultado+=msg.getId() + "|";
+            resultado+=msg.getFechaEnvio() + "|";
+            resultado+=msg.getIdUsuario() + "|";
+            resultado+=msg.getCorreo() + "|";
+            resultado+=msg.getTitulosYDias() + "\n";        
+	    }				
+		return resultado;
+	}
+	public String obtenerMensajesPorUsuario(int idUsuario) {
+	    String resultado = "";
 	    for (MensajeEnviado msg : mensajesEnviados) {
 	        if (msg.getIdUsuario() == idUsuario) {
-	            resultado.mensajesEnviados.add(msg); // Acceso directo porque si uso agregar me modifica id (asigna automaticamente)
+	            resultado+=msg.getId() + "|";
+	            resultado+=msg.getFechaEnvio() + "|";
+	            resultado+=msg.getIdUsuario() + "|";
+	            resultado+=msg.getCorreo() + "|";
+	            resultado+=msg.getTitulosYDias() + "\n";
 	        }
 	    }
 	    return resultado;
@@ -38,6 +52,7 @@ public class Historias {
 	public LinkedList<MensajeEnviado> getMensajesEnviados(){
 		return mensajesEnviados;
 	}
+	
 	public int buscarUltimoId() {
 		int resultado=0;
 		for (MensajeEnviado msg : mensajesEnviados) {

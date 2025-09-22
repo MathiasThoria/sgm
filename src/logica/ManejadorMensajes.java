@@ -165,20 +165,13 @@ public class ManejadorMensajes {
      * Obtener historial de mensajes como String formateado
      */
     public String obtenerHistoricoMensajes() {
-        if (historialMensajes.getMensajesEnviados().isEmpty()) {
-            return "No hay mensajes enviados en el historial.";
+    	String resultado="";
+    	String mensajesUsuario = historialMensajes.obtenerMensajes();        
+    	if (!mensajesUsuario.isEmpty()) {
+            resultado=mensajesUsuario;
+        }else {
+        	resultado = "No hay mensajes enviados en el historial.";
         }
-        
-        String resultado = "=== HISTORIAL DE MENSAJES ENVIADOS ===\n\n";
-        
-        for (MensajeEnviado mensaje : historialMensajes.getMensajesEnviados()) {
-            resultado += "ID: " + mensaje.getId() +
-                        " | Fecha: " + mensaje.getFechaEnvio() +
-                        " | Usuario ID: " + mensaje.getIdUsuario() +
-                        " | Email: " + mensaje.getCorreo() +
-                        " | Libros: " + mensaje.getTitulosYDias() + "\n";
-        }
-        
         return resultado;
     }
     
@@ -186,20 +179,13 @@ public class ManejadorMensajes {
      * Buscar mensajes por usuario específico
      */
     public String obtenerMensajesPorIdUsuario(int idUsuario) {
-        Historias mensajesUsuario = historialMensajes.buscarMensajesPorUsuario(idUsuario);
-        
-        if (mensajesUsuario.getMensajesEnviados().isEmpty()) {
-            return "No se encontraron mensajes para el usuario ID: " + idUsuario;
-        }
-        
-        String resultado = "=== MENSAJES DEL USUARIO ID: " + idUsuario + " ===\n\n";
-        
-        for (MensajeEnviado mensaje : mensajesUsuario.getMensajesEnviados()) {
-            resultado += "Fecha: " + mensaje.getFechaEnvio() +
-                        " | Email: " + mensaje.getCorreo() +
-                        " | Libros atrasados: " + mensaje.getTitulosYDias() + "\n";
-        }
-        
+        String mensajesUsuario = historialMensajes.obtenerMensajesPorUsuario(idUsuario);
+        String resultado;
+        if (!mensajesUsuario.isEmpty()) {
+        	resultado = mensajesUsuario;
+        }else {
+        	resultado = "No se encontraron mensajes para el usuario ID: " + idUsuario;
+        }        
         return resultado;
     }
     

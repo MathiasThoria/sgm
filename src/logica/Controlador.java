@@ -49,7 +49,7 @@ public class Controlador {
     	 * */
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     	if ( res > 0 )
-    		//manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //ALERTA - mensaje que se persiste es mensaje borrado de mensajesSinPersistir
+    		//manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); 
     		manejadorBD.persistirMensajesNuevos();
     	return res;
     }
