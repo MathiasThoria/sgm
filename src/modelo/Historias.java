@@ -11,10 +11,7 @@ public class Historias {
 		this.ultimoId = 0;
 	}
 	/*Agrega mensaje a coleccion. Modifica id a autonumerico*/
-	public void agregarMensaje(MensajeEnviado mensaje) {
-		
-		
-		
+	public void agregarMensaje(MensajeEnviado mensaje) {		
 		this.mensajesEnviados.add(mensaje);
 	}
 	
@@ -37,14 +34,15 @@ public class Historias {
 		}
 		return null;
 	}
+	
 	public LinkedList<MensajeEnviado> getMensajesEnviados(){
 		return mensajesEnviados;
 	}
 	public int buscarUltimoId() {
 		int resultado=0;
 		for (MensajeEnviado msg : mensajesEnviados) {
-	        if (msg.getIdUsuario() > resultado) {
-	            resultado = msg.getIdUsuario(); 
+	        if (msg.getId() > resultado) {
+	            resultado = msg.getId(); 
 	        }
 	    }
 	    return resultado;

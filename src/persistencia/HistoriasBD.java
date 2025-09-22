@@ -7,16 +7,13 @@ public class HistoriasBD {
 	
 	public HistoriasBD() {
 		cn=new ServicioBD();
-	}
-	 //capa de persistencia no sabe del modelo, los campos son de la BD
+	}	
+	// id es autonumerico en BD
 	public boolean alta( 
 			Fecha fechaEnvio,
 			int idUsuario,
 			String correo,
-			String titulosYDias) {
-		
-		
-		
+			String titulosYDias) {		
 		String sql = "INSERT INTO historias (fechaEnvio,idUsuario,correo,titulosYDias) VALUES (?,?,?,?)";		
 		return cn.ejecutarUpdate(sql, fechaEnvio.toSqlDate(), idUsuario, correo, titulosYDias);
 		
@@ -35,5 +32,9 @@ public class HistoriasBD {
 	public boolean borrarTodo() {
 		String sql = "DELETE FROM historias;";
 		return cn.ejecutarUpdate(sql);
+	}
+	public int obtenerUltimoId() {
+		String sql= "SELECT MAX(id) FROM historias;";		
+		return Integer.parseInt(cn.ejecutarQuery(sql).trim()); 
 	}
 }

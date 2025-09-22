@@ -123,6 +123,38 @@ public class ServicioBD {
 	    cerrarConexion();
 	    return resultado;
 	}
+	
+	public String ejecutarQuery(String sql) {
+	    String resultado = "";
+		conectar();
+	    
+	    try {
+	        PreparedStatement statement = getConexion().prepareStatement(sql);	        	        
+	        ResultSet rs = statement.executeQuery();
+	        int columnas = rs.getMetaData().getColumnCount();
+	        
+	        while (rs.next()) {
+	            for (int i = 1; i <= columnas; i++) {
+	            	//System.out.println(rs.getString(i));
+	                resultado+=rs.getString(i);
+	                if (i < columnas) {
+	                    resultado+=", ";
+	                }
+	            }
+	            resultado+="\n";
+	        }
+	        rs.close();    
+	        
+	        //return statement.executeQuery(); 
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        resultado = null;
+	    }
+	    
+	    cerrarConexion();
+	    return resultado;
+	}
+
 
 
 }

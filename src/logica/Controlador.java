@@ -29,8 +29,8 @@ public class Controlador {
         // Esto podria estar en cada manejador, pero para que sea explicito:
         
         actualizarModeloDesdeDatosXls();
-        // Este método quedó en desuso por ahora
-        //actualizarModeloDesdeBD(); 
+        
+        actualizarModeloDesdeBD(); 
     }
    
    
@@ -43,23 +43,14 @@ public class Controlador {
     }
     
     public int procesarMensajesDeUsuarios() {
-    	/*
-    	 * Para persistir los nuuevos mensajes tenemos 3 opciones:
-    	 * 1.Ejecutar UPDATE con mensajes ya exisitentes y nuevos, BD niega los duplicados por id.
-    	 * 2.Consultar BD y ejecutar UPDATE de diferencia
-    	 * 3.Hacer la solicitud de persisitencia dentro de ManejadorMensajes (mala separacion de responsabilidades, mejor en controlador)
-    	 * 4.Devolver desde el proceso procesarEnvioMensajes un Historial con mensajes nuevos. (mayor acoplamiento)
-    	 * 5.Almacenar en ManejadorMensajes un atributo de tipo Historial que contenga mensajes nuevos.
-    	 *     	 *
-    	 * Se opta por la ultima que conserva separacion de responsabilidades y comunicacion limpia en capa. Dificultad: puede 
-    	 * ser confuso mantener un estado en manejadorDeMensajes.
-    	 * 
-    	 * 6. Posibilidad de manejar id null de cada nuevo mensaje en Historias como filtro.
-    	 * (id es null en nuevos porque lo maneja autoincremental la BD) 
-    	*/
+    	/*hacer metodo en BD para traer ultimo id
+    	 * recorrer mensajes a partir de ese id
+    	 * persisitir > a ultimo
+    	 * */
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     	if ( res > 0 )
-    		manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //ALERTA - mensaje que se persiste es mensaje borrado de mensajesSinPersistir    	
+    		//manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); //ALERTA - mensaje que se persiste es mensaje borrado de mensajesSinPersistir
+    		manejadorBD.persistirMensajesNuevos();
     	return res;
     }
     
