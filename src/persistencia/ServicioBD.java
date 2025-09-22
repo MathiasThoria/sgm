@@ -12,6 +12,7 @@ cambie para que la conexion sea un atruibuto (y se ddevuelva para PreparedStatem
 estaria bueno un metodo para ejecutar SQL. Entiendo que usar Statement es inseguro, 
 habria que ver como hacerlo con PreparedStatement
 */
+import java.sql.Statement;
 
 public class ServicioBD {
 	private final String Controlador = "com.mysql.cj.jdbc.Driver";
@@ -59,9 +60,7 @@ public class ServicioBD {
 	}
 	
 	
-	// Sacar Object para no complicar la defensa
-	
-	
+	// Sacar Object para no complicar la defensa	
 	
 	public boolean ejecutarUpdate(String sql, Object... params) {
 	    boolean ok = false;
@@ -82,7 +81,6 @@ public class ServicioBD {
 	   // System.out.println(ok);
 	    return ok;
 	}
-	
 	
 	/*
 	 * Si devuelve resultSet hay que cerrar conexion despues de consumirla
@@ -154,7 +152,57 @@ public class ServicioBD {
 	    cerrarConexion();
 	    return resultado;
 	}
+    
+    public String ejecutarStatmentQuery(String sqlCompleto) {
+        String resultado = "";
+        conectar();
+        
+        try {
+            Statement statement = conexion.createStatement();
+            ResultSet rs = statement.executeQuery(sqlCompleto);
+            int columnas = rs.getMetaData().getColumnCount();
+            
+            while (rs.next()) {
+                for (int i = 1; i <= columnas; i++) {
+                    resultado += rs.getString(i);
+                    if (i < columnas) {
+                        resultado += ", ";
+                    }
+                }
+                resultado += "\n";
+            }
+            rs.close();
+            statement.close();
+            
+        } catch (SQLException e) {
+            System.out.println("Error en ejecutarQuery: " + e.getMessage());
+            resultado = null;
+        }
+        
+        cerrarConexion();
+        return resultado;
+    }
+    
+    /*
+     * */
+    public boolean ejecutarStatmentUpdate(String sqlCompleto) {
+        boolean ok = false;
+        conectar();
+        
+        try {
+            Statement statement = conexion.createStatement();
+            int filasAfectadas = statement.executeUpdate(sqlCompleto);
+            ok = filasAfectadas > 0;
+            statement.close();
+            
+        } catch (SQLException e) {
+            System.out.println("Error en ejecutarUpdate: " + e.getMessage());
+        }
+        
+        cerrarConexion();
+        return ok;
+    }
 
-
+	
 
 }
