@@ -3,63 +3,17 @@ package persistencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-//Connection no deberia estar aca. Todo lo que tenga q ver con la conexion en si deberia estar en ConexionBD
-//Estaria bueno tener un metodo en ConexionBD que sea ejecutarSQL y se le tire un String nomas
-// Si queremos usar PreparedStatment, el supuesto ejecutarSQL quedaria complicado de parametros, por ahora dejarlos asi
+
+/* UsuariosSistemaBD se encarga de preparar Querys y Update de la tabla usuariosistema, y ejecutarlas, usando la conexion
+ * ofrecida por ServicioBD. Se opta por repetir codigo para simplificar lectura.
+ * */
 public class UsuarioSistemaBD {
 	
 	private ServicioBD cn;
 		
 	public UsuarioSistemaBD() {	
-			cn=new ServicioBD(); //Constructor no conecta. Llamara conectar()
+			cn=new ServicioBD(); 
 	}
-	
-	
-/*
- * PEDIR AUTORIZACION
- * Responsabilidad de conexion y ejecucion de consultas queda a cargo de ConexionBD.
- * UsuarioSistemaBD solo arma Sql	
- */
-	
-	public String alta(int id, String perfil, String contraseña) {
-		String retorno = "";		
-				
-		
-		String sql = "INSERT INTO usuariosistema VALUES (?,?,?)";		
-		cn.ejecutarUpdate(sql, id, perfil, contraseña);
-		
-		return retorno;
-	}
-	
-	public String baja(int id) {
-		String retorno = "";		
-				
-		String sql = "DELETE FROM usuariosistema WHERE id = ?";
-		cn.ejecutarUpdate(sql, id);
-				
-		return retorno;
-	}
-	
-	public String modificar(int id, String perfil, String contraseña) {
-		String retorno = "";
-			
-		
-		String sql = "UPDATE usuariosistema SET perfil = ?, contrasenia = ? WHERE id = ?";
-		cn.ejecutarUpdate(sql, perfil, contraseña, id);	
-		return retorno;
-	}
-	
-	public String obtenerTodo() {
-		String sql = "SELECT * FROM usuariosistema";		
-		return cn.ejecutarQuery(sql);		
-	}
-	
-	
-	
-	
-	
-	
-	/*
 	public String alta(int id, String perfil, String contraseña) {
 		String retorno = "";
 		
@@ -117,11 +71,6 @@ public class UsuarioSistemaBD {
 		cn.cerrarConexion();
 		return retorno;
 	}
-
-
-
-
-*/
 
 }
 

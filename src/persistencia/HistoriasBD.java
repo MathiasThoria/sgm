@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-/* HistoriasBD se encarga de preparar Querys y Update y ejecutarlas, usando la conexion
+/* HistoriasBD se encarga de preparar Querys y Update de la tabla historias, y ejecutarlas, usando la conexion
  * ofrecida por ServicioBD. Se opta por repetir codigo para simplificar lectura.
  * */
 public class HistoriasBD {
