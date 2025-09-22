@@ -5,15 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-/*
-yo estoy re afin a hacerla Static o Singleton. Peeero....
-cambie para que la clase se instancie
-cambie para que la conexion sea un atruibuto (y se ddevuelva para PreparedStatement)
-estaria bueno un metodo para ejecutar SQL. Entiendo que usar Statement es inseguro, 
-habria que ver como hacerlo con PreparedStatement
-*/
+
 import java.sql.Statement;
 
+
+
+/* ServicioBD se encarga de conexion y desconexion a la BD. 
+*/
 public class ServicioBD {
 	private final String Controlador = "com.mysql.cj.jdbc.Driver";
 	private final String Url = "jdbc:mysql://localhost:3306/sgm";
@@ -59,150 +57,6 @@ public class ServicioBD {
 		return conexion;
 	}
 	
-	
-	// Sacar Object para no complicar la defensa	
-	
-	public boolean ejecutarUpdate(String sql, Object... params) {
-	    boolean ok = false;
-	    conectar();
-	    
-	    try (PreparedStatement statement = conexion.prepareStatement(sql)) {
-	        for (int i = 0; i < params.length; i++) {
-	            statement.setObject(i + 1, params[i]);
-	        }
-	        if (statement.executeUpdate()>0)
-	        	ok=true;
-	        
-	    } catch (SQLException e) {
-	        System.out.println(e.getMessage());
-	    }
-	    
-	    cerrarConexion();	    
-	   // System.out.println(ok);
-	    return ok;
-	}
-	
-	/*
-	 * Si devuelve resultSet hay que cerrar conexion despues de consumirla
-	 * Si devuleve String hay que parsear afuera
-	 * */
-	public String ejecutarQuery(String sql, Object... params) {
-	    String resultado = "";
-		conectar();
-	    
-	    try {
-	        PreparedStatement statement = getConexion().prepareStatement(sql);
-	        for (int i = 0; i < params.length; i++) {
-	            statement.setObject(i + 1, params[i]);
-	        }
-	        
-	        
-	        ResultSet rs = statement.executeQuery();
-	        int columnas = rs.getMetaData().getColumnCount();
-	        
-	        while (rs.next()) {
-	            for (int i = 1; i <= columnas; i++) {
-	            	//System.out.println(rs.getString(i));
-	                resultado+=rs.getString(i);
-	                if (i < columnas) {
-	                    resultado+=", ";
-	                }
-	            }
-	            resultado+="\n";
-	        }
-	        rs.close();    
-	        
-	        //return statement.executeQuery(); 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        resultado = null;
-	    }
-	    
-	    cerrarConexion();
-	    return resultado;
-	}
-	
-	public String ejecutarQuery(String sql) {
-	    String resultado = "";
-		conectar();
-	    
-	    try {
-	        PreparedStatement statement = getConexion().prepareStatement(sql);	        	        
-	        ResultSet rs = statement.executeQuery();
-	        int columnas = rs.getMetaData().getColumnCount();
-	        
-	        while (rs.next()) {
-	            for (int i = 1; i <= columnas; i++) {
-	            	//System.out.println(rs.getString(i));
-	                resultado+=rs.getString(i);
-	                if (i < columnas) {
-	                    resultado+=", ";
-	                }
-	            }
-	            resultado+="\n";
-	        }
-	        rs.close();    
-	        
-	        //return statement.executeQuery(); 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        resultado = null;
-	    }
-	    
-	    cerrarConexion();
-	    return resultado;
-	}
-    
-    public String ejecutarStatmentQuery(String sqlCompleto) {
-        String resultado = "";
-        conectar();
-        
-        try {
-            Statement statement = conexion.createStatement();
-            ResultSet rs = statement.executeQuery(sqlCompleto);
-            int columnas = rs.getMetaData().getColumnCount();
-            
-            while (rs.next()) {
-                for (int i = 1; i <= columnas; i++) {
-                    resultado += rs.getString(i);
-                    if (i < columnas) {
-                        resultado += ", ";
-                    }
-                }
-                resultado += "\n";
-            }
-            rs.close();
-            statement.close();
-            
-        } catch (SQLException e) {
-            System.out.println("Error en ejecutarQuery: " + e.getMessage());
-            resultado = null;
-        }
-        
-        cerrarConexion();
-        return resultado;
-    }
-    
-    /*
-     * */
-    public boolean ejecutarStatmentUpdate(String sqlCompleto) {
-        boolean ok = false;
-        conectar();
-        
-        try {
-            Statement statement = conexion.createStatement();
-            int filasAfectadas = statement.executeUpdate(sqlCompleto);
-            ok = filasAfectadas > 0;
-            statement.close();
-            
-        } catch (SQLException e) {
-            System.out.println("Error en ejecutarUpdate: " + e.getMessage());
-        }
-        
-        cerrarConexion();
-        return ok;
-    }
-
 	
 
 }
