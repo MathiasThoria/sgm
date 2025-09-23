@@ -86,7 +86,7 @@ public class ManejadorBD {
 		String[] listaUsuarios = usuarios.split("\n");
 		for(String u : listaUsuarios) {
 			if (!u.equals("")) {
-				String[] columnasUsuarios = u.split(",");
+				String[] columnasUsuarios = u.split("\\|");
 				usuariosSistema.agregarUsuario(Integer.parseInt(columnasUsuarios[0]),
 						columnasUsuarios[1],
 						columnasUsuarios[2]);
