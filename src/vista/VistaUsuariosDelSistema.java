@@ -64,6 +64,23 @@ public class VistaUsuariosDelSistema {
 	}
 	
 	public void mostrarUsuarios() {
-	//	System.out.println(controlador.obtenerUsuariosDelSistema());
+		System.out.println(controlador.obtenerUsuariosDelSistema());
+	}
+	public void altaUsuario() {
+		int id=0;
+		String perfil="";
+		String contraseña="";
+		Scanner sc = new Scanner(System.in);		
+		
+		System.out.println("Ingrese id:");
+		id=sc.nextInt();
+		sc.nextLine();
+		System.out.println("Ingrese perfil:");
+		perfil=sc.nextLine();
+		System.out.println("Ingrese contraseña:");
+		contraseña=sc.nextLine();
+		
+		controlador.altaUsuarioSistema(id,perfil,contraseña);
+		
 	}
 }

@@ -3,24 +3,36 @@ package modelo;
 import java.util.ArrayList;
 
 public class UsuariosSistema {
-	private ArrayList<Usuario> usuariosSistema;
+	private ArrayList<UsuarioSistema> usuariosSistema;
 
-	public UsuariosSistema(ArrayList<Usuario> coleccionUsuario) {		
+	public UsuariosSistema(ArrayList<UsuarioSistema> coleccionUsuario) {		
 		this.usuariosSistema = coleccionUsuario;
 	}
 	public UsuariosSistema() {
-		this.usuariosSistema = new ArrayList<Usuario>();
+		this.usuariosSistema = new ArrayList<UsuarioSistema>();
 	}
 
-	public ArrayList<Usuario> getColeccionUsuarioSistema() {
+	public ArrayList<UsuarioSistema> getColeccionUsuarioSistema() {
 		return usuariosSistema;
 	}
 
-	public void setColeccionUsuarioSistema(ArrayList<Usuario> coleccionUsuario) {
+	public void setColeccionUsuarioSistema(ArrayList<UsuarioSistema> coleccionUsuario) {
 		this.usuariosSistema = coleccionUsuario;
 	}
 	
-	public void agregarUsuario(Usuario u) {
+	public void agregarUsuario(UsuarioSistema u) {
 		usuariosSistema.add(u);
+	}
+	public void agregarUsuario(int id, String perfil, String contraseña) {
+		usuariosSistema.add(new UsuarioSistema(id,perfil,contraseña));
+	}
+	
+	public String obtenerUsuarios() {
+		String resultado = "";
+		
+		for (UsuarioSistema u : usuariosSistema) {
+			resultado+=u.toString()+ "\n";
+		}		
+		return resultado;		
 	}
 }

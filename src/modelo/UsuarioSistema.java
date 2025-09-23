@@ -5,8 +5,7 @@ public class UsuarioSistema {
 	private String perfil; 
 	private String contraseña;
 	
-	public UsuarioSistema(int id, String perfil, String contraseña) {
-		super();
+	public UsuarioSistema(int id, String perfil, String contraseña) {		
 		this.id = id;
 		this.perfil = perfil;
 		this.contraseña = contraseña;
@@ -38,6 +37,6 @@ public class UsuarioSistema {
 
 	@Override
 	public String toString() {
-		return "UsuarioSistema [id=" + id + ", perfil=" + perfil + ", contraseña=" + contraseña + "]";
+		return id + "|" + perfil + "|" + contraseña + "\n";
 	}
 }

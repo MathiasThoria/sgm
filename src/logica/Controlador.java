@@ -26,10 +26,7 @@ public class Controlador {
         this.manejadorMensajes = new ManejadorMensajes(historias);
         this.manejadorBD = new ManejadorBD(usuariosSistema,historias);        
         
-        // Esto podria estar en cada manejador, pero para que sea explicito:
-        
-        actualizarModeloDesdeDatosXls();
-        
+        actualizarModeloDesdeDatosXls();        
         actualizarModeloDesdeBD(); 
     }
    
@@ -42,11 +39,7 @@ public class Controlador {
     	return usuarios.obtenerLibrosDeUsuario(id);    	
     }
     
-    public int procesarMensajesDeUsuarios() {
-    	/*hacer metodo en BD para traer ultimo id
-    	 * recorrer mensajes a partir de ese id
-    	 * persisitir > a ultimo
-    	 * */
+    public int procesarMensajesDeUsuarios() {    	
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     	if ( res > 0 )
     		//manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); 
@@ -78,5 +71,14 @@ public class Controlador {
     /*public String obtenerUsuariosDelSistema() {
     	//usuariosDelSistema.
     }*/
+    
+    public String obtenerUsuariosDelSistema() {
+    	return usuariosSistema.obtenerUsuarios();
+    }
+    public void altaUsuarioSistema(int id, String perfil, String contraseña) {    	
+    	usuariosSistema.agregarUsuario(id,perfil,contraseña);
+    	manejadorBD.agregarUsuarioSistema(id,perfil,contraseña);
+    }
+    
 }
 

@@ -45,6 +45,49 @@ public class ManejadorBD {
 		return 1;
 	}
 	
+
+	
+	/*
+	 * Obtiene toda la tabla de historias en Bd y la carga al modelo 
+	 * */
+	public void cargarModelo() {	
+
+		String mensajesNuevos = historiasBD.obtener();	
+		MensajeEnviado msj=null;
+		
+		// parseo desde mensajesNuevos -> modelo Historias
+		String[] listaMensajes = mensajesNuevos.split("\n");
+		for(String m : listaMensajes) {
+			if (!m.equals("")) {
+				String[] columnasMensaje = m.split(","); 
+				msj = new MensajeEnviado(Integer.parseInt(columnasMensaje[0].trim()),
+						new Fecha(columnasMensaje[1]),
+						Integer.parseInt(columnasMensaje[2].trim()),
+						columnasMensaje[3],
+						columnasMensaje[4],
+						columnasMensaje[4]);
+						
+				historias.agregarMensaje(msj);
+			}
+		}
+	/* (Deprecated)
+	 * 	// Guardo el último id generado en la BD
+		if (msj!=null)
+			historias.setUltimoId(msj.getId());
+	*/	
+		
+		
+	}
+		
+	public void borrarTodasHistoriasBD() {
+		historiasBD.borrarTodo();
+	}
+	
+	public int ultimoIdHistorias() {
+		return historiasBD.obtenerUltimoId();
+	}
+	
+	
 	/* (Deprecated)
 	 * 
 	 * Este metodo hace uso de la coleccion "buffer" mensajesNuevos, que realiza una copia
@@ -106,40 +149,9 @@ public class ManejadorBD {
 		return 1;
 	}
 	
-	/*
-	 * Obtiene toda la tabla de historias en Bd y la carga al modelo 
-	 * */
-	public void cargarModelo() {
-		//historias.getMensajesEnviados().clear();
-
-		String mensajesNuevos = historiasBD.obtener();	
-		MensajeEnviado msj=null;
+	public void agregarUsuarioSistema(int id, String perfil, String contraseña) {
+		usuarioSistemaBD.alta(id, perfil, contraseña);
 		
-		// parseo desde mensajesNuevos -> modelo Historias
-		String[] listaMensajes = mensajesNuevos.split("\n");
-		for(String m : listaMensajes) {
-			if (!m.equals("")) {
-				String[] columnasMensaje = m.split(","); 
-				msj = new MensajeEnviado(Integer.parseInt(columnasMensaje[0].trim()),
-						new Fecha(columnasMensaje[1]),
-						Integer.parseInt(columnasMensaje[2].trim()),
-						columnasMensaje[3],
-						columnasMensaje[4],
-						columnasMensaje[4]);
-						
-				historias.agregarMensaje(msj);
-			}
-		}		
-		// Guardo el último id generado en la BD
-		historias.setUltimoId(msj.getId());			
 	}
-		
-	public void borrarTodasHistoriasBD() {
-		historiasBD.borrarTodo();
-	}
-	/*
-	 * Obtiene el ultimo id de historias en la BD*/
-	public int ultimoIdHistorias() {
-		return historiasBD.obtenerUltimoId();
-	}
+	
 }
