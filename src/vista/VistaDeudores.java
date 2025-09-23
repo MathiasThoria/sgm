@@ -41,10 +41,7 @@ public class VistaDeudores {
 		System.out.println("========MENU DEUDORES==========\n");
 		System.out.println("0.Salir");		
 		System.out.println("1.Mostrar Todos los Deudores.");
-		System.out.println("2.Mostrar Libros de un Deudor.");
-		System.out.println("3.");
-		System.out.println("4.");
-		System.out.println("5.");
+		System.out.println("2.Mostrar Libros de un Deudor.");		
 		System.out.print("Seleccione una opcion: ");
 	}
 	private void mostrarUsuarios() {

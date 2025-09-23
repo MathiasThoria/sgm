@@ -23,10 +23,10 @@ import logica.Controlador;
 						System.out.println("Saliendo de menú Mensajería.");
 					break;
 					case 1:
-						listarHistoricoMensajes();
+						procesarMensajes();
 					break;
 					case 2:
-						procesarMensajes();
+						listarHistoricoMensajes();						
 					break;
 					case 3:
 						listarHistoricoMensajesPorUsuario();
@@ -44,9 +44,9 @@ import logica.Controlador;
 			System.out.println();
 			System.out.println("========MENU MENSAJERIA==========\n");
 			System.out.println("0.Salir");		
-			System.out.println("1. Listar historico de mensajes");
-			System.out.println("2. Enviar mensajes de correo a cada Deudor");
-			System.out.println("3. Listar mensajes por id de Deudor");
+			System.out.println("1. Enviar mensajes de correo a cada Deudor");
+			System.out.println("2. Mostrar historico de mensajes");
+			System.out.println("3. Mostrar mensajes por id de Deudor");
 			System.out.println("4. Borrar todas las historias de la BD");
 			
 			System.out.print("Seleccione una opcion: ");
