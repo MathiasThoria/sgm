@@ -18,13 +18,7 @@ public class ServicioDatos {
 	    FileInputStream archivo = new FileInputStream(rutaArchivo);
 	    Workbook libro = new HSSFWorkbook(archivo);
         Sheet hoja = libro.getSheetAt(0);
-        
-        
         int cantidadFilas = hoja.getLastRowNum(); // filas desde 0
-	    //System.out.println(hoja.getLastRowNum() );
-        
-        
-        
 	    for (int i = 1; i < cantidadFilas; i++) {	    	
 	        Row fila = hoja.getRow(i);	        
 	        if (fila != null) {
@@ -47,8 +41,7 @@ public class ServicioDatos {
 					        if (j < ultimaCelda - 1) 
 					            cadena += ",";
 					        else
-					        	cadena += ";";
-					        
+					        	cadena += ";";					        
 					    }
 					}
 	        	}
@@ -60,9 +53,5 @@ public class ServicioDatos {
 	
 	public String getCadena() {
 	    return cadena;
-	}
-
-	
-
-	
+	}	
 }

@@ -69,10 +69,7 @@ public class Controlador {
     public void borrarModelo() {
     	historias.borrarTodo();
     }
-    /*public String obtenerUsuariosDelSistema() {
-    	//usuariosDelSistema.
-    }*/
-    
+
     public String obtenerUsuariosDelSistema() {
     	return usuariosSistema.obtenerUsuarios();
     }

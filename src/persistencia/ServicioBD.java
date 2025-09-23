@@ -18,18 +18,7 @@ public class ServicioBD {
 	private final String User = "root"; 
 	private final String Pass = "root"; 
 	private Connection conexion;
-	
-	/*
-	static {
-		try {
-			Class.forName(Controlador);
-		} catch(ClassNotFoundException e) {
-			System.out.println("Error al cargar el controlador");
-		}
-	} 
-	//Este bloque carga el controlador una única vez(Static).
-	*/
-	
+		
 	public ServicioBD() {
 		conexion=null;
 	}
@@ -37,7 +26,7 @@ public class ServicioBD {
 	public Connection conectar() {		
 		try {
 			conexion = DriverManager.getConnection(Url,User,Pass);
-			//System.out.println("Conexion establecida.");
+
 		} catch(SQLException e) {
 			System.out.println("Error al establecer la conexion.");
 		}

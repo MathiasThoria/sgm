@@ -57,7 +57,7 @@ public class HistoriasBD {
             while (rs.next()) {
                 for (int i = 1; i <= columnas; i++) {
                     resultado += rs.getString(i);
-                    //System.out.println(rs.getString(i));
+                    
                     if (i < columnas) {
                         resultado += "|";
                     }

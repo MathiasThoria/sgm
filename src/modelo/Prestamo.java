@@ -2,7 +2,7 @@ package modelo;
 
 import java.time.LocalDate;
 
-import persistencia.XlsParser;
+
 
 public class Prestamo {
 	private Fecha fechaPrestamo;      // aff_pret_date

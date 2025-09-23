@@ -7,10 +7,8 @@ public class MensajeEnviado {
 	private Fecha fechaEnvio;
 	private int idUsuario;
 	private String correo;	
-
-	private String titulosYDias; 
+	private String titulosYDias; 	
 	
-	//private String textoMensaje; // necesario?
 	
 	public MensajeEnviado(int id, 
 			Fecha fechaEnvio, 
@@ -23,7 +21,7 @@ public class MensajeEnviado {
 		this.idUsuario = idUsuario;
 		this.correo=correo;
 		this.titulosYDias = titulosYDias;
-		//this.textoMensaje = textoMensaje;
+		
 	}
 	
 	public void setId(int id) {

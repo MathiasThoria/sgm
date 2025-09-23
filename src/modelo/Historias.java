@@ -10,7 +10,7 @@ public class Historias {
 		mensajesEnviados=new LinkedList<MensajeEnviado>();
 		this.ultimoId = 0;
 	}
-	/*Agrega mensaje a coleccion. Modifica id a autonumerico*/
+	
 	public void agregarMensaje(MensajeEnviado mensaje) {		
 		this.mensajesEnviados.add(mensaje);
 	}

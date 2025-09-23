@@ -19,13 +19,7 @@ public class ServicioMensajeria {
 	public ServicioMensajeria() {		
 	}
 	
-	public boolean enviar(String textoMensaje, String destino) {		
-		// Cuerpo HTML del correo
-       /*	String cuerpoHtml = "<h2 style='color: navy;'>Hola desde Java</h2> "
-	 		+ "<p>Este es un correo <strong>HTML</strong> con archivo adjunto.<br> "
-	 		+ "¡Saludos!</p> "
-	 		+ "";*/
-		
+	public boolean enviar(String textoMensaje, String destino) {	
 		Properties propiedades = new Properties();
         propiedades.put("mail.smtp.auth", "true");
         propiedades.put("mail.smtp.host", "smtp.gmail.com");
@@ -55,44 +49,7 @@ public class ServicioMensajeria {
             System.err.println("Error al enviar correo: " + e.getMessage());
             return false;
         }
-        /* PROBAR LUEGO
-        try {
-        	 Message mail = new MimeMessage(sesion);
-        	 mail.setFrom(new InternetAddress(micorreo));
-        	 mail.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destino));
-        	 mail.setSubject(asunto);
-        	 
-        	// Parte de texto
-             //MimeBodyPart cuerpoTexto = new MimeBodyPart();
-             //cuerpoTexto.setText(mensaje);
-             
-        	 cuerpoHtml=textoMensaje;
-             
-             MimeBodyPart parteHtml = new MimeBodyPart();
-             parteHtml.setContent(cuerpoHtml, "text/html; charset=utf-8");
-
-             // Parte de archivo adjunto
-             MimeBodyPart adjunto = new MimeBodyPart();
-             adjunto.attachFile(new File(rutaAdjunto));
-
-             // Unimos ambas partes en un contenedor Multipart
-             Multipart multipart = new MimeMultipart();
-             multipart.addBodyPart(parteHtml);
-             //multipart.addBodyPart(cuerpoTexto);
-             multipart.addBodyPart(adjunto);
-
-             // Enviamos el contenido completo
-             mail.setContent(multipart);
-             Transport.send(mail);
-             System.out.println("Correo enviado correctamente.");
-        }
-        catch (MessagingException e){
-        	e.printStackTrace();
-        }
-        catch (IOException e) {
-        	e.printStackTrace();
-        }
-	*/
+        
 
 	}
 }

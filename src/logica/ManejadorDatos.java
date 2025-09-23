@@ -20,7 +20,7 @@ public class ManejadorDatos {
 	public ManejadorDatos(Usuarios usuarios) throws Exception {
 		archivoXls = new ServicioDatos();//queda en cadena el archivo cargado		
 		coleccionUsuario = usuarios;	
-		//coleccionUsuario = parserDatosToUsuarios();
+		
 	}
 	
 	public Usuarios getColeccionUsuario() {
@@ -31,7 +31,7 @@ public class ManejadorDatos {
 			
 		String datosCrudos = archivoXls.getCadena();
 	    String[] filas = datosCrudos.split(";");
-	    //coleccionUsuario=new Usuarios();
+	   
 	    boolean encabezado=true;
 	    for (String fila : filas) {
 	        if (encabezado) {	        
@@ -69,10 +69,7 @@ public class ManejadorDatos {
 	
 		            // Si el usuario no existe agrega a coleccion
 		            // Si el usuario existe solo agrega prestamo		            
-	
-		            //usuario.getListaPrestamos().agregarPrestamo(prestamo);
-		            // ojo hay que cheeuquar tambien si existe el prestamo de ese usuario
-		            //  el prestamo que quiero agregar
+			            
 		            if (!coleccionUsuario.existeIdUsuario(usuario.getId())) {
 		            	usuario.getListaPrestamos().agregarPrestamo(prestamo);		            
 		            	coleccionUsuario.agregarUsuario(usuario);
@@ -104,8 +101,7 @@ public class ManejadorDatos {
 	}
 	
 	public int parseNumero(String valor) {
-		//System.out.println("-"+valor+valor.equals(" "));
-		
+				
 		//cuando una celda viene vacia no es "" sino " "
 		if(!valor.equals(" ")) {			
 			return (int)Double.parseDouble(valor);
@@ -132,9 +128,5 @@ public class ManejadorDatos {
 	public void cargarModelo() {
 		parserDatosToUsuarios();
 	}
-/**alta de usario
-   baja de usuario   
-   
-    **/
-    
+
 }
