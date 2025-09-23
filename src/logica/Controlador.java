@@ -35,11 +35,11 @@ public class Controlador {
    
    
     public String obtenerUsuarios() {    	
-    	return usuarios.toString();
+    	return usuarios.obtenerDatosUsuarios();
     }
     
     public String obtenerUsuarioPorId(int id) {   	
-    	return usuarios.obtenerUsuarioPorId(id);    	
+    	return usuarios.obtenerLibrosDeUsuario(id);    	
     }
     
     public int procesarMensajesDeUsuarios() {

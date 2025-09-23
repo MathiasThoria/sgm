@@ -45,7 +45,7 @@ import logica.Controlador;
 			System.out.println("========MENU MENSAJERIA==========\n");
 			System.out.println("0.Salir");		
 			System.out.println("1. Enviar mensajes de correo a cada Deudor");
-			System.out.println("2. Mostrar historico de mensajes");
+			System.out.println("2. Mostrar todos los mensajes enviados");
 			System.out.println("3. Mostrar mensajes por id de Deudor");
 			System.out.println("4. Borrar todas las historias de la BD");
 			

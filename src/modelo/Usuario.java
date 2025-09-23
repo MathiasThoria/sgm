@@ -75,4 +75,7 @@ public class Usuario {
 	         + email + "|" 
 	         + codigoBarras + "\n";
 	}
+	public String obtenerPrestamosUsuario() {
+		return getListaPrestamos().toString();
+	}
 }

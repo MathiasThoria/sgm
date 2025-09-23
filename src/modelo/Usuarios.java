@@ -30,13 +30,8 @@ public class Usuarios {
 		}
 		return false;
 	}
-	public String obtenerUsuarioPorId(int id) {
-		String resultado="";
-		for (Usuario u : coleccionUsuario) {
-			if (u.getId() == id)
-				resultado=u.toString();
-		}
-		return resultado;
+	public String obtenerUsuarioPorId(int id) {		
+		return obtenerUsuario(id).toString();
 	}
 	
 	private Usuario obtenerUsuario(int id) {
@@ -62,6 +57,10 @@ public class Usuarios {
             s+= u.obtenerDatosUsuario();            
         }
         return s;
+	}
+	
+	public String obtenerLibrosDeUsuario(int id) {
+		return obtenerUsuario(id).obtenerPrestamosUsuario();
 	}
 	
 	public void borrarTodo() {

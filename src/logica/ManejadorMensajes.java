@@ -121,7 +121,7 @@ public class ManejadorMensajes {
             }
         }
         
-        return prestamosAtrasados + ". Con un total de " + diasTotal + "de atraso.\n";
+        return prestamosAtrasados + ". Con un total de " + diasTotal + " de atraso.\n";
     }
     
     /**
@@ -131,18 +131,7 @@ public class ManejadorMensajes {
         String mensaje = "Estimado/a " + usuario.getNombre() + " " + usuario.getApellido() + ",\n\n";
         mensaje += "Le escribimos desde la Biblioteca para recordarle que tiene los siguientes materiales vencidos:\n\n";
         mensaje += titulosYDias;
-        /*
-        for (Prestamo prestamo : usuario.getListaPrestamos().getListaPrestamos()) {
-            String codigoBarras = prestamo.getCodigoBarrasEjemplar();
-            if (prestamosAtrasados.containsKey(codigoBarras)) {
-                int diasAtraso = prestamosAtrasados.get(codigoBarras);
-                mensaje += "• " + prestamo.getTituloObra() +
-                          " (Código: " + codigoBarras + ")" +
-                          " - " + diasAtraso + " día(s) de atraso" +
-                          " - Vencía: " + prestamo.getFechaDevolucion() + "\n";
-            }
-        }*/
-        
+    
         mensaje += "\nPor favor, acérquese a la biblioteca a la brevedad para regularizar su situación.\n";
         mensaje += "Recuerde que los retrasos pueden generar sanciones según el reglamento.\n\n";
         mensaje += "Saludos cordiales,\n";
