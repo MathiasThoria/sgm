@@ -162,8 +162,10 @@ public class ManejadorBD {
 	}
 	
 	public void agregarUsuarioSistema(int id, String perfil, String contraseña) {
-		usuarioSistemaBD.alta(id, perfil, contraseña);
-		
+		usuarioSistemaBD.alta(id, perfil, contraseña);		
+	}
+	public void bajaUsuarioSistema(int id) {
+		usuarioSistemaBD.baja(id);
 	}
 	
 }

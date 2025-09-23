@@ -51,6 +51,21 @@ public class UsuariosSistema {
 		}		
 		return resultado;
 	}
+	public UsuarioSistema obtenerUsuario(int id) {
+		UsuarioSistema resultado=null;		
+		for (UsuarioSistema u : usuariosSistema) {
+			if (id==u.getId())
+				resultado=u;
+		}		
+		return resultado;
+	}
 	
-	
+	public boolean eliminarUsuario(int id) {
+		boolean resultado=false;
+		if (existeId(id)) {
+			usuariosSistema.remove(obtenerUsuario(id));
+			resultado=true;
+		}
+		return resultado;
+	}
 }

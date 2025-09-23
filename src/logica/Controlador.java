@@ -12,7 +12,7 @@ import modelo.*;
 public class Controlador {	
     private ManejadorDatos manejadorDatos;
     private ManejadorMensajes manejadorMensajes;
-    private ManejadorBD manejadorBD;
+    private ManejadorBD manejadorBD; //aca estan las instancias de modeloBD
     private Historias historias;
     private Usuarios usuarios;
     private UsuariosSistema usuariosSistema;
@@ -78,6 +78,15 @@ public class Controlador {
     public void altaUsuarioSistema(int id, String perfil, String contraseña) {    	
     	usuariosSistema.agregarUsuario(id,perfil,contraseña);
     	manejadorBD.agregarUsuarioSistema(id,perfil,contraseña);
+    }
+    public boolean eliminarUsuarioSistema(int id) {
+    	boolean res=false;
+    	if (usuariosSistema.existeId(id)) {
+    		usuariosSistema.eliminarUsuario(id);
+    		manejadorBD.bajaUsuarioSistema(id);
+    		res=true;
+    	}
+    	return res;
     }
     
 }

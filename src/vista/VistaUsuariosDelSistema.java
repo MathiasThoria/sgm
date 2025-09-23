@@ -1,6 +1,8 @@
 package vista;
 import java.util.Scanner;
 
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+
 import logica.Controlador;
 
 public class VistaUsuariosDelSistema {
@@ -25,7 +27,7 @@ public class VistaUsuariosDelSistema {
 				altaUsuario();
 				break;
 			case 2:
-				//en construccion
+				bajaUsuarios();
 				break;
 			case 3:
 				//en construccion
@@ -85,5 +87,19 @@ public class VistaUsuariosDelSistema {
 		
 		controlador.altaUsuarioSistema(id,perfil,contraseña);
 		
+	}
+	public void bajaUsuarios() {
+		Scanner sc = new Scanner (System.in);
+		int id=0;
+		boolean ok=false;
+	
+		System.out.println("Ingrese id de usuario:");			
+		id=sc.nextInt();
+		sc.nextLine();
+		ok=controlador.eliminarUsuarioSistema(id);
+		if (ok)				
+			System.out.println("Usuario Eliminado.");
+		else
+			System.out.println("Error en la eliminacion de usuario. Verifique id.");
 	}
 }
