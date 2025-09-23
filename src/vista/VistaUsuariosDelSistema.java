@@ -18,8 +18,11 @@ public class VistaUsuariosDelSistema {
 			opcion = sc.nextInt();
             sc.nextLine();
 			switch(opcion) {
+			case 0:
+				System.out.println("Saliendo.");
+				break;
 			case 1:
-				//en construccion
+				altaUsuario();
 				break;
 			case 2:
 				//en construccion
@@ -35,7 +38,7 @@ public class VistaUsuariosDelSistema {
 				break;
 			default:
 				System.out.println("Ingrese una opcion valida.");
-		
+				break;
 
 			}
 		

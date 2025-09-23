@@ -35,4 +35,22 @@ public class UsuariosSistema {
 		}		
 		return resultado;		
 	}
+	public int obtenerUltimoId() {
+		int resultado = 0;		
+		for (UsuarioSistema u : usuariosSistema) {
+			if (resultado<u.getId())
+				resultado=u.getId();
+		}		
+		return resultado;		
+	}
+	public boolean existeId(int id) {
+		boolean resultado = false;		
+		for (UsuarioSistema u : usuariosSistema) {
+			if (id==u.getId())
+				resultado=true;
+		}		
+		return resultado;
+	}
+	
+	
 }
