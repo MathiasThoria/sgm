@@ -30,7 +30,7 @@ public class Usuarios {
 		}
 		return false;
 	}
-	public String buscarUsuario(int id) {
+	public String obtenerUsuarioPorId(int id) {
 		String resultado="";
 		for (Usuario u : coleccionUsuario) {
 			if (u.getId() == id)

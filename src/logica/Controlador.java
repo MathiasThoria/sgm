@@ -2,7 +2,7 @@ package logica;
 import modelo.*;
 /**
  * Responsabilidades: 
- * - orquestar entre vista y logica
+ * - orquestar entre vista y modelo
  * - mantener instancias de modelo
  * - mantener instancias de manejadores
  * 
@@ -34,12 +34,12 @@ public class Controlador {
     }
    
    
-    public String obtenerUsuariosComoString() {    	
-    	return manejadorDatos.obtenerUsuariosComoString();
+    public String obtenerUsuarios() {    	
+    	return usuarios.toString();
     }
     
-    public String obtenerUsuarioPorIdComoString(int id) {   	
-    	return manejadorDatos.obtenerUsuarioPorIdComoString(id);    	
+    public String obtenerUsuarioPorId(int id) {   	
+    	return usuarios.obtenerUsuarioPorId(id);    	
     }
     
     public int procesarMensajesDeUsuarios() {
@@ -55,11 +55,11 @@ public class Controlador {
     }
     
     public String obtenerHistoricoMensajes() {    	
-    	return manejadorMensajes.obtenerHistoricoMensajes();
+    	return historias.toString();
     }
     
     public String obtenerHistoricoMensajesPorIdUsuario(int id) {    	
-    	return manejadorMensajes.obtenerMensajesPorIdUsuario(id);
+    	return historias.obtenerMensajesPorIdUsuario(id);
     }
     
     public void borrarTodasHistoriasBD() {

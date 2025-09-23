@@ -31,7 +31,7 @@ public class ManejadorDatos {
 			
 		String datosCrudos = archivoXls.getCadena();
 	    String[] filas = datosCrudos.split(";");
-	    coleccionUsuario=new Usuarios();
+	    //coleccionUsuario=new Usuarios();
 	    boolean encabezado=true;
 	    for (String fila : filas) {
 	        if (encabezado) {	        
@@ -121,7 +121,7 @@ public class ManejadorDatos {
 	 
     public String obtenerUsuarioPorIdComoString(int id) {      
     	String s="";
-        String encontrado = coleccionUsuario.buscarUsuario(id);
+        String encontrado = coleccionUsuario.obtenerUsuarioPorId(id);
         if (!encontrado.isEmpty()) {
             s=encontrado;
         } else {

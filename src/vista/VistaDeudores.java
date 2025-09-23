@@ -48,14 +48,14 @@ public class VistaDeudores {
 		System.out.print("Seleccione una opcion: ");
 	}
 	private void mostrarUsuarios() {
-	       System.out.println(controlador.obtenerUsuariosComoString());
+	       System.out.println(controlador.obtenerUsuarios());
 	}
     private void buscarUsuarioPorId() {
     	Scanner sc=new Scanner(System.in);
         System.out.print("Ingrese el ID del usuario: ");
         int idBuscado = Integer.parseInt(sc.nextLine());
         
-        System.out.println(controlador.obtenerUsuarioPorIdComoString(idBuscado));
+        System.out.println(controlador.obtenerUsuarioPorId(idBuscado));
        
     }
 }

@@ -49,6 +49,18 @@ public class Historias {
 		return null;
 	}
 	
+	public String obtenerMensajesPorIdUsuario(int id) {
+		String resultado="";
+		
+		for (MensajeEnviado msg : mensajesEnviados) {
+			if (msg.getIdUsuario() == id) {
+				resultado+=msg.toString();
+			}
+		}
+		
+		return resultado;
+	}
+	
 	public LinkedList<MensajeEnviado> getMensajesEnviados(){
 		return mensajesEnviados;
 	}
