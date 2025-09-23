@@ -40,6 +40,7 @@ public class ManejadorBD {
 			            m.getCorreo(),
 			            m.getTitulosYDias()
 			    );
+			//System.out.println(m.getTitulosYDias()); String esta completo
 			}		
 		}	
 		return 1;
@@ -59,7 +60,11 @@ public class ManejadorBD {
 		String[] listaMensajes = mensajesNuevos.split("\n");
 		for(String m : listaMensajes) {
 			if (!m.equals("")) {
-				String[] columnasMensaje = m.split(","); 
+				String[] columnasMensaje = m.split("\\|"); // tengo que "escapar" el | porque si no lo toma como REGEX (es un OR) 
+				
+				/*for(String s : columnasMensaje)
+					System.out.print(s);*/
+				
 				msj = new MensajeEnviado(Integer.parseInt(columnasMensaje[0].trim()),
 						new Fecha(columnasMensaje[1]),
 						Integer.parseInt(columnasMensaje[2].trim()),

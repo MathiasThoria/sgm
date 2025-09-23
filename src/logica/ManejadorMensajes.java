@@ -120,8 +120,10 @@ public class ManejadorMensajes {
                 		
             }
         }
+        if (!prestamosAtrasados.isEmpty())
+        	prestamosAtrasados+= ". Con un total de " + diasTotal + " de atraso.\n";
         
-        return prestamosAtrasados + ". Con un total de " + diasTotal + " de atraso.\n";
+        return prestamosAtrasados;
     }
     
     /**
