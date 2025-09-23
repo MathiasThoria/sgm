@@ -103,5 +103,11 @@ public class Controlador {
     		res=true;
     	return res;
     }
+    public boolean verificarContraseñaUsuarioSistema(int id, String contraseña) {
+		return manejadorBD.verificarContraseñaUsuarioSistema(id,contraseña);		
+	}
+    public String obtenerPerfilUsuarioSistema(int id) {
+    	return manejadorBD.obtenerPerfilUsuarioSistema(id);
+    }
 }
 

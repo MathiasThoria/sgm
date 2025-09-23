@@ -126,7 +126,9 @@ public class ManejadorBD {
 			res=historiasBD.baja(id);		
 		return res;
 	}
-	
+	public String obtenerPerfilUsuarioSistema(int id) {
+		return usuarioSistemaBD.obtenerPerfil(id);
+	}
 	
 	
 	
@@ -196,6 +198,8 @@ public class ManejadorBD {
 		}		
 		return 1;
 	}
-	
+	public boolean verificarContraseñaUsuarioSistema(int id, String contraseña) {
+		return usuarioSistemaBD.verificarPass(id,contraseña);		
+	}
 	
 }

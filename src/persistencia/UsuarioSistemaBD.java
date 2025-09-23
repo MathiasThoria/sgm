@@ -107,6 +107,44 @@ public class UsuarioSistemaBD {
 		cn.cerrarConexion();
 		return retorno;
 	}
-
+	
+	public boolean verificarPass(int id, String contraseña) {
+		boolean res=false;
+		String sql = "SELECT * FROM usuariosistema WHERE id = ? AND contrasenia = ?";
+		cn.conectar();
+		try (PreparedStatement ps = cn.getConexion().prepareStatement(sql)) {
+		    ps.setInt(1, id);      
+		    ps.setString(2, contraseña);
+		    try (ResultSet rs = ps.executeQuery()) {
+		        if (rs.next()) 
+		            res=true;		        
+		    }catch(SQLException e) {
+				System.out.println(e);
+			}
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
+		cn.cerrarConexion();
+		return res;
+	}
+	
+	public String obtenerPerfil(int id) {
+		String res="";
+		String sql = "SELECT perfil FROM usuariosistema WHERE id = ?";
+		cn.conectar();
+		try (PreparedStatement ps = cn.getConexion().prepareStatement(sql)) {
+		    ps.setInt(1, id);
+		    try (ResultSet rs = ps.executeQuery()) {
+		    	if (rs.next())
+		    		res=rs.getString("perfil");		        
+		    }catch(SQLException e) {
+				System.out.println(e);
+			}
+		}catch(SQLException e) {
+			System.out.println(e);
+		}
+		cn.cerrarConexion();
+		return res;
+	}
 }
 

@@ -113,7 +113,7 @@ public class HistoriasBD {
     }
     
     public boolean borrarTodo() {
-        String sql = "DELETE FROM historias";
+        String sql = "TRUNCATE TABLE historias";
         boolean ok = false;
         
         cn.conectar();
