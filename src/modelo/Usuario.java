@@ -23,6 +23,8 @@ public class Usuario {
 		this.codigoBarras = codigoBarrasUsuario;
 		this.listaPrestamos = listaPrestamos;
 	}
+	public Usuario() {
+	}
 
 	public int getId() {
 		return idUsuario;
@@ -57,14 +59,20 @@ public class Usuario {
 	public Prestamos getListaPrestamos() {
 		return this.listaPrestamos;
 	}
-
 	@Override
 	public String toString() {
-		return "Usuario [idUsuario=" + idUsuario + ", apellidoUsuario=" + apellido + ", nombreUsuario="
-				+ nombre + ", emailUsuario=" + email + ", codigoBarrasUsuario=" + codigoBarras
-				+ ", listaPrestamos=" + listaPrestamos + "]";
+	    return idUsuario + "|" 
+	         + apellido + "|" 
+	         + nombre + "|" 
+	         + email + "|" 
+	         + codigoBarras + "|" 
+	         + listaPrestamos + "\n";
 	}
-	
-	
-	
+	public String obtenerDatosUsuario() {
+	    return idUsuario + "|" 
+	         + apellido + "|" 
+	         + nombre + "|" 
+	         + email + "|" 
+	         + codigoBarras + "\n";
+	}
 }

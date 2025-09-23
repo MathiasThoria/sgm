@@ -77,9 +77,7 @@ public class ManejadorDatos {
 		            	usuario.getListaPrestamos().agregarPrestamo(prestamo);		            
 		            	coleccionUsuario.agregarUsuario(usuario);
 		            }else
-		            	coleccionUsuario.buscarUsuario(usuario.getId())
-		            	.getListaPrestamos()
-		            	.agregarPrestamo(prestamo);
+		            	coleccionUsuario.agregarPrestamoAUsuario(usuario.getId(),prestamo);
 	
 		        } catch (Exception e) {
 		            System.out.println("Error al procesar fila: " + fila);
@@ -117,21 +115,17 @@ public class ManejadorDatos {
 			
 	}
 	
-	 public String obtenerUsuariosComoString() {
-    	 
-    	return coleccionUsuario.toString();
+	 public String obtenerUsuariosComoString() {    	 
+    	return coleccionUsuario.obtenerDatosUsuarios();
     }
+	 
     public String obtenerUsuarioPorIdComoString(int id) {      
     	String s="";
-        Usuario encontrado = coleccionUsuario.buscarUsuario(id);
-        if (encontrado != null) {
-            s+="Usuario: " + encontrado.getNombre();
-            // pedir toString de prestamos
-            for (Prestamo p : encontrado.getListaPrestamos().getListaPrestamos()) {
-            	s+="\n   → " + p.getTituloObra();
-            }
+        String encontrado = coleccionUsuario.buscarUsuario(id);
+        if (!encontrado.isEmpty()) {
+            s=encontrado;
         } else {
-            s+="Usuario no encontrado.";
+            s="Usuario no encontrado.";
         } 
         return s;
     }

@@ -118,19 +118,18 @@ public class Prestamo {
 	}
 	@Override
 	public String toString() {
-	    return "Prestamo[" +
-	            "fechaPrestamo=" + fechaPrestamo +
-	            ", fechaDevolucion=" + fechaDevolucion +
-	            ", diasRetraso=" + retraso +
-	            ", cotaEjemplar='" + cotaEjemplar + '\'' +
-	            ", codigoBarrasEjemplar='" + codigoBarrasEjemplar + '\'' +
-	            ", idFichaBibliografica=" + idFichaBibliografica +
-	            ", idBulletin=" + idBulletin +
-	            ", idNotice=" + idNotice +
-	            ", tituloObra='" + tituloObra + '\'' +
-	            ", tipoDocumento='" + tipoDocumento + '\'' +
-	            ", prestamoCorto=" + prestamoCorto +
-	            ']';
+	    return fechaPrestamo + "|" 
+	         + fechaDevolucion + "|" 
+	         + retraso + "|" 
+	         + cotaEjemplar + "|" 
+	         + codigoBarrasEjemplar + "|" 
+	         + idFichaBibliografica + "|" 
+	         + idBulletin + "|" 
+	         + idNotice + "|" 
+	         + tituloObra + "|" 
+	         + tipoDocumento + "|" 
+	         + prestamoCorto + "\n";
 	}
+
 
 }

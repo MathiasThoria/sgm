@@ -62,5 +62,13 @@ public class MensajeEnviado {
 	public void setTitulosYDias(String tyd) {
 		this.titulosYDias=tyd;
 	}
-	
+	@Override
+	public String toString() {
+	    return id + "|" 
+	         + fechaEnvio + "|" 
+	         + idUsuario + "|" 
+	         + correo + "|" 
+	         + titulosYDias + "\n";	         
+	}
+
 }

@@ -30,28 +30,45 @@ public class Usuarios {
 		}
 		return false;
 	}
-	public Usuario buscarUsuario(int id) {
+	public String buscarUsuario(int id) {
+		String resultado="";
 		for (Usuario u : coleccionUsuario) {
 			if (u.getId() == id)
-				return u;
+				resultado=u.toString();
 		}
-		return null;
+		return resultado;
+	}
+	
+	private Usuario obtenerUsuario(int id) {
+		Usuario resultado = new Usuario();
+		for (Usuario u : coleccionUsuario) {
+			if (u.getId() == id)
+				resultado=u;
+		}
+		return resultado;
 	}
 	
 	public String toString() {
 		 String s="";    	 
          for (Usuario u : coleccionUsuario) {
-             s+="Usuario: " + u.getNombre() + " | ID: " + u.getId();
-             
-             for (Prestamo p : u.getListaPrestamos().getListaPrestamos()) {
-            	 s+=" \n  → " + p.getTituloObra() + " (" + p.getFechaPrestamo() + " → " + p.getFechaDevolucion() + ")";
-             }
-             s+="\n";
+             s+= u.toString();             
          }
          return s;
 		
 	}
+	public String obtenerDatosUsuarios() {
+		String s="";    	 
+        for (Usuario u : coleccionUsuario) {
+            s+= u.obtenerDatosUsuario();            
+        }
+        return s;
+	}
+	
 	public void borrarTodo() {
 		coleccionUsuario.clear();
+	}
+	
+	public void agregarPrestamoAUsuario(int id, Prestamo prestamo) {
+		obtenerUsuario(id).getListaPrestamos().agregarPrestamo(prestamo);
 	}
 }

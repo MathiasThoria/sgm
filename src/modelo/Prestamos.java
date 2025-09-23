@@ -24,8 +24,7 @@ public class Prestamos {
 	public String toString() {
 		String aux="";
 		for(Prestamo p : listaPrestamos) {
-			aux+=p.toString();
-			aux+="\n";
+			aux+=p.toString();			
 		}
 		return aux;
 	}

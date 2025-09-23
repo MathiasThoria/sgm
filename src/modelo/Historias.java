@@ -66,7 +66,7 @@ public class Historias {
 	public String toString() {
 		String s = "";
 		for (MensajeEnviado msg : mensajesEnviados) {
-			s += msg.toString() + "\n";
+			s += msg.toString();
 		}
 		return s;
 	}

@@ -48,7 +48,7 @@ import logica.Controlador;
 			System.out.println("2. Enviar mensajes de correo a cada Deudor");
 			System.out.println("3. Listar mensajes por id de Deudor");
 			System.out.println("4. Borrar todas las historias de la BD");
-			System.out.println("5.");
+			
 			System.out.print("Seleccione una opcion: ");
 		}
 		
