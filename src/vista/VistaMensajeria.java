@@ -32,6 +32,9 @@ import logica.Controlador;
 						listarHistoricoMensajesPorUsuario();
 					break;
 					case 4:
+						borrarMensajeEnviado();
+					break;
+					case 10:
 						borrarTodasHistoriasBD();
 					default:
 					break;		
@@ -47,7 +50,8 @@ import logica.Controlador;
 			System.out.println("1. Enviar mensajes de correo a cada Deudor");
 			System.out.println("2. Mostrar todos los mensajes enviados");
 			System.out.println("3. Mostrar mensajes por id de Deudor");
-			System.out.println("4. Borrar todas las historias de la BD");
+			System.out.println("4. Eliminar mensaje enviado");
+			System.out.println("10. Borrar todas las historias de la BD");
 			
 			System.out.print("Seleccione una opcion: ");
 		}
@@ -60,6 +64,7 @@ import logica.Controlador;
 	    	System.out.println("---------Historico de Mensajes Enviados--------");
 	    	System.out.println(controlador.obtenerHistoricoMensajes());
 	    }
+	    
 	    private void listarHistoricoMensajesPorUsuario() {
 	    	Scanner sc=new Scanner(System.in);
 	    	int id=0;
@@ -70,8 +75,20 @@ import logica.Controlador;
 	    	System.out.println(controlador.obtenerHistoricoMensajesPorIdUsuario(id));
 	    	
 	    }
+	    
 	    public void borrarTodasHistoriasBD() {
 	    	controlador.borrarTodasHistoriasBD();
 	    }
-
+	    
+	    public void borrarMensajeEnviado() {
+	    	Scanner sc = new Scanner(System.in);
+	    	int id=0;
+	    	System.out.println("Ingrese id de mensaje:");
+	    	id=sc.nextInt();
+	    	sc.nextLine();
+	    	if (controlador.eliminarMensajeEnviado(id))
+	    		System.out.println("Mensaje eliminado satisfactoriamente.");
+	    	else
+	    		System.out.println("No se ha podido eliminar el mensaje.");
+	    }
 }

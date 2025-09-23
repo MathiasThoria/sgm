@@ -100,6 +100,40 @@ public class ManejadorBD {
 	}
 	
 	
+
+	public void agregarUsuarioSistema(int id, String perfil, String contraseña) {
+		usuarioSistemaBD.alta(id, perfil, contraseña);		
+	}
+	public void bajaUsuarioSistema(int id) {
+		usuarioSistemaBD.baja(id);
+	}
+	public boolean modificarUsuarioSistema(int id, String perfil, String constraseña) {
+		String respuesta ="";
+		boolean res=false;
+		respuesta = usuarioSistemaBD.modificar(id, perfil, constraseña);
+		if (!respuesta.equals("")) 
+			res=true;
+		
+		return res;
+	}
+	
+	public boolean eliminarMensajeEnviado(int id) {	
+		boolean res=false;		
+		if (historiasBD.existeId(id))
+			res=historiasBD.baja(id);		
+		return res;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* (Deprecated)
 	 * 
 	 * Este metodo hace uso de la coleccion "buffer" mensajesNuevos, que realiza una copia
@@ -156,24 +190,9 @@ public class ManejadorBD {
 						
 				historias.agregarMensaje(msj);
 			}
-		}
-		
+		}		
 		return 1;
 	}
 	
-	public void agregarUsuarioSistema(int id, String perfil, String contraseña) {
-		usuarioSistemaBD.alta(id, perfil, contraseña);		
-	}
-	public void bajaUsuarioSistema(int id) {
-		usuarioSistemaBD.baja(id);
-	}
-	public boolean modificarUsuarioSistema(int id, String perfil, String constraseña) {
-		String respuesta ="";
-		boolean res=false;
-		respuesta = usuarioSistemaBD.modificar(id, perfil, constraseña);
-		if (!respuesta.equals("")) 
-			res=true;
-		
-		return res;
-	}
+	
 }

@@ -1,5 +1,6 @@
 package logica;
 import modelo.*;
+import persistencia.HistoriasBD;
 /**
  * Responsabilidades: 
  * - orquestar entre vista y modelo
@@ -99,6 +100,11 @@ public class Controlador {
     		res=true;
     	return res;
     }
-    
+    public boolean eliminarMensajeEnviado(int id) {
+    	boolean res=false;
+    	if (historias.eliminarMensajeEnviado(id) && manejadorBD.eliminarMensajeEnviado(id))
+    		res=true;
+    	return res;
+    }
 }
 

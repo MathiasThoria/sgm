@@ -92,5 +92,23 @@ public class Historias {
 	public int getUltimoId() {
 		return ultimoId;
 	}
+	public boolean existeIdMensaje(int id) {
+		boolean res = false;
+		for (MensajeEnviado msg : mensajesEnviados) {
+			if (msg.getId()==id)
+				res=true;
+		}
+		return res;
+	}
+	public boolean eliminarMensajeEnviado(int id) {
+		boolean res = false;		
+		if (existeIdMensaje(id)) {
+			mensajesEnviados.remove(buscarMensajePorId(id));
+			res=true;
+		}
+		return res;
+		
+		
+	}
 	
 }

@@ -120,6 +120,7 @@ public class HistoriasBD {
         try {
             Statement statement = cn.getConexion().createStatement();
             ok = statement.executeUpdate(sql) >= 0; // DELETE puede afectar 0 filas y ser exitoso
+            statement.executeUpdate("ALTER TABLE historias AUTO_INCREMENT = 1"); // para resetear autoincrement
             statement.close();
             
         } catch (SQLException e) {
@@ -155,4 +156,45 @@ public class HistoriasBD {
         cn.cerrarConexion();        
 		return resultado; 
 	}
+	
+	public boolean baja(int id) {
+	    String sql = "DELETE FROM historias WHERE id = ?";
+	    boolean ok = false;
+
+	    cn.conectar();
+
+	    try (PreparedStatement ps = cn.getConexion().prepareStatement(sql)) {
+	        ps.setInt(1, id);
+	        int filas = ps.executeUpdate();
+	        ok = (filas > 0);
+	    } catch (SQLException e) {
+	        System.out.println("Error en baja: " + e.getMessage());
+	    }
+
+	    cn.cerrarConexion();
+	    return ok;
+	}
+	
+	public boolean existeId(int id) {
+	    String sql = "SELECT 1 FROM historias WHERE id = ? LIMIT 1";
+	    boolean existe = false;
+
+	    cn.conectar();
+
+	    try (PreparedStatement ps = cn.getConexion().prepareStatement(sql)) {
+	        ps.setInt(1, id);
+	        try (ResultSet rs = ps.executeQuery()) {
+	            if (rs.next()) {
+	                existe = true;
+	            }
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Error en existeId: " + e.getMessage());
+	    }
+
+	    cn.cerrarConexion();
+	    return existe;
+	}
+
+
 }
