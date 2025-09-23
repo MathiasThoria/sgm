@@ -167,5 +167,13 @@ public class ManejadorBD {
 	public void bajaUsuarioSistema(int id) {
 		usuarioSistemaBD.baja(id);
 	}
-	
+	public boolean modificarUsuarioSistema(int id, String perfil, String constraseña) {
+		String respuesta ="";
+		boolean res=false;
+		respuesta = usuarioSistemaBD.modificar(id, perfil, constraseña);
+		if (!respuesta.equals("")) 
+			res=true;
+		
+		return res;
+	}
 }

@@ -88,6 +88,17 @@ public class Controlador {
     	}
     	return res;
     }
+    public String obtenerUsuarioDelSistema(int id) {
+    	return usuariosSistema.obtenerUsuarioPorId(id);
+    }
+    public boolean modificarUsuarioDelSistema(int id, String perfil, String contraseña) {
+    	boolean res=false;
+    	
+    	if (usuariosSistema.modificarUsuario(id,perfil,contraseña) && 
+    			manejadorBD.modificarUsuarioSistema(id,perfil,contraseña))
+    		res=true;
+    	return res;
+    }
     
 }
 

@@ -1,8 +1,6 @@
 package vista;
 import java.util.Scanner;
 
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
-
 import logica.Controlador;
 
 public class VistaUsuariosDelSistema {
@@ -27,17 +25,14 @@ public class VistaUsuariosDelSistema {
 				altaUsuario();
 				break;
 			case 2:
-				bajaUsuarios();
+				bajaUsuario();
 				break;
 			case 3:
-				//en construccion
+				modificarUsuario();
 				break;
 			case 4:
 				mostrarUsuarios();
-				break;
-			case 5:
-				//en construccion
-				break;
+				break;	
 			default:
 				System.out.println("Ingrese una opcion valida.");
 				break;
@@ -88,7 +83,7 @@ public class VistaUsuariosDelSistema {
 		controlador.altaUsuarioSistema(id,perfil,contraseña);
 		
 	}
-	public void bajaUsuarios() {
+	public void bajaUsuario() {
 		Scanner sc = new Scanner (System.in);
 		int id=0;
 		boolean ok=false;
@@ -101,5 +96,30 @@ public class VistaUsuariosDelSistema {
 			System.out.println("Usuario Eliminado.");
 		else
 			System.out.println("Error en la eliminacion de usuario. Verifique id.");
+	}
+	
+	public void modificarUsuario() {
+		Scanner sc = new Scanner (System.in);
+		int id=0;
+		boolean ok=false;
+		String perfil="", contraseña="";
+		
+		System.out.println("Ingrese id de usuario:");			
+		id=sc.nextInt();
+		sc.nextLine();
+		
+		System.out.println("Se modificará la informacion el siguiente usuario:");
+		System.out.println(controlador.obtenerUsuarioDelSistema(id));
+		
+		System.out.println("Ingrese perfil de usuario:");			
+		perfil=sc.nextLine();
+		System.out.println("Ingrese contraseña de usuario:");			
+		contraseña=sc.nextLine();
+		
+		if (controlador.modificarUsuarioDelSistema(id,perfil,contraseña))
+			System.out.println("Se han modificado los datos.");
+		else 
+			System.out.println("No se ha logrado modificar los datos.");
+		
 	}
 }
