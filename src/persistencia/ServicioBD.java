@@ -10,7 +10,7 @@ import java.sql.Statement;
 
 
 
-/* ServicioBD se encarga de conexion y desconexion a la BD. 
+/* ServicioBD se encarga de conexion a la BD. 
 */
 public class ServicioBD {
 	private final String Controlador = "com.mysql.cj.jdbc.Driver";

@@ -5,7 +5,9 @@ import jakarta.mail.internet.*;
 import java.io.File;
 import java.io.IOException;
 
-
+/* Se encarga de conexion y envio de mail 
+ * 
+ */
 public class ServicioMensajeria {
 	private String micorreo = "tallerINET2025@gmail.com";
 	private String clave = "wjvj lssx adib dinn";	
