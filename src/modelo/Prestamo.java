@@ -11,7 +11,8 @@ public class Prestamo {
 
 	private String cotaEjemplar;          // expl_cote
 	private String codigoBarrasEjemplar;  // expl_cb
-	private int idFichaBibliografica;     // expl_notice
+	//la "notice" es el documetno referente de los ejemplares "exemplaire" expl_ 
+	private int idFichaBibliografica;     // expl_notice  
 	private int idBulletin;               // expl_bulletin
 	private int idNotice;                 // idnot
 
