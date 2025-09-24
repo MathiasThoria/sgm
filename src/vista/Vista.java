@@ -39,10 +39,14 @@ public class Vista {
 	                System.out.println("0. Salir");
 	                System.out.println("1. Deudores");
 	                System.out.println("2. Libros Adeudados");
-	                System.out.println("3. Mensajeria");        
+	                System.out.println("3. Mensajeria");  
+	                
 	                if (perfilUsuario.equals("administrador"))
 	                	System.out.println("4. Usuarios del Sistema");        
+	                System.out.println("5. Emitir Constancia");//numero cambiar	                
 	                System.out.print("Seleccione una opción: ");
+	                
+	                
 	                
 	                opcion = sc.nextInt();
 	                sc.nextLine();
@@ -66,7 +70,10 @@ public class Vista {
 	                    		usuariosDelSistemaMenu.menu();
 	                    	}else
 	                    		System.out.println(" Opcion inválida");
-	                    	break;                
+	                    	break;       
+	                    case 5:
+	                    	emitirConstancia();
+	                    	break;
 	                    case 0:
 	                    	System.out.println(" Hasta luego!");
 	                    	break;
@@ -82,5 +89,24 @@ public class Vista {
 	        
     	}while(!contraseñaOk);
         
+        
     }
+
+    // es imposible traer datos de Usuarios de la Biblioteca que nunca fueron deudores
+    public void emitirConstancia() {
+
+    	Scanner sc=new Scanner(System.in);
+    	int id=0;
+    	System.out.println("Ingrese id de usuario:");
+    	id=sc.nextInt();
+    	System.out.println();
+    	if (!controlador.existeUsuario(id))
+    		System.out.println(controlador.obtenerConstancia(id));
+    	
+    	
+    	
+    	
+    }
+    
+    
 }

@@ -20,6 +20,7 @@ public class Fecha {
 	public Fecha(Fecha f) {
 		this(f.dia,f.mes,f.anio);
 	}
+	
 	public Fecha(String f) {
 		String[] arrf = new String[3]; 
 		if (f.contains("/")) {
@@ -64,8 +65,16 @@ public class Fecha {
 		LocalDate f2 = LocalDate.of(otra.anio, otra.mes, otra.dia);		
 		return ChronoUnit.DAYS.between(f2,f1);
 	}
+	public Fecha obtenerFechaActual() {
+	    LocalDate hoy = LocalDate.now();
+	    return new Fecha(hoy.getDayOfMonth(), hoy.getMonthValue(), hoy.getYear());
+	}
 	
-	
-
+	public void establecerComoHoy() {
+	    LocalDate hoy = LocalDate.now();
+	    this.dia = hoy.getDayOfMonth();
+	    this.mes = hoy.getMonthValue(); 
+	    this.anio = hoy.getYear();
+	}
 
 }

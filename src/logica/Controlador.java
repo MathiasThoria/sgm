@@ -39,6 +39,10 @@ public class Controlador {
     public String obtenerUsuarioPorId(int id) {   	
     	return usuarios.obtenerLibrosDeUsuario(id);    	
     }
+    public boolean existeUsuario(int id) {    	
+    	return usuarios.existeIdUsuario(id);    
+    }
+    
     
     public int procesarMensajesDeUsuarios() {    	
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
@@ -67,9 +71,6 @@ public class Controlador {
     public void actualizarModeloDesdeDatosXls() {
     	manejadorDatos.cargarModelo();
     }
-    
-    
-    
 
     public String obtenerUsuariosDelSistema() {
     	return usuariosSistema.obtenerUsuarios();
@@ -110,5 +111,20 @@ public class Controlador {
     public String obtenerPerfilUsuarioSistema(int id) {
     	return manejadorBD.obtenerPerfilUsuarioSistema(id);
     }
+    
+    public String obtenerConstancia(int id) {
+    	
+    	Fecha fecha = new Fecha();
+    	fecha.establecerComoHoy();
+    	
+    	String constancia = "Constancia de No Deudor\n\n" +
+                "Por la presente se certifica que el Sr./Sra. ______________________     " +  
+                " no registra deudas pendientes a la fecha " + fecha + ".\n\n" +
+                "Atentamente,\n" +
+                "I.N.E.T.";
+    	
+    	return constancia;
+    }
+    
 }
 
