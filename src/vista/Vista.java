@@ -7,12 +7,10 @@ import java.util.Scanner;
 import logica.Controlador;
 
 public class Vista {
-    private Controlador controlador;
-    
+    private Controlador controlador;  
 
     public Vista(Controlador controlador) throws Exception {    	
-    	this.controlador = controlador;       
-        
+    	this.controlador = controlador;
     }
 
     public void iniciar() {
@@ -21,8 +19,7 @@ public class Vista {
         int usuario=0;
         String pass="";
         String perfilUsuario="";
-        boolean contraseñaOk=false;
-        
+        boolean contraseñaOk=false;        
         
         do {        	
         	System.out.println("Ingrese usuario:");
@@ -35,8 +32,18 @@ public class Vista {
 	        if(contraseñaOk) {
 	        	perfilUsuario=controlador.obtenerPerfilUsuarioSistema(usuario);
 	        	System.out.println("Ha ingresado con perfil " + perfilUsuario);
-	        	do{
-	                mostrarMenu();
+	        	
+	        	do{ 
+	            	System.out.println();
+	                System.out.println("\n====== MENÚ PRINCIPAL ======");	              
+	                System.out.println("0. Salir");
+	                System.out.println("1. Deudores");
+	                System.out.println("2. Libros Adeudados");
+	                System.out.println("3. Mensajeria");        
+	                if (perfilUsuario.equals("administrador"))
+	                	System.out.println("4. Usuarios del Sistema");        
+	                System.out.print("Seleccione una opción: ");
+	                
 	                opcion = sc.nextInt();
 	                sc.nextLine();
 	
@@ -54,8 +61,11 @@ public class Vista {
 	                    	vMensajeria.menu();                    
 	                        break;
 	                    case 4:
-	                    	VistaUsuariosDelSistema usuariosDelSistemaMenu = new VistaUsuariosDelSistema(controlador);
-	                    	usuariosDelSistemaMenu.menu();
+	                    	if (perfilUsuario.equals("administrador")) {	                    		
+	                    		VistaUsuariosDelSistema usuariosDelSistemaMenu = new VistaUsuariosDelSistema(controlador);
+	                    		usuariosDelSistemaMenu.menu();
+	                    	}else
+	                    		System.out.println(" Opcion inválida");
 	                    	break;                
 	                    case 0:
 	                    	System.out.println(" Hasta luego!");
@@ -73,18 +83,4 @@ public class Vista {
     	}while(!contraseñaOk);
         
     }
-
-    private void mostrarMenu() {
-    	System.out.println();
-        System.out.println("\n====== MENÚ PRINCIPAL ======");
-      
-        System.out.println("0. Salir");
-        System.out.println("1. Deudores");
-        System.out.println("2. Libros Adeudados");
-        System.out.println("3. Mensajeria");
-        System.out.println("4. Usuarios del Sistema");        
-        System.out.print("Seleccione una opción: ");
-    }
-    
-
 }
