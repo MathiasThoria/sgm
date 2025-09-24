@@ -34,7 +34,7 @@ import logica.Controlador;
 					case 4:
 						borrarMensajeEnviado();
 					break;
-					case 10:
+					case 5:
 						borrarTodasHistoriasBD();
 					default:
 					break;		
@@ -51,7 +51,7 @@ import logica.Controlador;
 			System.out.println("2. Mostrar todos los mensajes enviados");
 			System.out.println("3. Mostrar mensajes por id de Deudor");
 			System.out.println("4. Eliminar mensaje enviado");
-			System.out.println("10. Borrar todas las historias de la BD");
+			System.out.println("5. Borrar todos los mensajes");
 			
 			System.out.print("Seleccione una opcion: ");
 		}

@@ -58,6 +58,7 @@ public class Controlador {
     
     public void borrarTodasHistoriasBD() {
     	manejadorBD.borrarTodasHistoriasBD();
+    	historias.borrarTodo();
     	
     }
     public void actualizarModeloDesdeBD() {
@@ -66,9 +67,9 @@ public class Controlador {
     public void actualizarModeloDesdeDatosXls() {
     	manejadorDatos.cargarModelo();
     }
-    public void borrarModelo() {
-    	historias.borrarTodo();
-    }
+    
+    
+    
 
     public String obtenerUsuariosDelSistema() {
     	return usuariosSistema.obtenerUsuarios();
