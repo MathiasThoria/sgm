@@ -9,9 +9,9 @@ import persistencia.HistoriasBD;
  * - logica entre modelo y persistencia. 
  * 
  * Manejadores: 
- *  - centralizan operaciones con persistencia (BD y XLS)
- * Los manejadores tienen inyeccion de dependencia (le "paso" usuarios y historias para que lo tnegan como atributo)
- * Al instanciar el controlador se actualiza el modelo desde BD y xls
+ *  - centralizan operaciones con persistencia (BD y XLS) y mensajeria
+ *  - Los manejadores tienen inyeccion de dependencia (le "paso" usuarios y historias para que lo tnegan como atributo)
+ *    Al instanciar el controlador se actualiza el modelo desde BD y xls
  **/
 public class Controlador {	
     private ManejadorDatos manejadorDatos;
@@ -73,6 +73,7 @@ public class Controlador {
     public int procesarMensajesDeUsuarios() {    	
     	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
     	if ( res > 0 )
+    		//deprecated
     		//manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); 
     		manejadorBD.persistirMensajesNuevos();
     	return res;

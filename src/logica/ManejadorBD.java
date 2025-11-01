@@ -61,7 +61,7 @@ public class ManejadorBD {
 		for(String m : listaMensajes) {
 			if (!m.equals("")) {
 				String[] columnasMensaje = m.split("\\|"); // tengo que "escapar" el | porque si no lo toma como REGEX (es un OR) 
-					
+
 				msj = new MensajeEnviado(Integer.parseInt(columnasMensaje[0].trim()),
 						new Fecha(columnasMensaje[1]),
 						Integer.parseInt(columnasMensaje[2].trim()),

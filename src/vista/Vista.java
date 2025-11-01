@@ -102,7 +102,8 @@ public class Vista {
     	System.out.println();
     	if (!controlador.existeUsuario(id))
     		System.out.println(controlador.obtenerConstancia(id));
-    	
+    	else
+    		System.out.println("El usuario es deudor. No se puede emitir constancia.");
     	
     	
     	
