@@ -30,16 +30,27 @@ public class Usuarios {
 		}
 		return false;
 	}
-	public String obtenerUsuarioPorId(int id) {		
-		return obtenerUsuario(id).toString();
+	public String obtenerUsuarioPorId(int id) {
+		Usuario u = obtenerUsuario(id);
+		String datos="";
+		if (u!=null)
+			datos = u.toString();
+		else
+			datos = "No encontrado";
+		return datos;
 	}
 	
 	private Usuario obtenerUsuario(int id) {
 		Usuario resultado = new Usuario();
+		boolean encontrado=false;
 		for (Usuario u : coleccionUsuario) {
-			if (u.getId() == id)
+			if (u.getId() == id) {
 				resultado=u;
+				encontrado = true;
+			}
 		}
+		if (!encontrado)
+			resultado=null;
 		return resultado;
 	}
 	
@@ -60,7 +71,13 @@ public class Usuarios {
 	}
 	
 	public String obtenerLibrosDeUsuario(int id) {
-		return obtenerUsuario(id).obtenerPrestamosUsuario();
+		Usuario u = obtenerUsuario(id);
+		String datos;
+		if (u!=null)
+			datos=u.obtenerPrestamosUsuario();
+		else
+			datos = "Usuario no encontrado.";
+		return datos;
 	}
 	
 	public void borrarTodo() {

@@ -50,8 +50,6 @@ public class VistaDeudores {
 			System.out.println("\nSin Deudores.");
 		else
 			System.out.println(vista);
-		
-		
 	}
     private void buscarUsuarioPorId() {
     	Scanner sc=new Scanner(System.in);
