@@ -1,7 +1,5 @@
 package vista;
 
-import logica.*;
-
 import java.util.Scanner;
 
 import logica.Controlador;

@@ -45,8 +45,13 @@ public class VistaDeudores {
 		System.out.print("Seleccione una opcion: ");
 	}
 	private void mostrarUsuarios() {
+		String vista= controlador.obtenerUsuarios();
+		if (vista.isEmpty())
+			System.out.println("\nSin Deudores.");
+		else
+			System.out.println(vista);
 		
-	       System.out.println(controlador.obtenerUsuarios());
+		
 	}
     private void buscarUsuarioPorId() {
     	Scanner sc=new Scanner(System.in);

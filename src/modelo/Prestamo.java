@@ -9,7 +9,7 @@ public class Prestamo {
 	private Fecha fechaDevolucion;    // aff_pret_retour
 	private int retraso;              // retard
 
-	private String cotaEjemplar;          // expl_cote
+	private String cotaEjemplar;          // expl_cote - representa ubicacion del libro en estanteria 
 	private String codigoBarrasEjemplar;  // expl_cb
 	//la "notice" es el documetno referente de los ejemplares "exemplaire" expl_ 
 	private int idFichaBibliografica;     // expl_notice  

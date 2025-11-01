@@ -60,8 +60,7 @@ public class Usuario {
 		return this.listaPrestamos;
 	}
 	@Override
-	public String toString() {
-		
+	public String toString() {		
 	    return idUsuario + "|" 
 	         + apellido + "|" 
 	         + nombre + "|" 
@@ -69,8 +68,11 @@ public class Usuario {
 	         + codigoBarras + "|" 
 	         + listaPrestamos + "\n";
 	}
-	public String obtenerDatosUsuario() {
-		
+	
+	/*
+	 * No tiene listaDePrestamos
+	 */
+	public String obtenerDatosUsuario() {		
 	    return idUsuario + "|" 
 	         + apellido + "|" 
 	         + nombre + "|" 
