@@ -43,7 +43,7 @@ public class Vista {
 	                
 	                if (perfilUsuario.equals("administrador"))
 	                	System.out.println("4. Usuarios del Sistema");        
-	                System.out.println("5. Emitir Constancia");//numero cambiar	                
+	                System.out.println("5. Emitir Constancia");          
 	                System.out.print("Seleccione una opción: ");
 	                
 	                
@@ -94,7 +94,6 @@ public class Vista {
 
     // es imposible traer datos de Usuarios de la Biblioteca que nunca fueron deudores
     public void emitirConstancia() {
-
     	Scanner sc=new Scanner(System.in);
     	int id=0;
     	System.out.println("Ingrese id de usuario:");
@@ -104,8 +103,6 @@ public class Vista {
     		System.out.println(controlador.obtenerConstancia(id));
     	else
     		System.out.println("El usuario es deudor. No se puede emitir constancia.");
-    	
-    	
     	
     }
     

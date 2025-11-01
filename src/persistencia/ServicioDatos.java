@@ -8,7 +8,10 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-
+/*
+ * ServicioDatos encapsula la carga del XLS en un String. 
+ * cadena almacena una Sting con campos separados por coma y lineas por punto y coma.
+ */
 public class ServicioDatos {
 	private String rutaArchivo = "datos.xls";
 	private String cadena = "";
@@ -37,7 +40,17 @@ public class ServicioDatos {
 					    Cell celda = fila.getCell(j);
 					    
 					    if (celda != null) {
-					        cadena += celda.toString();
+					        String valor = "";
+					        if (celda.getCellType() == CellType.NUMERIC) {
+					            // los tipos de celda numericos arrojan expresiones exponenciales (1234E10)
+					            valor = String.valueOf((long) celda.getNumericCellValue());
+					        } else {
+					            valor = celda.toString();
+					        }
+
+					        cadena += valor;
+					        			    	
+				
 					        if (j < ultimaCelda - 1) 
 					            cadena += ",";
 					        else

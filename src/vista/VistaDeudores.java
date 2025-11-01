@@ -45,6 +45,7 @@ public class VistaDeudores {
 		System.out.print("Seleccione una opcion: ");
 	}
 	private void mostrarUsuarios() {
+		
 	       System.out.println(controlador.obtenerUsuarios());
 	}
     private void buscarUsuarioPorId() {

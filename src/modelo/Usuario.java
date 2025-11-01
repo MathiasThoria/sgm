@@ -3,11 +3,11 @@ package modelo;
 
 
 public class Usuario {
-	private int idUsuario;                // id_empr
+	private int idUsuario;         // id_empr
 	private String apellido;       // empr_nom
 	private String nombre;         // empr_prenom
 	private String email;          // empr_mail
-	private String codigoBarras;  // empr_cb
+	private String codigoBarras;   // empr_cb
 	private Prestamos listaPrestamos;
 	
 	public Usuario(int idUsuario,
@@ -61,6 +61,7 @@ public class Usuario {
 	}
 	@Override
 	public String toString() {
+		
 	    return idUsuario + "|" 
 	         + apellido + "|" 
 	         + nombre + "|" 
@@ -69,6 +70,7 @@ public class Usuario {
 	         + listaPrestamos + "\n";
 	}
 	public String obtenerDatosUsuario() {
+		
 	    return idUsuario + "|" 
 	         + apellido + "|" 
 	         + nombre + "|" 

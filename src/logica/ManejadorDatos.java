@@ -43,13 +43,13 @@ public class ManejadorDatos {
 		        	
 					// falta chequear que campos no esten vaciois porq sino tira
 					// Exception en los cambios de tipo 			
-	
+	            	
 		            Usuario usuario = new Usuario(
-		            		parseNumero(campos[3]),
-		            		campos[4],
-		            		campos[5],
-		            		campos[6],
-		            		campos[7],
+		            		parseNumero(campos[3]), //id
+		            		campos[4], //apellido
+		            		campos[5], //nombre
+		            		campos[6], //email
+		            		campos[8], //coidgoBarras (ci)
 		            		new Prestamos());
 	
 		            // Parsear datos del préstamo
