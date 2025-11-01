@@ -37,13 +37,12 @@ public class Vista {
 	            	System.out.println();
 	                System.out.println("\n====== MENÚ PRINCIPAL ======");	              
 	                System.out.println("0. Salir");
-	                System.out.println("1. Deudores");
-	                System.out.println("2. Libros Adeudados");
-	                System.out.println("3. Mensajeria");  
+	                System.out.println("1. Deudores");	                
+	                System.out.println("2. Mensajeria");  
 	                
 	                if (perfilUsuario.equals("administrador"))
-	                	System.out.println("4. Usuarios del Sistema");        
-	                System.out.println("5. Emitir Constancia");          
+	                	System.out.println("3. Usuarios del Sistema");        
+	                System.out.println("4. Emitir Constancia");          
 	                System.out.print("Seleccione una opción: ");
 	                
 	                

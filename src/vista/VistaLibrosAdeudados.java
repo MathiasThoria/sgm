@@ -1,4 +1,22 @@
 package vista;
+/*
+ * DEPRECATED
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 
 import java.util.Scanner;
 
