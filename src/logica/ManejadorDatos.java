@@ -18,7 +18,8 @@ public class ManejadorDatos {
 	
 	
 	public ManejadorDatos(Usuarios usuarios) throws Exception {
-		archivoXls = new ServicioDatos();//queda en cadena el archivo cargado		
+		archivoXls = new ServicioDatos();//queda en cadena el archivo cargado
+		
 		coleccionUsuario = usuarios;	
 		
 	}
@@ -128,5 +129,12 @@ public class ManejadorDatos {
 	public void cargarModelo() {
 		parserDatosToUsuarios();
 	}
-
+	
+	public ServicioDatos getArchivoXls() {
+		return archivoXls;
+	}
+	public void setArchivoXls(ServicioDatos s) {
+		this.archivoXls = s;
+	}
+	
 }

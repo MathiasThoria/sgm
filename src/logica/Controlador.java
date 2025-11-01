@@ -31,7 +31,8 @@ public class Controlador {
         this.manejadorBD = new ManejadorBD(usuariosSistema,historias);        
         
         actualizarModeloDesdeDatosXls();        
-        actualizarModeloDesdeBD(); 
+        actualizarModeloDesdeBD();
+        
     }
    
     // ------ MODELO ---------- // 
@@ -100,6 +101,9 @@ public class Controlador {
     // ------------- DATOS XLS ------------//
     
     public void actualizarModeloDesdeDatosXls() {
+    	
+    	if (manejadorDatos.getArchivoXls().getCadena().isEmpty())
+    		System.out.println("Advertencia:Archivo Xls vacío. Se asume que no hay deudores."); 
     	manejadorDatos.cargarModelo();
     }    
     

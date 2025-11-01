@@ -60,8 +60,9 @@ public class ServicioDatos {
 	        	}
 	        }
 		}
-	    
         archivo.close();
+               
+        	
 	}
 	
 	public String getCadena() {

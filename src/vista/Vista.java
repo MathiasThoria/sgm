@@ -52,23 +52,19 @@ public class Vista {
 	                    case 1:
 	                        VistaDeudores vDeudores= new VistaDeudores(controlador);
 	                        vDeudores.menu();
-	                        break;
+	                        break;	                    
 	                    case 2:
-	                        VistaLibrosAdeudados vLibrosAdeudados= new VistaLibrosAdeudados(controlador);
-	                        vLibrosAdeudados.menu();
-	                        break;
-	                    case 3:
 	                    	VistaMensajeria vMensajeria = new VistaMensajeria(controlador);
 	                    	vMensajeria.menu();                    
 	                        break;
-	                    case 4:
+	                    case 3:
 	                    	if (perfilUsuario.equals("administrador")) {	                    		
 	                    		VistaUsuariosDelSistema usuariosDelSistemaMenu = new VistaUsuariosDelSistema(controlador);
 	                    		usuariosDelSistemaMenu.menu();
 	                    	}else
 	                    		System.out.println(" Opcion inválida");
 	                    	break;       
-	                    case 5:
+	                    case 4:
 	                    	emitirConstancia();
 	                    	break;
 	                    case 0:
