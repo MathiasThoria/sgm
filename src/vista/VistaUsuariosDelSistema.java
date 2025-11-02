@@ -1,134 +1,179 @@
 package vista;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import logica.Controlador;
 
 public class VistaUsuariosDelSistema {
-	private Controlador controlador;
-	
-	public VistaUsuariosDelSistema(Controlador controlador) {
-		this.controlador = controlador;
-	}
-	
-	public void menu() {
-		int opcion= 0;		
-		Scanner sc=new Scanner(System.in);		
-		do {			
-			mostrarMenu();
-			opcion = sc.nextInt();
-            sc.nextLine();
-			switch(opcion) {
-			case 0:
-				System.out.println("Saliendo.");
-				break;
-			case 1:
-				altaUsuario();
-				break;
-			case 2:
-				bajaUsuario();
-				break;
-			case 3:
-				modificarUsuario();
-				break;
-			case 4:
-				mostrarUsuarios();
-				break;	
-			default:
-				System.out.println("Ingrese una opcion valida.");
-				break;
 
-			}
-		
-		}while(opcion!=0);	
-		
-	}
-	
-	
-	public void mostrarMenu() {
-		
-		System.out.println("========MENU USUARIOS DEL SISTEMA==========\n");
-		System.out.println("0.Salir");		
-		System.out.println("1.Alta Usuario");
-		System.out.println("2.Baja Usuario");
-		System.out.println("3.Modificar Usuario");
-		System.out.println("4.Mostrar Usuarios");		
-		System.out.print("Seleccione una opcion: ");
-	}
-	
-	public int obtenerOpcion() {
-	   	Scanner sc=new Scanner(System.in);
-        int opcion = sc.nextInt();
-        //sc.nextLine();
-        //sc.close();
-        return opcion; 
-	}
-	
-	public void mostrarUsuarios() {
-		System.out.println(controlador.obtenerUsuariosDelSistema());
-	}
-	public void altaUsuario() {
-		int id=0;
-		String perfil="";
-		String contraseña="";
-		Scanner sc = new Scanner(System.in);		
-		/*
-		System.out.println("Ingrese id:");
-		id=sc.nextInt();
-		sc.nextLine();
-		*/
-		
-		System.out.println("Ingrese perfil:");
-		perfil=sc.nextLine();
-		System.out.println("Ingrese contraseña:");
-		contraseña=sc.nextLine();
-		
-		System.out.println(controlador.altaUsuarioSistema(perfil,contraseña));
-		
-	}
-	public void bajaUsuario() {
-		Scanner sc = new Scanner (System.in);
-		int id=0;
-		boolean ok=false;
-	
-		System.out.println("Ingrese id de usuario:");			
-		id=sc.nextInt();
-		sc.nextLine();
-		ok=controlador.eliminarUsuarioSistema(id);
-		if (ok)				
-			System.out.println("Usuario Eliminado.");
-		else
-			System.out.println("Error en la eliminacion de usuario. Verifique id.");
-	}
-	
-	public void modificarUsuario() {
-		Scanner sc = new Scanner (System.in);
-		int id=0;
-		boolean ok=false;
-		String perfil="", contraseña="";
-		String usuarioStr="";
-		
-		System.out.println("Ingrese id de usuario:");			
-		id=sc.nextInt();
-		sc.nextLine();
-		
-		
-		usuarioStr=controlador.obtenerUsuarioDelSistema(id);
-		
-		if (usuarioStr.equals(""))
-			System.out.println("Id no encontrado.");
-		else {
-			System.out.println("Se modificará la informacion el siguiente usuario:");
-			System.out.println(controlador.obtenerUsuarioDelSistema(id));
-		
-			System.out.println("Ingrese perfil de usuario(administrado u operador):");			
-			perfil=sc.nextLine();
-			System.out.println("Ingrese contraseña de usuario:");			
-			contraseña=sc.nextLine();
-			
-			if (controlador.modificarUsuarioDelSistema(id,perfil,contraseña))
-				System.out.println("Se han modificado los datos.");
-			else 
-				System.out.println("No se ha logrado modificar los datos.");
-		}
-	}
+    private Controlador controlador;
+
+    public VistaUsuariosDelSistema(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    public void menu() {
+        int opcion = 0;
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            mostrarMenu();
+            opcion = sc.nextInt();
+            sc.nextLine();
+            switch (opcion) {
+                case 0:
+                    showMessageBox("Saliendo del menú");
+                    break;
+                case 1:
+                    altaUsuario();
+                    break;
+                case 2:
+                    bajaUsuario();
+                    break;
+                case 3:
+                    modificarUsuario();
+                    break;
+                case 4:
+                    mostrarUsuarios();
+                    break;
+                default:
+                    showMessageBox("Opción inválida");
+                    break;
+            }
+        } while (opcion != 0);
+    }
+
+    public void mostrarMenu() {
+        System.out.println("\n╔════════════════════════════════════════════╗");
+        System.out.println("║          MENÚ USUARIOS DEL SISTEMA        ║");
+        System.out.println("╠════════════════════════════════════════════╣");
+        System.out.println("║  1. Alta Usuario                           ║");
+        System.out.println("║  2. Baja Usuario                           ║");
+        System.out.println("║  3. Modificar Usuario                       ║");
+        System.out.println("║  4. Mostrar Usuarios                        ║");
+        System.out.println("║  0. Salir                                   ║");
+        System.out.println("╚════════════════════════════════════════════╝");
+        System.out.print("> Seleccione una opción: ");
+    }
+
+    public void mostrarUsuarios() {
+        String usuarios = controlador.obtenerUsuariosDelSistema();
+        if (usuarios.isEmpty()) {
+            showMessageBox("No hay usuarios");
+            return;
+        }
+
+        drawTopTitulo();
+        drawTitulo("USUARIOS DEL SISTEMA");
+        drawEncabezado();
+        drawMiddle();
+
+        String[] lineas = usuarios.split("\n");
+        for (String linea : lineas) {
+            if (!linea.trim().isEmpty()) {
+                String[] campos = linea.split("\\|");
+                if (campos.length >= 3) {
+                    System.out.printf("║ %-3s ║ %-20s ║ %-20s ║%n",
+                            campos[0].trim(),
+                            campos[1].trim(),
+                            campos[2].trim()
+                    );
+                }
+            }
+        }
+
+        drawBottom();
+    }
+
+    public void altaUsuario() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("> Ingrese perfil: ");
+        String perfil = sc.nextLine();
+        System.out.print("> Ingrese contraseña: ");
+        String contraseña = sc.nextLine();
+
+        String resultado = controlador.altaUsuarioSistema(perfil, contraseña);
+        showMessageBox(resultado);
+    }
+
+    public void bajaUsuario() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("> Ingrese ID de usuario: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        boolean ok = controlador.eliminarUsuarioSistema(id);
+        if (ok)
+            showMessageBox("Usuario eliminado.");
+        else
+            showMessageBox("Error en la eliminación. Verifique ID.");
+    }
+
+    public void modificarUsuario() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("> Ingrese ID de usuario: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        String usuarioStr = controlador.obtenerUsuarioDelSistema(id);
+        if (usuarioStr.equals("")) {
+            showMessageBox("ID no encontrado");
+            return;
+        }
+
+        showMessageBox("Se modificará la información del siguiente usuario:\n" + usuarioStr);
+
+        System.out.print("> Ingrese perfil de usuario (administrador u operador): ");
+        String perfil = sc.nextLine();
+        System.out.print("> Ingrese contraseña de usuario: ");
+        String contraseña = sc.nextLine();
+
+        boolean ok = controlador.modificarUsuarioDelSistema(id, perfil, contraseña);
+        if (ok)
+            showMessageBox("Se han modificado los datos.");
+        else
+            showMessageBox("No se ha logrado modificar los datos.");
+    }
+
+    // =========================
+    // Métodos auxiliares para bordes y tabla
+    // =========================
+    private void drawTopTitulo() {
+        System.out.println("╔═══════════════════════════════════════════════════╗");
+    }
+
+    private void drawEncabezado() {
+    	System.out.println("╠═════╦══════════════════════╦══════════════════════╣");
+        System.out.printf("║ %-3s ║ %-20s ║ %-20s ║%n", "ID", "PERFIL", "CONTRASEÑA");
+    }
+
+    private void drawMiddle() {
+        System.out.println("╠═════╬══════════════════════╬══════════════════════╣");
+    }
+
+    private void drawBottom() {
+        System.out.println("╚═════╩══════════════════════╩══════════════════════╝");
+    }
+
+    private void drawTitulo(String titulo) {
+        int totalWidth = 3 + 3 + 20 + 3 + 20 + 2; // ID + PERFIL + CONTRASEÑA + separadores
+        int padding = (totalWidth - titulo.length()) / 2;
+        System.out.printf("║%s%s%s║%n", repeat(' ', padding), titulo, repeat(' ', totalWidth - padding - titulo.length()));
+    }
+
+    // Muestra cualquier mensaje dentro de un recuadro
+    private void showMessageBox(String mensaje) {
+        String[] lineas = mensaje.split("\n");
+        System.out.println("\n╔" + repeat('═',42) + "╗");
+        for (String linea : lineas) {
+            System.out.printf("║ %-40s ║%n", linea);
+        }
+        System.out.println("╚" + repeat('═',42) + "╝\n");
+    }
+    private String repeat(char c, int n) {
+        String s = "";
+        for (int i = 0; i < n; i++) {
+            s += c;
+        }
+        return s;
+    }
 }
