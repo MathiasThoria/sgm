@@ -37,26 +37,86 @@ public class VistaDeudores {
 	}
 	
 	public void mostrarMenu() {
-		System.out.println();
-		System.out.println("========MENU DEUDORES==========\n");
-		System.out.println("0.Salir");		
-		System.out.println("1.Mostrar Todos los Deudores.");
-		System.out.println("2.Mostrar Libros de un Deudor.");		
-		System.out.print("Seleccione una opcion: ");
+	    System.out.println("\n╔════════════════════════════════════════════╗");
+	    System.out.println("║           MENU DEUDORES                    ║");
+	    System.out.println("╠════════════════════════════════════════════╣");
+	    System.out.println("║  1. Mostrar Todos los Deudores             ║");
+	    System.out.println("║  2. Buscar Libros de un Deudor             ║");
+	    System.out.println("║  0. Volver al Menu Principal               ║");
+	    System.out.println("╚════════════════════════════════════════════╝");
+	    System.out.print("  > Seleccione una opcion: ");
 	}
 	private void mostrarUsuarios() {
 		String vista= controlador.obtenerUsuarios();
 		if (vista.isEmpty())
 			System.out.println("\nSin Deudores.");
-		else
-			System.out.println(vista);
+		else {
+			System.out.println("\n╔════════════════════════════════════════════════════════════════════════════════╗");
+		    System.out.println("║                               LISTADO DE DEUDORES                              ║");
+		    System.out.println("╠════════╦══════════════════════╦══════════════════════╦═════════════════════════╣");
+		    System.out.printf("║ %-6s ║ %-20s ║ %-20s ║ %-23s ║%n", "ID", "APELLIDO", "NOMBRE", "EMAIL");
+		    System.out.println("╠════════╬══════════════════════╬══════════════════════╬═════════════════════════╣");
+		    
+		    String[] lineas = vista.split("\n");
+		    for (String linea : lineas) {
+		        if (!linea.trim().isEmpty()) {
+		            String[] campos = linea.split("\\|");
+		            if (campos.length >= 4) {
+		                System.out.printf("║ %-6s ║ %-20s ║ %-20s ║ %-20s ║%n",
+		                    campos[0].trim(),
+		                    campos[1].trim(),
+		                    campos[2].trim(),
+		                    campos[3].trim()
+		                );
+		            }
+		        }
+		    }
+		    System.out.println("╚════════╩══════════════════════╩══════════════════════╩═════════════════════════╝");
+		}
+			
 	}
-    private void buscarUsuarioPorId() {
-    	Scanner sc=new Scanner(System.in);
-        System.out.print("Ingrese el ID del usuario: ");
-        int idBuscado = Integer.parseInt(sc.nextLine());
-        
-        System.out.println(controlador.obtenerUsuarioPorId(idBuscado));
-       
-    }
+	
+	private void buscarUsuarioPorId() {
+	    Scanner sc = new Scanner(System.in);
+	    System.out.print("\n  > Ingrese el ID del usuario: ");
+	    int idBuscado = Integer.parseInt(sc.nextLine());
+	    
+	    String datos = controlador.obtenerLibrosDeUsuarioPorId(idBuscado);
+	    
+	    if (datos.contains("no encontrado") || datos.isEmpty()) {
+	        System.out.println("\n╔════════════════════════════════════════════╗");
+	        System.out.println("║  [ERROR] Usuario no encontrado             ║");
+	        System.out.println("╚════════════════════════════════════════════╝\n");
+	        return;
+	    }
+	    
+	    // Deserializar préstamos
+	    String[] lineas = datos.split("\n");
+	    
+	    System.out.println("\n╔══════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+	    System.out.println("║                              PRESTAMOS DEL USUARIO ID:            " + idBuscado + "                                    ║");
+	    System.out.println("╠═══════════════╦═══════════════╦═════════╦════════════════════════════════════════════════════════════════╣");
+	    System.out.printf("║ %-13s ║ %-13s ║ %-7s ║ %-62s ║%n", 
+	        "F. PRESTAMO", "F. DEVOLUCION", "ATRASO", "TITULO");
+	    System.out.println("╠═══════════════╬═══════════════╬═════════╬════════════════════════════════════════════════════════════════╣");
+	    
+	    int contador = 0;
+	    for (String linea : lineas) {
+	        if (!linea.trim().isEmpty()) {
+	            String[] campos = linea.split("\\|");
+	            if (campos.length >= 9) {
+	                System.out.printf("║ %-13s ║ %-13s ║ %-7s ║ %-62s ║%n",
+	                    campos[0].trim(),  // fecha prestamo
+	                    campos[1].trim(),  // fecha devolucion
+	                    campos[2].trim(),  // dias atraso
+	                    campos[8].trim()   // titulo
+	                );
+	                contador++;
+	            }
+	        }
+	    }
+	    
+	    System.out.println("╚═══════════════╩═══════════════╩═════════╩════════════════════════════════════════════════════════════════╝");
+	    System.out.println("  Total de prestamos: " + contador + "\n");
+	}
 }

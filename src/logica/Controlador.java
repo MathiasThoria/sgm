@@ -40,7 +40,7 @@ public class Controlador {
     	return usuarios.obtenerDatosUsuarios();
     }
     
-    public String obtenerUsuarioPorId(int id) {   	
+    public String obtenerLibrosDeUsuarioPorId(int id) {   	
     	return usuarios.obtenerLibrosDeUsuario(id);    	
     }
     public boolean existeUsuario(int id) {    	
