@@ -61,7 +61,11 @@ public class UsuariosSistema {
 	}
 	
 	public String obtenerUsuarioPorId(int id) {
-		return obtenerUsuario(id).toString();
+		UsuarioSistema u = obtenerUsuario(id);
+		String datos="";
+		if (u!=null)
+			datos=obtenerUsuario(id).toString();		
+		return datos;
 	}
 	
 	public boolean eliminarUsuario(int id) {
@@ -75,9 +79,11 @@ public class UsuariosSistema {
 	public boolean modificarUsuario(int id, String perfil, String contraseña) {
 		boolean resultado=false;
 		if (existeId(id)) {
-			obtenerUsuario(id).setPerfil(perfil);
-			obtenerUsuario(id).setContraseña(contraseña);
-			resultado=true;
+			if (perfil.equalsIgnoreCase("operador")||perfil.equalsIgnoreCase("administrador")) {
+				obtenerUsuario(id).setPerfil(perfil);
+				obtenerUsuario(id).setContraseña(contraseña);
+				resultado=true;
+			}			
 		}
 		return resultado;
 	}

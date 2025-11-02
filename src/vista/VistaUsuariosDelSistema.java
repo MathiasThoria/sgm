@@ -105,23 +105,30 @@ public class VistaUsuariosDelSistema {
 		int id=0;
 		boolean ok=false;
 		String perfil="", contraseña="";
+		String usuarioStr="";
 		
 		System.out.println("Ingrese id de usuario:");			
 		id=sc.nextInt();
 		sc.nextLine();
 		
-		System.out.println("Se modificará la informacion el siguiente usuario:");
-		System.out.println(controlador.obtenerUsuarioDelSistema(id));
 		
-		System.out.println("Ingrese perfil de usuario(administrado u operador):");			
-		perfil=sc.nextLine();
-		System.out.println("Ingrese contraseña de usuario:");			
-		contraseña=sc.nextLine();
+		usuarioStr=controlador.obtenerUsuarioDelSistema(id);
 		
-		if (controlador.modificarUsuarioDelSistema(id,perfil,contraseña))
-			System.out.println("Se han modificado los datos.");
-		else 
-			System.out.println("No se ha logrado modificar los datos.");
-		
+		if (usuarioStr.equals(""))
+			System.out.println("Id no encontrado.");
+		else {
+			System.out.println("Se modificará la informacion el siguiente usuario:");
+			System.out.println(controlador.obtenerUsuarioDelSistema(id));
+			
+			System.out.println("Ingrese perfil de usuario(administrado u operador):");			
+			perfil=sc.nextLine();
+			System.out.println("Ingrese contraseña de usuario:");			
+			contraseña=sc.nextLine();
+			
+			if (controlador.modificarUsuarioDelSistema(id,perfil,contraseña))
+				System.out.println("Se han modificado los datos.");
+			else 
+				System.out.println("No se ha logrado modificar los datos.");
+		}
 	}
 }
