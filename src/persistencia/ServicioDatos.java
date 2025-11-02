@@ -1,6 +1,8 @@
 package persistencia;
 import java.util.Map;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -17,51 +19,59 @@ public class ServicioDatos {
 	private String cadena = "";
 
 	public ServicioDatos()throws Exception{
+		try(FileInputStream archivo = new FileInputStream(rutaArchivo)){
+		    
+		    Workbook libro = new HSSFWorkbook(archivo);
+	        Sheet hoja = libro.getSheetAt(0);
+	        int cantidadFilas = hoja.getLastRowNum(); // filas desde 0
+		    for (int i = 1; i < cantidadFilas; i++) {	    	
+		        Row fila = hoja.getRow(i);	        
+		        if (fila != null) {
+		        	int ultimaCelda = fila.getLastCellNum();
+		        	
+		        	//comprobar si fila tiene todos los campos vacios
+		        	boolean todaVacia = true;
+		        	for (Cell c : fila) {
+		        		if (c.getCellType() != CellType.BLANK) {
+		        			todaVacia = false;
+		        		}
+		        	}	        	
+		        	
+		        	if (!todaVacia) {
+				        for (int j = 0; j < ultimaCelda; j++) {
+						    Cell celda = fila.getCell(j);
+						    
+						    if (celda != null) {
+						        String valor = "";
+						        if (celda.getCellType() == CellType.NUMERIC) {
+						            // los tipos de celda numericos arrojan expresiones exponenciales (1234E10)
+						            valor = String.valueOf((long) celda.getNumericCellValue());
+						        } else {
+						            valor = celda.toString();
+						        }
+	
+						        cadena += valor;
+						        			    	
+					
+						        if (j < ultimaCelda - 1) 
+						            cadena += ",";
+						        else
+						        	cadena += ";";					        
+						    }
+						}
+		        	}
+		        }
+			}
+	        archivo.close();
+	        
+		}catch (FileNotFoundException e) {
+	        System.out.println("Archivo xls no encontrado en: /" + rutaArchivo);
+	     
+	    } catch (IOException e) {
+	        System.out.println("Error al leer el archivo xls" + e.getMessage());
+	     
+	    }
 		
-	    FileInputStream archivo = new FileInputStream(rutaArchivo);
-	    Workbook libro = new HSSFWorkbook(archivo);
-        Sheet hoja = libro.getSheetAt(0);
-        int cantidadFilas = hoja.getLastRowNum(); // filas desde 0
-	    for (int i = 1; i < cantidadFilas; i++) {	    	
-	        Row fila = hoja.getRow(i);	        
-	        if (fila != null) {
-	        	int ultimaCelda = fila.getLastCellNum();
-	        	
-	        	//comprobar si fila tiene todos los campos vacios
-	        	boolean todaVacia = true;
-	        	for (Cell c : fila) {
-	        		if (c.getCellType() != CellType.BLANK) {
-	        			todaVacia = false;
-	        		}
-	        	}	        	
-	        	
-	        	if (!todaVacia) {
-			        for (int j = 0; j < ultimaCelda; j++) {
-					    Cell celda = fila.getCell(j);
-					    
-					    if (celda != null) {
-					        String valor = "";
-					        if (celda.getCellType() == CellType.NUMERIC) {
-					            // los tipos de celda numericos arrojan expresiones exponenciales (1234E10)
-					            valor = String.valueOf((long) celda.getNumericCellValue());
-					        } else {
-					            valor = celda.toString();
-					        }
-
-					        cadena += valor;
-					        			    	
-				
-					        if (j < ultimaCelda - 1) 
-					            cadena += ",";
-					        else
-					        	cadena += ";";					        
-					    }
-					}
-	        	}
-	        }
-		}
-        archivo.close();
-               
         	
 	}
 	
