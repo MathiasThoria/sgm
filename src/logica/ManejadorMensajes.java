@@ -53,9 +53,9 @@ public class ManejadorMensajes {
                     // Generar texto del mensaje
                     String textoMensaje = generarTextoMensaje(usuario, titulosYDias);
                     
-                    // Intentar envío
-                    //boolean enviado = this.sm.enviar(textoMensaje, usuario.getEmail());
-                    boolean enviado=true;
+                    //Intentar envío - mock
+                    boolean enviado = this.sm.enviar(textoMensaje, usuario.getEmail());
+                    //boolean enviado=true;
                     if (enviado) {                        
                     	
                     	historialMensajes.setUltimoId(historialMensajes.getUltimoId()+1);
