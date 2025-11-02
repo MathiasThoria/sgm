@@ -71,16 +71,18 @@ public class VistaUsuariosDelSistema {
 		String perfil="";
 		String contraseña="";
 		Scanner sc = new Scanner(System.in);		
-		
+		/*
 		System.out.println("Ingrese id:");
 		id=sc.nextInt();
 		sc.nextLine();
+		*/
+		
 		System.out.println("Ingrese perfil:");
 		perfil=sc.nextLine();
 		System.out.println("Ingrese contraseña:");
 		contraseña=sc.nextLine();
 		
-		controlador.altaUsuarioSistema(id,perfil,contraseña);
+		System.out.println(controlador.altaUsuarioSistema(perfil,contraseña));
 		
 	}
 	public void bajaUsuario() {

@@ -109,9 +109,29 @@ public class Controlador {
     
     
     // -------------- MODELO Y BD ----------------//
-    public void altaUsuarioSistema(int id, String perfil, String contraseña) {    	
-    	usuariosSistema.agregarUsuario(id,perfil,contraseña);
-    	manejadorBD.agregarUsuarioSistema(id,perfil,contraseña);
+    /* 
+     * id autonimerico manejado por el sistema
+     */
+    public String altaUsuarioSistema(String perfil, String contraseña) {    	
+    	String confirmacion="";
+    	int id=usuariosSistema.obtenerUltimoId()+1;    	
+    	
+    	//Antes de agregar comprueba existencia de id y los dos tipos de perfiles posibles: operador y administrador
+    	if (usuariosSistema.existeId(id)) {
+    		confirmacion="Ya existe esa id";
+    	}else {
+    		// esto deberia ser un enum
+    		if (perfil.equalsIgnoreCase("administrador")||perfil.equalsIgnoreCase("operador")) {
+    			usuariosSistema.agregarUsuario(id,perfil,contraseña);
+            	manejadorBD.agregarUsuarioSistema(id,perfil,contraseña);
+            	confirmacion="Usuario agregado.";
+    		}else {
+    			confirmacion="El perfil debe ser administrador u operador";
+    		}
+    			
+    	}
+    	
+    	return confirmacion;
     }
     
     public boolean eliminarUsuarioSistema(int id) {
