@@ -81,7 +81,8 @@ public class Vista {
         
     }
 
-    // es imposible traer datos de Usuarios de la Biblioteca que nunca fueron deudores
+    // Solo se conocen los Usuarios que alguna vez se atrasaron en sus prestamos (para nosotros "Deudores") 
+    // Si no existe usuario, significa que no es Deudor. Se asume que su inexistencia en xls es pago de deuda
     public void emitirConstancia() {
     	Scanner sc=new Scanner(System.in);
     	int id=0;
