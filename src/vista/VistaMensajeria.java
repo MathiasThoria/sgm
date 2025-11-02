@@ -39,6 +39,7 @@ import logica.Controlador;
 					break;
 					case 5:
 						borrarTodasHistoriasBD();
+					break;
 					default:
 					    System.out.println("\n╔════════════════════════════════════════╗");
 	                    System.out.println("║            Opción inválida             ║");
