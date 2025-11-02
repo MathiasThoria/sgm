@@ -228,7 +228,8 @@ import logica.Controlador;
 	            } catch (NumberFormatException e) {
 	                System.out.println("\n╔════════════════════════════════════════╗");
 	                System.out.println("║  [ERROR] Debe ingresar un número       ║");
-	                System.out.println("╚════════════════════════════════════════╝");                
+	                System.out.println("╚════════════════════════════════════════╝");    
+	                System.out.println(" >");
 	            }
 	        }
 	        

@@ -159,13 +159,9 @@ public class VistaUsuariosDelSistema {
         System.out.printf("║%s%s%s║%n", repeat(' ', padding), titulo, repeat(' ', totalWidth - padding - titulo.length()));
     }
 
-    // Muestra cualquier mensaje dentro de un recuadro
-    private void showMessageBox(String mensaje) {
-        
-        System.out.println("\n╔" + repeat('═',72) + "╗");
-        
-        System.out.printf("║ %-70s ║%n", mensaje);
-        
+    private void showMessageBox(String mensaje) {        
+        System.out.println("\n╔" + repeat('═',72) + "╗");        
+        System.out.printf("║ %-70s ║%n", mensaje);        
         System.out.println("╚" + repeat('═',72) + "╝\n");
     }
     private String repeat(char c, int n) {
@@ -186,7 +182,8 @@ public class VistaUsuariosDelSistema {
             } catch (NumberFormatException e) {
                 System.out.println("\n╔════════════════════════════════════════╗");
                 System.out.println("║  [ERROR] Debe ingresar un número       ║");
-                System.out.println("╚════════════════════════════════════════╝");                
+                System.out.println("╚════════════════════════════════════════╝");    
+                System.out.println(" >");
             }
         }
         
