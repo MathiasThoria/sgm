@@ -209,12 +209,12 @@ import logica.Controlador;
 	        
 	        boolean eliminado = controlador.eliminarMensajeEnviado(id);
 
-	        System.out.println("\n╔════════════════════════════════╗");
+	        System.out.println("\n╔══════════════════════════════════╗");
 	        if (eliminado)
 	            System.out.println("║  Mensaje eliminado correctamente ║");
 	        else
 	            System.out.println("║  No se pudo eliminar el mensaje  ║");
-	        System.out.println("╚════════════════════════════════╝");
+	        System.out.println("╚══════════════════════════════════╝");
 	    }
 	    
 	    private int leerEntero(Scanner sc) {

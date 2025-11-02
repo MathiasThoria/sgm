@@ -161,12 +161,12 @@ public class VistaUsuariosDelSistema {
 
     // Muestra cualquier mensaje dentro de un recuadro
     private void showMessageBox(String mensaje) {
-        String[] lineas = mensaje.split("\n");
-        System.out.println("\n╔" + repeat('═',42) + "╗");
-        for (String linea : lineas) {
-            System.out.printf("║ %-40s ║%n", linea);
-        }
-        System.out.println("╚" + repeat('═',42) + "╝\n");
+        
+        System.out.println("\n╔" + repeat('═',72) + "╗");
+        
+        System.out.printf("║ %-70s ║%n", mensaje);
+        
+        System.out.println("╚" + repeat('═',72) + "╝\n");
     }
     private String repeat(char c, int n) {
         String s = "";

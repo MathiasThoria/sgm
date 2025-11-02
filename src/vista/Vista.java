@@ -26,7 +26,7 @@ public class Vista {
 
             System.out.print("  > Usuario: ");
             usuario = leerEntero(sc);
-            sc.nextLine();
+            
             System.out.print("  > Contraseña: ");
             pass = sc.nextLine();
         	
