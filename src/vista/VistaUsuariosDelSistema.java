@@ -17,8 +17,8 @@ public class VistaUsuariosDelSistema {
 
         do {
             mostrarMenu();
-            opcion = sc.nextInt();
-            sc.nextLine();
+            opcion = leerEntero(sc);
+            
             switch (opcion) {
                 case 0:
                     showMessageBox("Saliendo del menú");
@@ -98,8 +98,8 @@ public class VistaUsuariosDelSistema {
     public void bajaUsuario() {
         Scanner sc = new Scanner(System.in);
         System.out.print("> Ingrese ID de usuario: ");
-        int id = sc.nextInt();
-        sc.nextLine();
+        int id = leerEntero(sc);
+        
 
         boolean ok = controlador.eliminarUsuarioSistema(id);
         if (ok)
@@ -111,8 +111,7 @@ public class VistaUsuariosDelSistema {
     public void modificarUsuario() {
         Scanner sc = new Scanner(System.in);
         System.out.print("> Ingrese ID de usuario: ");
-        int id = sc.nextInt();
-        sc.nextLine();
+        int id = leerEntero(sc);       
 
         String usuarioStr = controlador.obtenerUsuarioDelSistema(id);
         if (usuarioStr.equals("")) {
@@ -175,5 +174,22 @@ public class VistaUsuariosDelSistema {
             s += c;
         }
         return s;
+    }
+    private int leerEntero(Scanner sc) {
+        int numero = 0;
+        boolean valido = false;
+        
+        while (!valido) {
+            try {                
+                numero = Integer.parseInt(sc.nextLine());
+                valido = true;  
+            } catch (NumberFormatException e) {
+                System.out.println("\n╔════════════════════════════════════════╗");
+                System.out.println("║  [ERROR] Debe ingresar un número       ║");
+                System.out.println("╚════════════════════════════════════════╝");                
+            }
+        }
+        
+        return numero;
     }
 }

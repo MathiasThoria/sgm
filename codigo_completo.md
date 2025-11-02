@@ -44,7 +44,7 @@ public class Controlador {
     	return usuarios.obtenerDatosUsuarios();
     }
     
-    public String obtenerUsuarioPorId(int id) {   	
+    public String obtenerLibrosDeUsuarioPorId(int id) {   	
     	return usuarios.obtenerLibrosDeUsuario(id);    	
     }
     public boolean existeUsuario(int id) {    	
@@ -75,13 +75,14 @@ public class Controlador {
     	return constancia;
     }
     // ---------- MENSAJES ------------//
-    public int procesarMensajesDeUsuarios() {    	
-    	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
-    	if ( res > 0 )
-    		//deprecated
-    		//manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); 
-    		manejadorBD.persistirMensajesNuevos();
-    	return res;
+    public String procesarMensajesDeUsuarios() {    	
+        String res = manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
+        
+        // Si se devolvieron mensajes, persistirlos
+        if (!res.isEmpty()) {
+            manejadorBD.persistirMensajesNuevos();
+        }
+        return res;
     }
     
     
@@ -562,8 +563,8 @@ public class ManejadorMensajes {
      * @param usuarios Colección de usuarios deudores
      * @return Resumen de envíos realizados
      */ 
-    public int procesarEnvioMensajes(Usuarios usuarios) {
-        String resultado = "=== PROCESO DE ENVÍO DE MENSAJES ===\n\n";
+    public String procesarEnvioMensajes(Usuarios usuarios) {
+        String resultado = "";
         
         int enviados = 0;
         int errores = 0;
@@ -579,9 +580,9 @@ public class ManejadorMensajes {
                     // Generar texto del mensaje
                     String textoMensaje = generarTextoMensaje(usuario, titulosYDias);
                     
-                    // Intentar envío
-                    //boolean enviado = this.sm.enviar(textoMensaje, usuario.getEmail());
-                    boolean enviado=true;
+                    //Intentar envío - mock
+                    boolean enviado = this.sm.enviar(textoMensaje, usuario.getEmail());
+                    //boolean enviado=true;
                     if (enviado) {                        
                     	
                     	historialMensajes.setUltimoId(historialMensajes.getUltimoId()+1);
@@ -598,28 +599,28 @@ public class ManejadorMensajes {
                         historialMensajes.agregarMensaje(mensaje);
                         mensajesSinPersistir.agregarMensaje(mensaje);
                         
-                        resultado += " ENVIADO: " + usuario.getNombre() + 
-                                   " (" + usuario.getEmail();
+                        resultado += "|" + usuario.getNombre() + 
+                                   " (" + usuario.getEmail() + ")";
                         enviados++;
                         
                     } else {
-                        resultado += " ERROR: No se pudo enviar a " + usuario.getNombre() + 
-                                   " (" + usuario.getEmail() + ")\n";
+                        resultado += "|ERROR: No se pudo enviar a " + usuario.getNombre() + 
+                                   " (" + usuario.getEmail() + ")";
                         errores++;
                     }
                 } else {
-                    resultado += " SIN ATRASOS: " + usuario.getNombre() + 
-                               " - No tiene préstamos vencidos\n";
+                    resultado += "|SIN ATRASOS: " + usuario.getNombre() + 
+                               " - No tiene préstamos vencidos";
                 }
                 
             } catch (Exception e) {
                 resultado += " EXCEPCIÓN: Error procesando usuario " + usuario.getNombre() + 
-                           " - " + e.getMessage() + "\n";
+                           " - " + e.getMessage();
                 errores++;
             }
         }
-        System.out.println(resultado);
-        return enviados;
+        
+        return resultado;
     }
     
     /**
@@ -2334,7 +2335,9 @@ public class VistaDeudores {
 	        sc.nextLine();
 			switch(opcion) {
 				case 0:
-					System.out.println("Saliendo de Menu Deudores.");
+					System.out.println("\n╔════════════════════════════════╗");
+                    System.out.println("║        Saliendo de menu        ║");
+                    System.out.println("╚════════════════════════════════╝");
 				break;
 				case 1:
 					mostrarUsuarios();
@@ -2343,7 +2346,9 @@ public class VistaDeudores {
 					buscarUsuarioPorId();	
 				break;
 				default:
-					System.out.println("Opcion inválida.");
+					System.out.println("\n╔════════════════════════════════╗");
+                    System.out.println("║        Opción inválida         ║");
+                    System.out.println("╚════════════════════════════════╝");
 				break;		
 			}
 			
@@ -2351,28 +2356,88 @@ public class VistaDeudores {
 	}
 	
 	public void mostrarMenu() {
-		System.out.println();
-		System.out.println("========MENU DEUDORES==========\n");
-		System.out.println("0.Salir");		
-		System.out.println("1.Mostrar Todos los Deudores.");
-		System.out.println("2.Mostrar Libros de un Deudor.");		
-		System.out.print("Seleccione una opcion: ");
+	    System.out.println("\n╔════════════════════════════════════════════╗");
+	    System.out.println("║           MENU DEUDORES                    ║");
+	    System.out.println("╠════════════════════════════════════════════╣");
+	    System.out.println("║  1. Mostrar Todos los Deudores             ║");
+	    System.out.println("║  2. Buscar Libros de un Deudor             ║");
+	    System.out.println("║  0. Volver al Menu Principal               ║");
+	    System.out.println("╚════════════════════════════════════════════╝");
+	    System.out.print("  > Seleccione una opcion: ");
 	}
 	private void mostrarUsuarios() {
 		String vista= controlador.obtenerUsuarios();
 		if (vista.isEmpty())
 			System.out.println("\nSin Deudores.");
-		else
-			System.out.println(vista);
+		else {
+			System.out.println("\n╔════════════════════════════════════════════════════════════════════════════════╗");
+		    System.out.println("║                               LISTADO DE DEUDORES                              ║");
+		    System.out.println("╠════════╦══════════════════════╦══════════════════════╦═════════════════════════╣");
+		    System.out.printf("║ %-6s ║ %-20s ║ %-20s ║ %-23s ║%n", "ID", "APELLIDO", "NOMBRE", "EMAIL");
+		    System.out.println("╠════════╬══════════════════════╬══════════════════════╬═════════════════════════╣");
+		    
+		    String[] lineas = vista.split("\n");
+		    for (String linea : lineas) {
+		        if (!linea.trim().isEmpty()) {
+		            String[] campos = linea.split("\\|");
+		            if (campos.length >= 4) {
+		                System.out.printf("║ %-6s ║ %-20s ║ %-20s ║ %-20s ║%n",
+		                    campos[0].trim(),
+		                    campos[1].trim(),
+		                    campos[2].trim(),
+		                    campos[3].trim()
+		                );
+		            }
+		        }
+		    }
+		    System.out.println("╚════════╩══════════════════════╩══════════════════════╩═════════════════════════╝");
+		}
+			
 	}
-    private void buscarUsuarioPorId() {
-    	Scanner sc=new Scanner(System.in);
-        System.out.print("Ingrese el ID del usuario: ");
-        int idBuscado = Integer.parseInt(sc.nextLine());
-        
-        System.out.println(controlador.obtenerUsuarioPorId(idBuscado));
-       
-    }
+	
+	private void buscarUsuarioPorId() {
+	    Scanner sc = new Scanner(System.in);
+	    System.out.print("\n  > Ingrese el ID del usuario: ");
+	    int idBuscado = Integer.parseInt(sc.nextLine());
+	    
+	    String datos = controlador.obtenerLibrosDeUsuarioPorId(idBuscado);
+	    
+	    if (datos.contains("no encontrado") || datos.isEmpty()) {
+	        System.out.println("\n╔════════════════════════════════════════════╗");
+	        System.out.println("║  [ERROR] Usuario no encontrado             ║");
+	        System.out.println("╚════════════════════════════════════════════╝\n");
+	        return;
+	    }
+	    
+	    // Deserializar préstamos
+	    String[] lineas = datos.split("\n");
+	    
+	    System.out.println("\n╔══════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+	    System.out.println("║                              PRESTAMOS DEL USUARIO ID:            " + idBuscado + "                                    ║");
+	    System.out.println("╠═══════════════╦═══════════════╦═════════╦════════════════════════════════════════════════════════════════╣");
+	    System.out.printf("║ %-13s ║ %-13s ║ %-7s ║ %-62s ║%n", 
+	        "F. PRESTAMO", "F. DEVOLUCION", "ATRASO", "TITULO");
+	    System.out.println("╠═══════════════╬═══════════════╬═════════╬════════════════════════════════════════════════════════════════╣");
+	    
+	    int contador = 0;
+	    for (String linea : lineas) {
+	        if (!linea.trim().isEmpty()) {
+	            String[] campos = linea.split("\\|");
+	            if (campos.length >= 9) {
+	                System.out.printf("║ %-13s ║ %-13s ║ %-7s ║ %-62s ║%n",
+	                    campos[0].trim(),  // fecha prestamo
+	                    campos[1].trim(),  // fecha devolucion
+	                    campos[2].trim(),  // dias atraso
+	                    campos[8].trim()   // titulo
+	                );
+	                contador++;
+	            }
+	        }
+	    }
+	    
+	    System.out.println("╚═══════════════╩═══════════════╩═════════╩════════════════════════════════════════════════════════════════╝");
+	    System.out.println("  Total de prestamos: " + contador + "\n");
+	}
 }
 ```
 
@@ -2400,31 +2465,25 @@ public class Vista {
         boolean contraseñaOk=false;        
         
         do {        	
-        	System.out.println("Ingrese usuario:");
-            usuario=sc.nextInt();
+        	System.out.print("\n╔════════════════════════════════╗\n");
+            System.out.print("║        INICIO DE SESIÓN        ║\n");
+            System.out.print("╚════════════════════════════════╝\n");
+
+            System.out.print("  > Usuario: ");
+            usuario = sc.nextInt();
             sc.nextLine();
-            System.out.println("Ingrese contraseña:");
-            pass=sc.nextLine();       	
+            System.out.print("  > Contraseña: ");
+            pass = sc.nextLine();
         	
         	contraseñaOk=controlador.verificarContraseñaUsuarioSistema(usuario, pass);
 	        if(contraseñaOk) {
 	        	perfilUsuario=controlador.obtenerPerfilUsuarioSistema(usuario);
-	        	System.out.println("Ha ingresado con perfil " + perfilUsuario);
+	        	System.out.println("\n╔══════════════════════════════════════════╗");
+	        	System.out.printf("║  Ha ingresado con perfil: %-10s  ║%n", perfilUsuario);
+                System.out.println("╚══════════════════════════════════════════╝");
 	        	
 	        	do{ 
-	            	System.out.println();
-	                System.out.println("\n====== MENÚ PRINCIPAL ======");	              
-	                System.out.println("0. Salir");
-	                System.out.println("1. Deudores");	                
-	                System.out.println("2. Mensajeria");  
-	                
-	                if (perfilUsuario.equals("administrador"))
-	                	System.out.println("3. Usuarios del Sistema");        
-	                System.out.println("4. Emitir Constancia");          
-	                System.out.print("Seleccione una opción: ");
-	                
-	                
-	                
+	            	mostrarMenuPrincipal(perfilUsuario);
 	                opcion = sc.nextInt();
 	                sc.nextLine();
 	
@@ -2442,16 +2501,18 @@ public class Vista {
 	                    		VistaUsuariosDelSistema usuariosDelSistemaMenu = new VistaUsuariosDelSistema(controlador);
 	                    		usuariosDelSistemaMenu.menu();
 	                    	}else
-	                    		System.out.println(" Opcion inválida");
+	                    		mostrarOpcionInvalida();
 	                    	break;       
 	                    case 4:
 	                    	emitirConstancia();
 	                    	break;
 	                    case 0:
-	                    	System.out.println(" Hasta luego!");
+	                    	System.out.println("\n╔════════════════════════════════╗");
+	                        System.out.println("║          Hasta luego!          ║");
+	                        System.out.println("╚════════════════════════════════╝");
 	                    	break;
 	                    default:
-	                        System.out.println(" Opción inválida");
+	                        mostrarOpcionInvalida();
 	                        break;
 	                }
 	            }while(opcion!=0);
@@ -2465,7 +2526,8 @@ public class Vista {
         
     }
 
-    // es imposible traer datos de Usuarios de la Biblioteca que nunca fueron deudores
+    // Solo se conocen los Usuarios que alguna vez se atrasaron en sus prestamos (para nosotros "Deudores") 
+    // Si no existe usuario, significa que no es Deudor. Se asume que su inexistencia en xls es pago de deuda
     public void emitirConstancia() {
     	Scanner sc=new Scanner(System.in);
     	int id=0;
@@ -2478,7 +2540,24 @@ public class Vista {
     		System.out.println("El usuario es deudor. No se puede emitir constancia.");
     	
     }
-    
+    private void mostrarMenuPrincipal(String perfilUsuario) {
+        System.out.println("\n╔════════════════════════════════╗");
+        System.out.println("║         MENÚ PRINCIPAL         ║");
+        System.out.println("╠════════════════════════════════╣");
+        System.out.println("║ 1. Deudores                    ║");
+        System.out.println("║ 2. Mensajería                  ║");
+        if (perfilUsuario.equals("administrador"))
+            System.out.println("║ 3. Usuarios del Sistema        ║");
+        System.out.println("║ 4. Emitir Constancia           ║");
+        System.out.println("║ 0. Salir                       ║");
+        System.out.println("╚════════════════════════════════╝");
+        System.out.print("  > Seleccione una opción: ");
+    }
+    private void mostrarOpcionInvalida() {
+    	System.out.println("\n╔════════════════════════════════╗");
+        System.out.println("║        Opción inválida         ║");
+        System.out.println("╚════════════════════════════════╝");
+    }
     
 }```
 
@@ -2569,7 +2648,8 @@ import java.util.Scanner;
 import logica.Controlador;
 	
 	public class VistaMensajeria {
-	private Controlador controlador;
+		private Controlador controlador;
+		
 		
 		public VistaMensajeria(Controlador controlador) {
 			this.controlador=controlador;		
@@ -2584,7 +2664,9 @@ import logica.Controlador;
 	            sc.nextLine();
 				switch(opcion) {
 					case 0:
-						System.out.println("Saliendo de menú Mensajería.");
+						System.out.println("\n╔════════════════════════════════════════╗");
+	                    System.out.println("║           Saliendo de Mensajería       ║");
+	                    System.out.println("╚════════════════════════════════════════╝");
 					break;
 					case 1:
 						procesarMensajes();
@@ -2600,7 +2682,11 @@ import logica.Controlador;
 					break;
 					case 5:
 						borrarTodasHistoriasBD();
+					break;
 					default:
+					    System.out.println("\n╔════════════════════════════════════════╗");
+	                    System.out.println("║            Opción inválida             ║");
+	                    System.out.println("╚════════════════════════════════════════╝");
 					break;		
 				}
 				
@@ -2608,191 +2694,421 @@ import logica.Controlador;
 		}
 		
 		public void mostrarMenu() {
-			System.out.println();
-			System.out.println("========MENU MENSAJERIA==========\n");
-			System.out.println("0.Salir");		
-			System.out.println("1. Enviar mensajes de correo a cada Deudor");
-			System.out.println("2. Mostrar todos los mensajes enviados");
-			System.out.println("3. Mostrar mensajes por id de Deudor");
-			System.out.println("4. Eliminar mensaje enviado");
-			System.out.println("5. Borrar todos los mensajes");
-			
-			System.out.print("Seleccione una opcion: ");
+			System.out.println("\n╔═════════════════════════════════════════╗");
+	        System.out.println("║           MENÚ MENSAJERÍA               ║");
+	        System.out.println("╠═════════════════════════════════════════╣");
+	        System.out.println("║ 0. Salir                                ║");
+	        System.out.println("║ 1. Enviar mensajes a cada Deudor        ║");
+	        System.out.println("║ 2. Mostrar todos los mensajes enviados  ║");
+	        System.out.println("║ 3. Mostrar mensajes por ID de Deudor    ║");
+	        System.out.println("║ 4. Eliminar mensaje enviado             ║");
+	        System.out.println("║ 5. Borrar todos los mensajes            ║");
+	        System.out.println("╚═════════════════════════════════════════╝");
+	        System.out.print("  > Seleccione una opción: ");
 		}
 		
 	    private void procesarMensajes() {
-	    	System.out.println("Mensajes enviados:" + controlador.procesarMensajesDeUsuarios());
+	    	String resultado = controlador.procesarMensajesDeUsuarios();
+
+	        if (resultado.isEmpty()) {
+	            System.out.println("\n╔════════════════════════════════╗");
+	            System.out.println("║    No se enviaron mensajes     ║");
+	            System.out.println("╚════════════════════════════════╝");
+	        } else {
+	            String[] lineas = resultado.split("\\|");
+	            
+	            System.out.println("\n╔══════════════════════════════════════════════════════════════════════════╗");
+	            System.out.println("║                           MENSAJES ENVIADOS                              ║");
+	            System.out.println("╠══════════════════════════════════════════════════════════════════════════╣");
+
+	            for (String linea : lineas) {
+	                if (!linea.trim().isEmpty()) {
+	                    System.out.printf("║ > %-70s ║%n", linea.trim());
+	                }
+	            }
+
+	            System.out.println("╚════════════════════════════════════════════════════════════════════════╝");
+	        }
 	    }
+
 	    
 	    private void listarHistoricoMensajes() {
-	    	System.out.println("---------Historico de Mensajes Enviados--------");
-	    	System.out.println(controlador.obtenerHistoricoMensajes());
+	        String historial = controlador.obtenerHistoricoMensajes();
+	        if (historial.isEmpty()) {
+	            System.out.println("\n╔════════════════════════════════╗");
+	            System.out.println("║    No hay mensajes enviados    ║");
+	            System.out.println("╚════════════════════════════════╝");
+	        } else {
+	            drawTopTitulo();
+	            drawTitulo("HISTORICO DE MENSAJES");
+	            drawEncabezado();
+	            drawMiddle();
+
+	            int maxTitulo = 40; // ancho de TITULOS Y DIAS
+
+	            String[] lineas = historial.split("\n");
+	            for (String linea : lineas) {
+	                if (!linea.trim().isEmpty()) {
+	                    String[] campos = linea.split("\\|");
+	                    if (campos.length >= 5) {
+	                        String titulo = campos[4].trim();
+	                        int len = titulo.length();
+	                        int start = 0;
+	                        boolean primeraLinea = true;
+	                        //imprime lineas de titulo hasta que se agote el titulo. va dando "saltos" de a +40 caraceres 
+	                        while (start < len) {
+	                        	//recorta el string desde start hasta +40
+	                            String sub = titulo.substring(start, Math.min(start + maxTitulo, len));
+	                            if (primeraLinea) {
+	                                System.out.printf("║%-3s║%-11s║%-8s║%-30s║%-40s║%n",
+	                                        campos[0].trim(),
+	                                        campos[1].trim(),
+	                                        campos[2].trim(),
+	                                        campos[3].trim(),
+	                                        sub);
+	                                primeraLinea = false;
+	                            } else {
+	                                // líneas adicionales solo muestran la columna larga
+	                                System.out.printf("║%-3s║%-11s║%-8s║%-30s║%-40s║%n",
+	                                        "", "", "", "", sub);
+	                            }
+	                            start += maxTitulo;
+	                        }
+	                        drawMiddle();
+	                    }
+	                }
+	            }
+	            drawBottom();
+	        }
 	    }
+
 	    
 	    private void listarHistoricoMensajesPorUsuario() {
-	    	Scanner sc=new Scanner(System.in);
-	    	int id=0;
-	    	System.out.print("Ingrese Id de Deudor:");
-	    	id=sc.nextInt();
-	    	sc.nextLine();
-	    	System.out.println("-------Lista de mensajes por usuario-------");
-	    	System.out.println(controlador.obtenerHistoricoMensajesPorIdUsuario(id));
-	    	
+	        Scanner sc = new Scanner(System.in);
+	        System.out.print("\n  > Ingrese ID del Deudor: ");
+	        int id = sc.nextInt();
+	        sc.nextLine();
+
+	        String datos = controlador.obtenerHistoricoMensajesPorIdUsuario(id);
+	        if (datos.isEmpty() || datos.contains("no encontrado")) {
+	            System.out.println("\n╔════════════════════════════════════════╗");
+	            System.out.println("║  [ERROR] Usuario no encontrado         ║");
+	            System.out.println("╚════════════════════════════════════════╝");
+	        } else {
+	            drawTopTitulo();
+	            drawTitulo("MENSAJES DE:"+ id);	            
+	            drawEncabezado();
+	            drawMiddle();
+	  
+	            int maxTitulo = 40;
+
+	            String[] lineas = datos.split("\n");
+	            for (String linea : lineas) {
+	                if (!linea.trim().isEmpty()) {
+	                    String[] campos = linea.split("\\|");
+	                    if (campos.length >= 5) {
+	                        String titulo = campos[4].trim();
+	                        int len = titulo.length();
+	                        int start = 0;
+
+	                        boolean primeraLinea = true;
+	                        while (start < len) {
+	                            String sub = titulo.substring(start, Math.min(start + maxTitulo, len));
+	                            if (primeraLinea) {
+	                                System.out.printf("║%-3s║%-11s║%-8s║%-30s║%-40s║%n",
+	                                        campos[0].trim(),
+	                                        campos[1].trim(),
+	                                        campos[2].trim(),
+	                                        campos[3].trim(),
+	                                        sub);
+	                                primeraLinea = false;
+	                            } else {
+	                                // líneas adicionales solo muestran la columna larga
+	                                System.out.printf("║%-3s║%-11s║%-8s║%-30s║%-40s║%n",
+	                                        "", "", "", "", sub);
+	                            }
+	                            start += maxTitulo;
+	                        }
+	                    }
+	                    drawMiddle();
+	                }	                
+	            }
+	            drawBottom();
+	        }
 	    }
 	    
 	    public void borrarTodasHistoriasBD() {
-	    	controlador.borrarTodasHistoriasBD();
+	        controlador.borrarTodasHistoriasBD();
+	        System.out.println("\n╔════════════════════════════════════════╗");
+	        System.out.println("║        Todos los mensajes fueron       ║");
+	        System.out.println("║                borrados                ║");
+	        System.out.println("╚════════════════════════════════════════╝");
 	    }
 	    
-	    public void borrarMensajeEnviado() {
-	    	Scanner sc = new Scanner(System.in);
-	    	int id=0;
-	    	System.out.println("Ingrese id de mensaje:");
-	    	id=sc.nextInt();
-	    	sc.nextLine();
-	    	if (controlador.eliminarMensajeEnviado(id))
-	    		System.out.println("Mensaje eliminado satisfactoriamente.");
-	    	else
-	    		System.out.println("No se ha podido eliminar el mensaje.");
+	    private void borrarMensajeEnviado() {
+	        Scanner sc = new Scanner(System.in);
+	        System.out.print("\n  > Ingrese ID del mensaje: ");
+	        int id = sc.nextInt();
+	        sc.nextLine();
+	        boolean eliminado = controlador.eliminarMensajeEnviado(id);
+
+	        System.out.println("\n╔════════════════════════════════╗");
+	        if (eliminado)
+	            System.out.println("║  Mensaje eliminado correctamente ║");
+	        else
+	            System.out.println("║  No se pudo eliminar el mensaje  ║");
+	        System.out.println("╚════════════════════════════════╝");
 	    }
+	    
+	    
+	    
+	    
+	 // Dibuja el título centrado en la tabla
+	    private void drawTitulo(String titulo) {
+	        int totalWidth = 3 + 11 + 8 + 30 + 40 + 4; // suma de anchos + bordes ║
+	        int padding = (totalWidth - titulo.length()) / 2;
+	        System.out.printf("║%s%s%s║%n", repeat(' ', padding), titulo, repeat(' ', totalWidth - padding - titulo.length()));
+	    }
+
+	    // Dibuja la línea superior de la tabla
+	    private void drawTopTitulo() {
+	        System.out.printf("╔%s═%s═%s═%s═%s╗%n",
+	            repeat('═', 3),   // ID
+	            repeat('═', 11),  // FECHA ENVIO
+	            repeat('═', 8),   // ID USER
+	            repeat('═', 30),  // CORREO
+	            repeat('═', 40)   // TITULOS Y DIAS
+	        );
+	    }
+
+	    // Dibuja el encabezado con nombres de columna
+	    private void drawEncabezado() {
+	        System.out.printf("╠%s╦%s╦%s╦%s╦%s╣%n",
+	            repeat('═', 3),
+	            repeat('═', 11),
+	            repeat('═', 8),
+	            repeat('═', 30),
+	            repeat('═', 40)
+	        );
+	        System.out.printf("║%-3s║%-11s║%-8s║%-30s║%-40s║%n",
+	            "ID", "FECHA ENVIO", "ID USER", "CORREO", "TITULOS Y DIAS");
+	    }
+
+	    // Dibuja la línea intermedia de la tabla (entre encabezado y filas)
+	    private void drawMiddle() {
+	        System.out.printf("╠%s╬%s╬%s╬%s╬%s╣%n",
+	            repeat('═', 3),
+	            repeat('═', 11),
+	            repeat('═', 8),
+	            repeat('═', 30),
+	            repeat('═', 40)
+	        );
+	    }
+
+	    // Dibuja la línea inferior de la tabla
+	    private void drawBottom() {
+	        System.out.printf("╚%s╩%s╩%s╩%s╩%s╝%n",
+	            repeat('═', 3),
+	            repeat('═', 11),
+	            repeat('═', 8),
+	            repeat('═', 30),
+	            repeat('═', 40)
+	        );
+	    }
+
+
+	    private String repeat(char c, int n) {
+	        String s = "";
+	        for (int i = 0; i < n; i++) {
+	            s += c;
+	        }
+	        return s;
+	    }	
+		
+	    
 }
 ```
 
 ## Archivo: src/vista/VistaUsuariosDelSistema.java
 ```java
 package vista;
-import java.util.Scanner;
 
+import java.util.Scanner;
 import logica.Controlador;
 
 public class VistaUsuariosDelSistema {
-	private Controlador controlador;
-	
-	public VistaUsuariosDelSistema(Controlador controlador) {
-		this.controlador = controlador;
-	}
-	
-	public void menu() {
-		int opcion= 0;		
-		Scanner sc=new Scanner(System.in);		
-		do {			
-			mostrarMenu();
-			opcion = sc.nextInt();
-            sc.nextLine();
-			switch(opcion) {
-			case 0:
-				System.out.println("Saliendo.");
-				break;
-			case 1:
-				altaUsuario();
-				break;
-			case 2:
-				bajaUsuario();
-				break;
-			case 3:
-				modificarUsuario();
-				break;
-			case 4:
-				mostrarUsuarios();
-				break;	
-			default:
-				System.out.println("Ingrese una opcion valida.");
-				break;
 
-			}
-		
-		}while(opcion!=0);	
-		
-	}
-	
-	
-	public void mostrarMenu() {
-		
-		System.out.println("========MENU USUARIOS DEL SISTEMA==========\n");
-		System.out.println("0.Salir");		
-		System.out.println("1.Alta Usuario");
-		System.out.println("2.Baja Usuario");
-		System.out.println("3.Modificar Usuario");
-		System.out.println("4.Mostrar Usuarios");		
-		System.out.print("Seleccione una opcion: ");
-	}
-	
-	public int obtenerOpcion() {
-	   	Scanner sc=new Scanner(System.in);
-        int opcion = sc.nextInt();
-        //sc.nextLine();
-        //sc.close();
-        return opcion; 
-	}
-	
-	public void mostrarUsuarios() {
-		System.out.println(controlador.obtenerUsuariosDelSistema());
-	}
-	public void altaUsuario() {
-		int id=0;
-		String perfil="";
-		String contraseña="";
-		Scanner sc = new Scanner(System.in);		
-		/*
-		System.out.println("Ingrese id:");
-		id=sc.nextInt();
-		sc.nextLine();
-		*/
-		
-		System.out.println("Ingrese perfil:");
-		perfil=sc.nextLine();
-		System.out.println("Ingrese contraseña:");
-		contraseña=sc.nextLine();
-		
-		System.out.println(controlador.altaUsuarioSistema(perfil,contraseña));
-		
-	}
-	public void bajaUsuario() {
-		Scanner sc = new Scanner (System.in);
-		int id=0;
-		boolean ok=false;
-	
-		System.out.println("Ingrese id de usuario:");			
-		id=sc.nextInt();
-		sc.nextLine();
-		ok=controlador.eliminarUsuarioSistema(id);
-		if (ok)				
-			System.out.println("Usuario Eliminado.");
-		else
-			System.out.println("Error en la eliminacion de usuario. Verifique id.");
-	}
-	
-	public void modificarUsuario() {
-		Scanner sc = new Scanner (System.in);
-		int id=0;
-		boolean ok=false;
-		String perfil="", contraseña="";
-		String usuarioStr="";
-		
-		System.out.println("Ingrese id de usuario:");			
-		id=sc.nextInt();
-		sc.nextLine();
-		
-		
-		usuarioStr=controlador.obtenerUsuarioDelSistema(id);
-		
-		if (usuarioStr.equals(""))
-			System.out.println("Id no encontrado.");
-		else {
-			System.out.println("Se modificará la informacion el siguiente usuario:");
-			System.out.println(controlador.obtenerUsuarioDelSistema(id));
-		
-			System.out.println("Ingrese perfil de usuario(administrado u operador):");			
-			perfil=sc.nextLine();
-			System.out.println("Ingrese contraseña de usuario:");			
-			contraseña=sc.nextLine();
-			
-			if (controlador.modificarUsuarioDelSistema(id,perfil,contraseña))
-				System.out.println("Se han modificado los datos.");
-			else 
-				System.out.println("No se ha logrado modificar los datos.");
-		}
-	}
+    private Controlador controlador;
+
+    public VistaUsuariosDelSistema(Controlador controlador) {
+        this.controlador = controlador;
+    }
+
+    public void menu() {
+        int opcion = 0;
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            mostrarMenu();
+            opcion = sc.nextInt();
+            sc.nextLine();
+            switch (opcion) {
+                case 0:
+                    showMessageBox("Saliendo del menú");
+                    break;
+                case 1:
+                    altaUsuario();
+                    break;
+                case 2:
+                    bajaUsuario();
+                    break;
+                case 3:
+                    modificarUsuario();
+                    break;
+                case 4:
+                    mostrarUsuarios();
+                    break;
+                default:
+                    showMessageBox("Opción inválida");
+                    break;
+            }
+        } while (opcion != 0);
+    }
+
+    public void mostrarMenu() {
+        System.out.println("\n╔════════════════════════════════════════════╗");
+        System.out.println("║          MENÚ USUARIOS DEL SISTEMA        ║");
+        System.out.println("╠════════════════════════════════════════════╣");
+        System.out.println("║  1. Alta Usuario                           ║");
+        System.out.println("║  2. Baja Usuario                           ║");
+        System.out.println("║  3. Modificar Usuario                       ║");
+        System.out.println("║  4. Mostrar Usuarios                        ║");
+        System.out.println("║  0. Salir                                   ║");
+        System.out.println("╚════════════════════════════════════════════╝");
+        System.out.print("> Seleccione una opción: ");
+    }
+
+    public void mostrarUsuarios() {
+        String usuarios = controlador.obtenerUsuariosDelSistema();
+        if (usuarios.isEmpty()) {
+            showMessageBox("No hay usuarios");
+            return;
+        }
+
+        drawTopTitulo();
+        drawTitulo("USUARIOS DEL SISTEMA");
+        drawEncabezado();
+        drawMiddle();
+
+        String[] lineas = usuarios.split("\n");
+        for (String linea : lineas) {
+            if (!linea.trim().isEmpty()) {
+                String[] campos = linea.split("\\|");
+                if (campos.length >= 3) {
+                    System.out.printf("║ %-3s ║ %-20s ║ %-20s ║%n",
+                            campos[0].trim(),
+                            campos[1].trim(),
+                            campos[2].trim()
+                    );
+                }
+            }
+        }
+
+        drawBottom();
+    }
+
+    public void altaUsuario() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("> Ingrese perfil: ");
+        String perfil = sc.nextLine();
+        System.out.print("> Ingrese contraseña: ");
+        String contraseña = sc.nextLine();
+
+        String resultado = controlador.altaUsuarioSistema(perfil, contraseña);
+        showMessageBox(resultado);
+    }
+
+    public void bajaUsuario() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("> Ingrese ID de usuario: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        boolean ok = controlador.eliminarUsuarioSistema(id);
+        if (ok)
+            showMessageBox("Usuario eliminado.");
+        else
+            showMessageBox("Error en la eliminación. Verifique ID.");
+    }
+
+    public void modificarUsuario() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("> Ingrese ID de usuario: ");
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        String usuarioStr = controlador.obtenerUsuarioDelSistema(id);
+        if (usuarioStr.equals("")) {
+            showMessageBox("ID no encontrado");
+            return;
+        }
+
+        showMessageBox("Se modificará la información del siguiente usuario:\n" + usuarioStr);
+
+        System.out.print("> Ingrese perfil de usuario (administrador u operador): ");
+        String perfil = sc.nextLine();
+        System.out.print("> Ingrese contraseña de usuario: ");
+        String contraseña = sc.nextLine();
+
+        boolean ok = controlador.modificarUsuarioDelSistema(id, perfil, contraseña);
+        if (ok)
+            showMessageBox("Se han modificado los datos.");
+        else
+            showMessageBox("No se ha logrado modificar los datos.");
+    }
+
+    // =========================
+    // Métodos auxiliares para bordes y tabla
+    // =========================
+    private void drawTopTitulo() {
+        System.out.println("╔═══════════════════════════════════════════════════╗");
+    }
+
+    private void drawEncabezado() {
+    	System.out.println("╠═════╦══════════════════════╦══════════════════════╣");
+        System.out.printf("║ %-3s ║ %-20s ║ %-20s ║%n", "ID", "PERFIL", "CONTRASEÑA");
+    }
+
+    private void drawMiddle() {
+        System.out.println("╠═════╬══════════════════════╬══════════════════════╣");
+    }
+
+    private void drawBottom() {
+        System.out.println("╚═════╩══════════════════════╩══════════════════════╝");
+    }
+
+    private void drawTitulo(String titulo) {
+        int totalWidth = 3 + 3 + 20 + 3 + 20 + 2; // ID + PERFIL + CONTRASEÑA + separadores
+        int padding = (totalWidth - titulo.length()) / 2;
+        System.out.printf("║%s%s%s║%n", repeat(' ', padding), titulo, repeat(' ', totalWidth - padding - titulo.length()));
+    }
+
+    // Muestra cualquier mensaje dentro de un recuadro
+    private void showMessageBox(String mensaje) {
+        String[] lineas = mensaje.split("\n");
+        System.out.println("\n╔" + repeat('═',42) + "╗");
+        for (String linea : lineas) {
+            System.out.printf("║ %-40s ║%n", linea);
+        }
+        System.out.println("╚" + repeat('═',42) + "╝\n");
+    }
+    private String repeat(char c, int n) {
+        String s = "";
+        for (int i = 0; i < n; i++) {
+            s += c;
+        }
+        return s;
+    }
 }
 ```
 

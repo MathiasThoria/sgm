@@ -16,8 +16,7 @@ public class VistaDeudores {
 		Scanner sc=new Scanner(System.in);
 		do {
 			mostrarMenu();
-			opcion = sc.nextInt();
-	        sc.nextLine();
+			opcion = leerEntero(sc);	        
 			switch(opcion) {
 				case 0:
 					System.out.println("\n╔════════════════════════════════╗");
@@ -83,7 +82,7 @@ public class VistaDeudores {
 	private void buscarUsuarioPorId() {
 	    Scanner sc = new Scanner(System.in);
 	    System.out.print("\n  > Ingrese el ID del usuario: ");
-	    int idBuscado = Integer.parseInt(sc.nextLine());
+	    int idBuscado = leerEntero(sc);
 	    
 	    String datos = controlador.obtenerLibrosDeUsuarioPorId(idBuscado);
 	    
@@ -123,4 +122,21 @@ public class VistaDeudores {
 	    System.out.println("╚═══════════════╩═══════════════╩═════════╩════════════════════════════════════════════════════════════════╝");
 	    System.out.println("  Total de prestamos: " + contador + "\n");
 	}
+    private int leerEntero(Scanner sc) {
+        int numero = 0;
+        boolean valido = false;
+        
+        while (!valido) {
+            try {                
+                numero = Integer.parseInt(sc.nextLine());
+                valido = true;  
+            } catch (NumberFormatException e) {
+                System.out.println("\n╔════════════════════════════════════════╗");
+                System.out.println("║  [ERROR] Debe ingresar un número       ║");
+                System.out.println("╚════════════════════════════════════════╝");                
+            }
+        }
+        
+        return numero;
+    }
 }

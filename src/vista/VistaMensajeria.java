@@ -17,8 +17,8 @@ import logica.Controlador;
 			Scanner sc=new Scanner(System.in);			
 			do {
 				mostrarMenu();
-				opcion = sc.nextInt();
-	            sc.nextLine();
+				opcion = leerEntero(sc);
+				
 				switch(opcion) {
 					case 0:
 						System.out.println("\n╔════════════════════════════════════════╗");
@@ -143,8 +143,8 @@ import logica.Controlador;
 	    private void listarHistoricoMensajesPorUsuario() {
 	        Scanner sc = new Scanner(System.in);
 	        System.out.print("\n  > Ingrese ID del Deudor: ");
-	        int id = sc.nextInt();
-	        sc.nextLine();
+	        int id = leerEntero(sc);
+	        
 
 	        String datos = controlador.obtenerHistoricoMensajesPorIdUsuario(id);
 	        if (datos.isEmpty() || datos.contains("no encontrado")) {
@@ -205,8 +205,8 @@ import logica.Controlador;
 	    private void borrarMensajeEnviado() {
 	        Scanner sc = new Scanner(System.in);
 	        System.out.print("\n  > Ingrese ID del mensaje: ");
-	        int id = sc.nextInt();
-	        sc.nextLine();
+	        int id = leerEntero(sc);
+	        
 	        boolean eliminado = controlador.eliminarMensajeEnviado(id);
 
 	        System.out.println("\n╔════════════════════════════════╗");
@@ -217,7 +217,23 @@ import logica.Controlador;
 	        System.out.println("╚════════════════════════════════╝");
 	    }
 	    
-	    
+	    private int leerEntero(Scanner sc) {
+	        int numero = 0;
+	        boolean valido = false;
+	        
+	        while (!valido) {
+	            try {                
+	                numero = Integer.parseInt(sc.nextLine());
+	                valido = true;  
+	            } catch (NumberFormatException e) {
+	                System.out.println("\n╔════════════════════════════════════════╗");
+	                System.out.println("║  [ERROR] Debe ingresar un número       ║");
+	                System.out.println("╚════════════════════════════════════════╝");                
+	            }
+	        }
+	        
+	        return numero;
+	    } 
 	    
 	    
 	 // Dibuja el título centrado en la tabla
@@ -282,5 +298,6 @@ import logica.Controlador;
 	        return s;
 	    }	
 		
+	    
 	    
 }

@@ -25,7 +25,7 @@ public class Vista {
             System.out.print("╚════════════════════════════════╝\n");
 
             System.out.print("  > Usuario: ");
-            usuario = sc.nextInt();
+            usuario = leerEntero(sc);
             sc.nextLine();
             System.out.print("  > Contraseña: ");
             pass = sc.nextLine();
@@ -39,8 +39,7 @@ public class Vista {
 	        	
 	        	do{ 
 	            	mostrarMenuPrincipal(perfilUsuario);
-	                opcion = sc.nextInt();
-	                sc.nextLine();
+	                opcion = leerEntero(sc);	                
 	
 	                switch (opcion) {
 	                    case 1:
@@ -87,7 +86,7 @@ public class Vista {
     	Scanner sc=new Scanner(System.in);
     	int id=0;
     	System.out.println("Ingrese id de usuario:");
-    	id=sc.nextInt();
+    	id=leerEntero(sc);
     	System.out.println();
     	if (!controlador.existeUsuario(id))
     		System.out.println(controlador.obtenerConstancia(id));
@@ -112,6 +111,23 @@ public class Vista {
     	System.out.println("\n╔════════════════════════════════╗");
         System.out.println("║        Opción inválida         ║");
         System.out.println("╚════════════════════════════════╝");
+    }
+    private int leerEntero(Scanner sc) {
+        int numero = 0;
+        boolean valido = false;
+        
+        while (!valido) {
+            try {                
+                numero = Integer.parseInt(sc.nextLine());
+                valido = true;  
+            } catch (NumberFormatException e) {
+                System.out.println("\n╔════════════════════════════════════════╗");
+                System.out.println("║  [ERROR] Debe ingresar un número       ║");
+                System.out.println("╚════════════════════════════════════════╝");                
+            }
+        }
+        
+        return numero;
     }
     
 }
