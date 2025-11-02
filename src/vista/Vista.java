@@ -20,31 +20,25 @@ public class Vista {
         boolean contraseñaOk=false;        
         
         do {        	
-        	System.out.println("Ingrese usuario:");
-            usuario=sc.nextInt();
+        	System.out.print("\n╔════════════════════════════════╗\n");
+            System.out.print("║        INICIO DE SESIÓN        ║\n");
+            System.out.print("╚════════════════════════════════╝\n");
+
+            System.out.print("  > Usuario: ");
+            usuario = sc.nextInt();
             sc.nextLine();
-            System.out.println("Ingrese contraseña:");
-            pass=sc.nextLine();       	
+            System.out.print("  > Contraseña: ");
+            pass = sc.nextLine();
         	
         	contraseñaOk=controlador.verificarContraseñaUsuarioSistema(usuario, pass);
 	        if(contraseñaOk) {
 	        	perfilUsuario=controlador.obtenerPerfilUsuarioSistema(usuario);
-	        	System.out.println("Ha ingresado con perfil " + perfilUsuario);
+	        	System.out.println("\n╔══════════════════════════════════════════╗");
+	        	System.out.printf("║  Ha ingresado con perfil: %-10s  ║%n", perfilUsuario);
+                System.out.println("╚══════════════════════════════════════════╝");
 	        	
 	        	do{ 
-	            	System.out.println();
-	                System.out.println("\n====== MENÚ PRINCIPAL ======");	              
-	                System.out.println("0. Salir");
-	                System.out.println("1. Deudores");	                
-	                System.out.println("2. Mensajeria");  
-	                
-	                if (perfilUsuario.equals("administrador"))
-	                	System.out.println("3. Usuarios del Sistema");        
-	                System.out.println("4. Emitir Constancia");          
-	                System.out.print("Seleccione una opción: ");
-	                
-	                
-	                
+	            	mostrarMenuPrincipal(perfilUsuario);
 	                opcion = sc.nextInt();
 	                sc.nextLine();
 	
@@ -62,16 +56,18 @@ public class Vista {
 	                    		VistaUsuariosDelSistema usuariosDelSistemaMenu = new VistaUsuariosDelSistema(controlador);
 	                    		usuariosDelSistemaMenu.menu();
 	                    	}else
-	                    		System.out.println(" Opcion inválida");
+	                    		mostrarOpcionInvalida();
 	                    	break;       
 	                    case 4:
 	                    	emitirConstancia();
 	                    	break;
 	                    case 0:
-	                    	System.out.println(" Hasta luego!");
+	                    	System.out.println("\n╔════════════════════════════════╗");
+	                        System.out.println("║          Hasta luego!          ║");
+	                        System.out.println("╚════════════════════════════════╝");
 	                    	break;
 	                    default:
-	                        System.out.println(" Opción inválida");
+	                        mostrarOpcionInvalida();
 	                        break;
 	                }
 	            }while(opcion!=0);
@@ -98,6 +94,23 @@ public class Vista {
     		System.out.println("El usuario es deudor. No se puede emitir constancia.");
     	
     }
-    
+    private void mostrarMenuPrincipal(String perfilUsuario) {
+        System.out.println("\n╔════════════════════════════════╗");
+        System.out.println("║         MENÚ PRINCIPAL         ║");
+        System.out.println("╠════════════════════════════════╣");
+        System.out.println("║ 1. Deudores                    ║");
+        System.out.println("║ 2. Mensajería                  ║");
+        if (perfilUsuario.equals("administrador"))
+            System.out.println("║ 3. Usuarios del Sistema        ║");
+        System.out.println("║ 4. Emitir Constancia           ║");
+        System.out.println("║ 0. Salir                       ║");
+        System.out.println("╚════════════════════════════════╝");
+        System.out.print("  > Seleccione una opción: ");
+    }
+    private void mostrarOpcionInvalida() {
+    	System.out.println("\n╔════════════════════════════════╗");
+        System.out.println("║        Opción inválida         ║");
+        System.out.println("╚════════════════════════════════╝");
+    }
     
 }

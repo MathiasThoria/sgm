@@ -20,7 +20,9 @@ public class VistaDeudores {
 	        sc.nextLine();
 			switch(opcion) {
 				case 0:
-					System.out.println("Saliendo de Menu Deudores.");
+					System.out.println("\n╔════════════════════════════════╗");
+                    System.out.println("║        Saliendo de menu        ║");
+                    System.out.println("╚════════════════════════════════╝");
 				break;
 				case 1:
 					mostrarUsuarios();
@@ -29,7 +31,9 @@ public class VistaDeudores {
 					buscarUsuarioPorId();	
 				break;
 				default:
-					System.out.println("Opcion inválida.");
+					System.out.println("\n╔════════════════════════════════╗");
+                    System.out.println("║        Opción inválida         ║");
+                    System.out.println("╚════════════════════════════════╝");
 				break;		
 			}
 			
