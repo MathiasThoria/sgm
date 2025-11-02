@@ -1,0 +1,789 @@
+commit 8d9c5698b7e1321cab21273bfec3472043730e45
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 21:58:55 2025 -0300
+
+    Solucionado bug que tiraba exception si se intentaba modificar un id
+    invalido.
+
+commit f2082e39ab0976788b27ce5fef316b00a655fd87
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 21:37:38 2025 -0300
+
+    vista de agregar usuariosistema actualizada
+
+commit c394ede1272409f27bbaffaf727fbc5cf60c1a6c
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 21:32:23 2025 -0300
+
+    arreglado bug que permitia agregar un usuariodelsistema con id repetida
+
+commit 8a837d4e8a5d1d8f9943ceb6697e0b62b7146596
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 21:08:26 2025 -0300
+
+    agregadas excepciones al abrir Xls
+
+commit b7030280fc9c7e67618da4f9f18b52ff0d5a5fbb
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 20:53:16 2025 -0300
+
+    act xls
+
+commit eb0b81d85adc5898f1fcef3bacdf87cc1a71f659
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 20:52:03 2025 -0300
+
+    Se agrega mensaje de advertencia si el xls esta vacio
+
+commit 5e885cd008e42b367b06bc8ebf8c74fc251486c8
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 20:34:13 2025 -0300
+
+    Bug arreglado. Excepcion en id invalido de Libros por Deudor.
+
+commit 8755356519951a9699427d769ef47d0f13052fe6
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 20:01:59 2025 -0300
+
+    Se agrega mensaje cuando se solicita listado de deudores y el xls esta
+    vacio
+
+commit e4d71164f220d08581bdb493405f8a3350e5411b
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 19:38:45 2025 -0300
+
+    VistaLibrodAdeudados Descartada
+
+commit 441e5bf86d9f40abbcc6364b6ca2c9fe884f8d11
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 19:37:18 2025 -0300
+
+    Arreglado bug que cargaba con formato exponecial las
+    cedulas.(123456789E10)
+
+commit 5de58f9907a11f4c3e726b013aedcacde1c4767d
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Nov 1 18:50:48 2025 -0300
+
+    comentarios
+
+commit d252058a476baf607ee04db85ff4c36d1c38f0a9
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Wed Sep 24 19:16:40 2025 -0300
+
+    fix comments
+
+commit 9a8b7506cc9e1beac72b2036486271fd117b8b46
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Wed Sep 24 19:04:24 2025 -0300
+
+    fix comments
+
+commit d37567eb3991f64a5d7281e12fd3fe2d5aea8595
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Wed Sep 24 18:55:38 2025 -0300
+
+    fixes librosadeudados
+
+commit e0cc1ea47ff151d05abeb71435469f796c2f64ac
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 23:10:05 2025 -0300
+
+    emtiir constancia (paraque?)
+
+commit f70b893b89c286daccfbf71388999765906cae0a
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 21:06:46 2025 -0300
+
+    fix borrar todos los mensajes
+
+commit 20ac8ae5846445f1f1cfee4e229e6497d172e971
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 21:01:15 2025 -0300
+
+    Implementacion de usuarios y perfiles
+
+commit 35d486c500a8f4a68df94357a45224c0b71dcfb0
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 20:42:42 2025 -0300
+
+    Inicio de sesion implementado.
+
+commit 85f8df892fb0c25bfcded746c3b03b9ac68e0fd7
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 03:42:16 2025 -0300
+
+    Borrado de comentarios en general
+
+commit 80ea949af257f5e6cfa5467657b3967a59c8c579
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 03:33:09 2025 -0300
+
+    fix obtener de usuariosSistema
+
+commit b97278091e6185cc47ca99ef3af9e2c99dc87ad1
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 03:31:24 2025 -0300
+
+    Fix bug con "|" que se tomaba como regex OR
+
+commit 6223f974764529b80989038b786d316b0796fb9a
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 02:45:59 2025 -0300
+
+    reseteo de autoincrement luego de borrar todos los registros de la tabla
+
+commit 9a16dbcd09e5d0603c39dc92ea41b467759c9aa1
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 00:29:34 2025 -0300
+
+    pronto modificarUsuarioDelSistema (con BD)
+
+commit 9aa8d1014311fce4a6208ae814d212b88d4256c2
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 23 00:05:32 2025 -0300
+
+    bajaUsuariosSistema impelmentado con BD
+
+commit 9df016f934461bc7155e0fca107d82433d0d784e
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 23:27:04 2025 -0300
+
+    Usuarios Sistema con alta, mostrar y persistencia
+
+commit 7fbb75814317bf91501d8cf98702328434fec858
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 23:10:45 2025 -0300
+
+    implementados agregarusuariosistema y mostrarusuariosistema. Con impacto
+    en BD
+
+commit 774392d7d980984184152dddb95956bbfd5b09fd
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 22:16:03 2025 -0300
+
+    Fixes en Strings
+
+commit 24d4e011bced7596afe45a5c58e98b95770fa7f3
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 21:58:21 2025 -0300
+
+    cambios menores
+
+commit a3bebfe02e027fb3a8e7c3756d172cd4f2083a05
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 21:52:30 2025 -0300
+
+    Cambios en instancias utilizadas en Controlador. Consultas se hacen al
+    modelo
+
+commit 379c74c623f11e9bc3f28066b91e5bb638b4a61f
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 21:24:48 2025 -0300
+
+    Cambiando interaccion entre capas a String
+
+commit ca109753301c5fd00696146722fd73d0eeb699f7
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 20:40:30 2025 -0300
+
+    eliminacion de metodos que devolvian Historias
+
+commit d7988748d8b7d9be32191f82c6d8d2d532a8f26b
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 19:53:23 2025 -0300
+
+    volvemos a ejecucion de sql en usuariossitemaBD
+
+commit 0a69f5a3a93e6daa0b9a8ba1cc467c3f6e1509be
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 19:49:53 2025 -0300
+
+    Se eliminan todas las ejecuciones de Statment o Prepared de ServicioBD
+
+commit e699cb29cd1ecb2f464a0ce315c49fbfb17b8560
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 19:45:29 2025 -0300
+
+    Movemos todos los PreparedStatment para HistoriasBD y UsuariosSistemaBD.
+    ServicioBD solo se encarga de conexion
+
+commit 06bf87f10f72f22ffd96845b19901f6756eaf1b2
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Sep 22 19:12:16 2025 -0300
+
+    nueva implementacion de persistirMensajesNuevos(). ya no se usa
+    mensajesSinPersistir
+
+commit aa3b93e920f1f7f43621c055bcd1e7cb1013eddb
+Author: Antonio Padilla <antonio.030990@gmail.com>
+Date:   Wed Sep 17 20:44:53 2025 -0300
+
+    Comentarios de Perdomo
+    
+    Prefiere que no usemos el Object... ni el iterator para no complicar la defensa individual de los demás
+
+commit 22628cab601737c386bae53500828302e7734387
+Author: Antonio Padilla <antonio.030990@gmail.com>
+Date:   Wed Sep 17 19:25:20 2025 -0300
+
+    Cambios en atributos(ManejadorBD) y comentarios
+    
+    - Agregué algunos comentarios en los métodos
+    - En manejadorBD cambié Usuarios por UsuariosSistema en los atributos y agregué UsuarioSistemaBD para hacer después los métodos
+
+commit 76cf664ed08dcf30d35bf905eb126a942fc46974
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 16 22:54:32 2025 -0300
+
+    Hicimo mucha cosa
+
+commit fa08e4838d44730ea45e99c73704bb827a4a9de5
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Wed Sep 10 00:40:57 2025 -0300
+
+    AGregado clase UsuariosSistema, como coleccion de usuarios de sistema.
+    Necesario para gestion de usuarios de sistema
+
+commit 6fe1940c7a58b9a059d7598becde4f78e05a0fda
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 23:46:03 2025 -0300
+
+    cambios en nombres de metodos
+
+commit 18806ad27e19ef80101c828e869cb572e3f34681
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 23:19:22 2025 -0300
+
+    fixes println
+
+commit 24b84b93828ae8a697853d16e96a16e771439da3
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 22:22:55 2025 -0300
+
+    historico de mensajes levanta desde bd
+
+commit 36f1a779e7ce2c3ed7d9ef738ddcd75501df5002
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 21:43:15 2025 -0300
+
+    reestructura main
+
+commit 898ba736d1331a46ae66c1ff03f14996b5c24a25
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 21:38:49 2025 -0300
+
+    reestructura Main, inicio de programa
+
+commit de3006e1e3f5bdb91f40577c7cef13b39724e430
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 21:12:33 2025 -0300
+
+    inyeccion de dependencias en Manejador]BD
+
+commit 15530c0827ea1484d923acbd9d46af69c861293f
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 21:01:15 2025 -0300
+
+    fix testing
+
+commit f25c3865a5cbfce48d20b2b9558a8e0e44e2109a
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 20:58:17 2025 -0300
+
+    Reestructura de capas logica y controloador. se une en una capa logica
+    para facilidad de trabajo entre manejadores y controlador. Controlador
+    tiene instancias de modelo
+
+commit 8ac627b70a8f90ef64dbedc0073d5c9dc6300881
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 20:44:30 2025 -0300
+
+    Movido Cointrolador a la capa logica para centralizar instancias de
+    modelo
+
+commit 9e27f0cd9d85256b8a9cfb74ec1bd3fed6d029a8
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 20:23:26 2025 -0300
+
+    Intentando que levante Historias de BD al inciiar programa
+
+commit bc5fe46fcd70fe72e8f5bd5d485d5c6e7768b97b
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 19:59:56 2025 -0300
+
+    Persistenciqa luego de mandar mensajes
+
+commit 2afc9ed9a98b8800814d60faa6b427d12a21ef23
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 19:14:27 2025 -0300
+
+    Intento de persistencia tras mandar mensajes. Actualizacion de
+    esturctura de BD
+
+commit 30e1b0f65027b3a2d24d54b9b567d11a7ce79510
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 18:28:55 2025 -0300
+
+    trabajando en impacto de BD luego de mandar mensajes
+
+commit 1abc80a3d5a89960339b7ab51e09256db6abdd71
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 18:14:25 2025 -0300
+
+    Fixes en mensajes por usuario
+
+commit 25c227d012b8d23fc859b6537a817e63af427ea1
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 17:56:57 2025 -0300
+
+    agregado a Vista (funcional) obtener mensajes por id de usuario
+
+commit e66344e250e6d400a937678abc89fc280c746ca3
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 17:43:38 2025 -0300
+
+    Interfaz con metodos ya realizados
+
+commit d91ba0099f3e90193e1c39f7cfa4177e34751b0d
+Merge: ed4e3f9 a165d68
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 17:23:23 2025 -0300
+
+    Merge branch 'master' of git@github.com:MathiasThoria/sgm.git
+
+commit ed4e3f933567721895578386f178f1d07ec05953
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Tue Sep 9 17:22:25 2025 -0300
+
+    Reestructura de Interfaz Grafica
+
+commit a165d68245d18c9296124230e4330ac339fd7f12
+Author: Antonio Padilla <antonio.030990@gmail.com>
+Date:   Mon Sep 1 13:09:30 2025 -0300
+
+    Cambio en ManejadorMensajes
+    
+    Ahora en vez de crear el ServicioMensajería dentro de la función getHistorialMensajes, se crea un atributo al crear la clase.
+
+commit 61e79dba302ae8debf337410af16bf2fe3b0bd62
+Author: Antonio Padilla <antonio.030990@gmail.com>
+Date:   Sun Aug 31 15:28:04 2025 -0300
+
+    Fixes sencillos
+    
+    Cambié el orden  de los parámetros en el update de usuarioSistema
+    Cambié en ServicioBD que haga un solo return en executeQuery y saqué la impresión en consola de los string del rs.
+
+commit 6472cd1ea5a216ff6706de5f17fa2c1854135c89
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sun Aug 31 10:58:12 2025 -0300
+
+    Agregado algunas opcoiones de usuarios del sistema en vista.
+    Falta implementar
+
+commit e1d01e3e5c500ea36535b8639c348c8be21f7daa
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 22:43:38 2025 -0300
+
+    Agregados manejadroes para BD
+
+commit 1fcbbd89b419b5d71856ef6d43919b63fa7e4a3c
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 22:22:10 2025 -0300
+
+    ACtualizacion de BD
+
+commit e9869b36af672368b1c24cad80760cde8b8b454c
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 22:09:18 2025 -0300
+
+    Actualizacion de DB. Retiro de texto de mensaje en MensajjeEnviado
+
+commit 07bf2397664bb932d292067afcb95a7749bcdb88
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 21:58:36 2025 -0300
+
+    Cambio nombre ConexionBD por ServicioBD
+
+commit adb2f79b5e763020ac18a547ad6ed7e0e6e3a004
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 21:57:55 2025 -0300
+
+    Cambio de nombre Datos por SErvicio Datos
+
+commit 102608488a6cfd800b34c04c72b6987981eb7ca5
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 21:46:08 2025 -0300
+
+    Agregado posibilidad de Query, con return. Por ahora mediante String
+
+commit a1e5a9e71670fc6e014ba03bed5f8e48fae07cb2
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 21:08:01 2025 -0300
+
+    Actualizacion de .md
+
+commit e42ecabdbd48f1d1c4045ae36cdfa5a44c8c679b
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 20:58:54 2025 -0300
+
+    Se modifico responsabilidades de ConexionBD y UsuarioSistemaBD. Las
+    conexiones, ejecutiones de consultas y desconexiones quedan a cargo de
+    la ConexionBD.
+
+commit 05c7e88c2f2328610d93c3c3b18ad23448600a0f
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sat Aug 30 19:29:02 2025 -0300
+
+    Mapa de libros y dias atrasados a string
+
+commit b962324e46c5091281c8b25b520987855fea1542
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Fri Aug 29 23:44:00 2025 -0300
+
+    Se movio impelmentacion obtenerusuarioscomostring a coleccionUsuario
+
+commit 82f38d76fd168827d7b70d0474ec3842dd84fac9
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Fri Aug 29 23:39:49 2025 -0300
+
+    Private faltantes
+
+commit 41336c1f0f47e2afe53b4ba7a3475fb9b885e830
+Merge: 61f6e4d 09c1bce
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Fri Aug 29 23:17:10 2025 -0300
+
+    Merge branch 'master' of github.com:MathiasThoria/sgm
+    
+     Changes to be committed:
+            modified:   .classpath
+            new file:   DB.sql
+            new file:   lib/BD/mysql-connector-j-8.3.0.jar
+            modified:   src/modelo/UsuarioSistema.java
+            modified:   src/persistencia/ConexionBD.java
+            new file:   src/persistencia/UsuarioSistemaBD.java
+            new file:   src/test/TestBD.java
+
+commit 61f6e4d0eddc34e5b923b43d8fa40c168e7bf87c
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Fri Aug 29 22:04:00 2025 -0300
+
+    Servicio mensajeria a instancia
+
+commit 09c1bcec287bfec916d325abc25f7e277068348c
+Author: Antonio Padilla <antonio.030990@gmail.com>
+Date:   Fri Aug 29 16:43:25 2025 -0300
+
+    Fix BD
+    
+    Agregué el controlador y arreglé las sqls
+
+commit f022760c846fa077680851f1cf5adb3bf2f00a2b
+Author: Antonio Padilla <antonio.030990@gmail.com>
+Date:   Fri Aug 29 16:14:11 2025 -0300
+
+    Comienzo de BD
+    
+    Agregué los métodos en ConexionBD, agregué la clase UsuarioSistema (modelo) y UsuarioSistemaBD (persistencia)
+
+commit fce1aa6f99c6111ea52bb3f50a9b870a7a6e86cb
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Aug 11 02:22:29 2025 -0300
+
+    Agregado listar historico de mensajes
+
+commit c90a1f038d692e9f750fed3efcd38cdba0bf959d
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Aug 11 02:12:10 2025 -0300
+
+    Procesado de mensajes agregado a vista. Agregado a Cotnrolador y
+    ManejadorMensajes. Todo funca
+
+commit abbc388cdf13d0f4459e8cf45eb9780af09ddb9e
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Aug 11 02:00:30 2025 -0300
+
+    No se
+
+commit 5f0f940813783aa2be51935f7b11fc8a8cd68109
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Aug 11 02:00:19 2025 -0300
+
+    ManejadorMensajes con implementacion
+
+commit 37e3b9357c19b5a01ceec9d26212a6136873cdc4
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Aug 11 00:38:46 2025 -0300
+
+    Cambio a int de boolean dias prestamo retard
+
+commit 9126bc4e991ab275a25b9a877055d221eea79fea
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Aug 11 00:25:20 2025 -0300
+
+    TestEnviarMensaje funciona.
+
+commit 3ea6650643165b2ce83994646f5d00def7b719d1
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Aug 11 00:14:14 2025 -0300
+
+    Atributos estaticos
+
+commit cfefcf6ba298a79986aa94d873b992c16ea4b6b2
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Mon Aug 11 00:13:23 2025 -0300
+
+    Agregado ServicioMensajeria desde prueba de factibilidad. Por ahora con
+    metodo statico enviar  para test.
+
+commit c4bc89032c4c22eea572823b6832088c7085bd9d
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sun Aug 10 23:52:35 2025 -0300
+
+    agregamos funcionalidades a Historias
+
+commit bd47895e870201ca408477e692e52fd930f57051
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sun Aug 10 23:41:18 2025 -0300
+
+    agregarMensaje a Historias
+
+commit 065d4d9f2c8845cba0ff952ddec77887bba8bd49
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sun Aug 10 23:35:55 2025 -0300
+
+    Reestructura de MensajeEnviado
+
+commit cc9506474a83b94da243e09e23df61e05a90748f
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Sun Aug 10 22:36:33 2025 -0300
+
+    Agregada clase MensajeEnviado
+
+commit 6fb3e4146aef53edc39ef5a4e1cf693f1d248cf1
+Author: Mathias Soria <mathiassoriapiro@gmail.com>
+Date:   Wed Jul 30 21:13:00 2025 -0300
+
+    Arreglos menores en obtenerUsuariosComoString. Salteo de encabezado xls
+
+commit 27b3f564933242ceb10b593b1d0c391aaa014a99
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jul 22 21:25:57 2025 -0300
+
+    Agregamos Fecha.
+
+commit 71dc0949962085d5bb9269d85c2de7a2177280b4
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jul 8 21:21:17 2025 -0300
+
+    datos
+
+commit e6ae63301e6ee9457feb9b0fc68d3b530d2656ea
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jul 8 21:14:07 2025 -0300
+
+    Arreglos menores en atributos obsoletos
+
+commit dabd3454e966979d6c3818b8fe4abb0cffdd2c92
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jul 8 18:18:34 2025 -0300
+
+    actualizacion de readme.md
+
+commit cf171993a5f1348c7465daf8f77da7df8d888f70
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jul 8 18:06:13 2025 -0300
+
+    Reestructura y mejora de responsabildiades en capas.
+
+commit 31e894fae67e8a1ddf5f5f5d82ff7fd2b1c3b749
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jul 8 16:32:10 2025 -0300
+
+    vista y controlador funcionales
+
+commit 6038a5e8470767a2d37845622b1041b674f146ab
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jul 8 15:56:15 2025 -0300
+
+    Eliminados test de modelo anterior. ManejadorDatos implementado.
+
+commit d483e4f84f8e6d5094c700317f9b2c4ae2e2a9b4
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jul 7 22:30:14 2025 -0300
+
+    Maqueta incial ManejadorDatos y Usuarios
+
+commit 8fc7e0ace50e73320e36b0d099b640089da06a8e
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jul 7 22:10:39 2025 -0300
+
+    Agregado datos con ruta y cadena. TestDatos prueba lectura.
+
+commit 63ecfd3c582cbacd71e2b2521dc216a541bfcbc9
+Merge: c0b9301 9f25fb1
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jul 7 22:09:17 2025 -0300
+
+    Merge remote-tracking branch 'origin/master'
+
+commit c0b93019df769d2f72876ae351321e672ccde0bc
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jul 7 22:05:01 2025 -0300
+
+    cambio de XlsParser a Datos con solo cadena y ruta. Agregado de
+    TestDatos que prueba lectura.
+
+commit 9f25fb1834978fc432031d81cb2ca91e1dcd2ce7
+Author: Mathias Soria <103398449+MathiasThoria@users.noreply.github.com>
+Date:   Mon Jul 7 21:02:40 2025 -0300
+
+    creacion de  README.md  para seguimiento de cambios grandes
+
+commit b870f52fd86a45df0aa085d07aa14c0d140c1c33
+Author: mathi <mathi@192.168.56.1>
+Date:   Wed Jun 25 21:58:16 2025 -0300
+
+    arregl on toString
+
+commit 367c2c43ab2d8e5cf28d13fe8481094e2afe3a76
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 22:06:40 2025 -0300
+
+    Test de Usuario. Agrega usuario con lista de prestamos adentro. Imprime
+    todo. Iupi
+
+commit fc6cf4e4ad55236775e26570ba7887518ba4c329
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 21:38:18 2025 -0300
+
+    Refactor XlsParser a Datos
+
+commit 08c56ac56bfa5b383ef914bba6641e477af9b351
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 21:25:58 2025 -0300
+
+    Agregamos TestPrestamos donde logramos cargar datos desde xls a lista
+
+commit 140cf7d82cf738be25156c1e730d9bf0435b98d7
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 21:07:22 2025 -0300
+
+    Se logra cargar un Prestamo desde el XLS
+
+commit e29d96d167cd7264abb2ab9ac57f8d8333830d15
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 20:23:21 2025 -0300
+
+    reestructura de paquetes
+
+commit 84718f20cfcbcf71e149dd8a67a6600dcee2846a
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 20:11:23 2025 -0300
+
+    agregado de constructor tipico de Prestamo
+
+commit 5f8ab0cc9161c4017de58238bc9fd4835748d83c
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 16:55:06 2025 -0300
+
+    recomit
+
+commit f53602666fd2a2850ae90c894f2e5e5048538005
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 16:54:45 2025 -0300
+
+    Preuba de cargar de un PRestamo lograda en Test General.
+
+commit 553db0095b894b4c652c4e81b4ece577a1b6ff82
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 16:22:09 2025 -0300
+
+    AGregado paquete test para probar funcionalidades. TestGeneral para
+    pruebas generales, aunque es mejor ir separandolas
+
+commit 32f2b4ddcb65ef7f14a2fb81b3b58d5576654eb9
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 16:03:12 2025 -0300
+
+    Prestamo incial armado con constructor y uso de XlsParser. Faltan
+    pruebas.
+
+commit c0cf303a15f088defaf9987c03fef29ffb480a7b
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 15:27:37 2025 -0300
+
+    Prestamo con campos y getters y setters
+
+commit 9f7c6a8af72549382c9313a2d404e653bb37bd8f
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 15:13:31 2025 -0300
+
+    Agrego datos.xls para pruebas
+
+commit 5d309112a5a0dfcd41e2402d04709eb7689b71ce
+Author: mathi <mathi@192.168.56.1>
+Date:   Tue Jun 24 15:13:09 2025 -0300
+
+    Primera version de xlsparser. getFilasToString devuelve filas en arreglo
+    de string. getAtributoFromFila devuelve celda dada un String de campos
+    separados por coma.
+
+commit 4fa119e29cf9e824423d09445b9402083de4fc19
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jun 23 23:43:48 2025 -0300
+
+    armando xls Parser. hay errores
+
+commit ac5bdfcef3cb4da141a5002260f3b25e49ed9272
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jun 23 22:49:44 2025 -0300
+
+    modificacion XlsParserTest
+
+commit 3925d8317b5c4071b188088c0c7455e874526fed
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jun 23 22:48:18 2025 -0300
+
+    agregado XlsParserTester, es copia de la prueba de viablidiad tecnica
+
+commit 451daa87c3846d42999bfa8f616200888f6cb713
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jun 23 22:44:00 2025 -0300
+
+    Agregado de librerias POI y JAKARTA. Configuracion de BuildPath
+
+commit 032ade0a987b5b24539158e6c315c88577db6439
+Merge: 13d8934 ba23942
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jun 23 22:18:26 2025 -0300
+
+    Merge branch 'master' of https://github.com:443/MathiasThoria/sgm
+
+commit 13d8934ba7bf9bbf7ac77b6226c84765c7276c6f
+Author: mathi <mathi@192.168.56.1>
+Date:   Mon Jun 23 22:11:21 2025 -0300
+
+    Maqueta incial. Controlador y vista generales, luego separamos.
+
+commit ba2394227a245ef7d2857c231a8a0497b350fef7
+Author: Antonio Padilla <antonio.030990@gmail.com>
+Date:   Mon Jun 23 13:27:31 2025 -0300
+
+    Agrego libs de envio de mails
+    
+    Agregué las libs de envío de mails para que queden
+
+commit 770ffe55dd04beeee7382e2aa1d9c6d355897ddb
+Author: mathi <mathi@192.168.56.1>
+Date:   Sun Jun 22 23:41:42 2025 -0300
+
+    reestructura de carpetas
+
+commit 2ed508585c690c44985a82c5d5e02d6ee3383445
+Author: mathi <mathi@192.168.56.1>
+Date:   Sun Jun 22 23:05:27 2025 -0300
+
+    commit inicial - iujuuu
