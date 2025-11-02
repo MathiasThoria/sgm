@@ -44,13 +44,13 @@ public class VistaUsuariosDelSistema {
 
     public void mostrarMenu() {
         System.out.println("\n╔════════════════════════════════════════════╗");
-        System.out.println("║          MENÚ USUARIOS DEL SISTEMA        ║");
+        System.out.println("║          MENÚ USUARIOS DEL SISTEMA         ║");
         System.out.println("╠════════════════════════════════════════════╣");
         System.out.println("║  1. Alta Usuario                           ║");
         System.out.println("║  2. Baja Usuario                           ║");
-        System.out.println("║  3. Modificar Usuario                       ║");
-        System.out.println("║  4. Mostrar Usuarios                        ║");
-        System.out.println("║  0. Salir                                   ║");
+        System.out.println("║  3. Modificar Usuario                      ║");
+        System.out.println("║  4. Mostrar Usuarios                       ║");
+        System.out.println("║  0. Salir                                  ║");
         System.out.println("╚════════════════════════════════════════════╝");
         System.out.print("> Seleccione una opción: ");
     }
