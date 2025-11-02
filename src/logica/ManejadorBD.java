@@ -130,7 +130,37 @@ public class ManejadorBD {
 		return usuarioSistemaBD.obtenerPerfil(id);
 	}
 	
-	
+	public Historias getHistorias() {
+	    return historias;
+	}
+
+	public void setHistorias(Historias historias) {
+	    this.historias = historias;
+	}
+
+	public HistoriasBD getHistoriasBD() {
+	    return historiasBD;
+	}
+
+	public void setHistoriasBD(HistoriasBD historiasBD) {
+	    this.historiasBD = historiasBD;
+	}
+
+	public UsuariosSistema getUsuariosSistema() {
+	    return usuariosSistema;
+	}
+
+	public void setUsuariosSistema(UsuariosSistema usuariosSistema) {
+	    this.usuariosSistema = usuariosSistema;
+	}
+
+	public UsuarioSistemaBD getUsuarioSistemaBD() {
+	    return usuarioSistemaBD;
+	}
+
+	public void setUsuarioSistemaBD(UsuarioSistemaBD usuarioSistemaBD) {
+	    this.usuarioSistemaBD = usuarioSistemaBD;
+	}
 	
 	
 	

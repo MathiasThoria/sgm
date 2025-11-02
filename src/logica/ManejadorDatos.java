@@ -23,7 +23,9 @@ public class ManejadorDatos {
 		coleccionUsuario = usuarios;	
 		
 	}
-	
+	public void setColeccionUsuario(Usuarios usuarios) {
+	    this.coleccionUsuario = usuarios;
+	}
 	public Usuarios getColeccionUsuario() {
 		return coleccionUsuario;
 	}

@@ -10,10 +10,12 @@ public class Historias {
 		mensajesEnviados=new LinkedList<MensajeEnviado>();
 		this.ultimoId = 0;
 	}
-	
+	public void setMensajesEnviados(LinkedList<MensajeEnviado> mensajes) {
+	    this.mensajesEnviados = mensajes;
+	}
 	public void agregarMensaje(MensajeEnviado mensaje) {		
 		this.mensajesEnviados.add(mensaje);
-	}
+	}	
 	
 	public String obtenerMensajes(){
 		String resultado="";

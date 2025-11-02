@@ -161,6 +161,52 @@ public class Controlador {
     		res=true;
     	return res;
     }    
-    
+    public ManejadorDatos getManejadorDatos() {
+        return manejadorDatos;
+    }
+
+    public void setManejadorDatos(ManejadorDatos manejadorDatos) {
+        this.manejadorDatos = manejadorDatos;
+    }
+
+    public ManejadorMensajes getManejadorMensajes() {
+        return manejadorMensajes;
+    }
+
+    public void setManejadorMensajes(ManejadorMensajes manejadorMensajes) {
+        this.manejadorMensajes = manejadorMensajes;
+    }
+
+    public ManejadorBD getManejadorBD() {
+        return manejadorBD;
+    }
+
+    public void setManejadorBD(ManejadorBD manejadorBD) {
+        this.manejadorBD = manejadorBD;
+    }
+
+    public Historias getHistorias() {
+        return historias;
+    }
+
+    public void setHistorias(Historias historias) {
+        this.historias = historias;
+    }
+
+    public Usuarios getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(Usuarios usuarios) {
+        this.usuarios = usuarios;
+    }
+
+    public UsuariosSistema getUsuariosSistema() {
+        return usuariosSistema;
+    }
+
+    public void setUsuariosSistema(UsuariosSistema usuariosSistema) {
+        this.usuariosSistema = usuariosSistema;
+    }
 }
 
