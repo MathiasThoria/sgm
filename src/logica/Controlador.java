@@ -124,9 +124,13 @@ public class Controlador {
     		if (perfil.equalsIgnoreCase("administrador")||perfil.equalsIgnoreCase("operador")) {
     			usuariosSistema.agregarUsuario(id,perfil,contraseña);
             	manejadorBD.agregarUsuarioSistema(id,perfil,contraseña);
-            	confirmacion="Usuario agregado.";
+            	confirmacion="Usuario agregado:"
+            			+ "\nId:" + id 
+            			+ "\nPerfil:" + perfil
+            			+ "\nContraseña:" + contraseña;
+            			
     		}else {
-    			confirmacion="El perfil debe ser administrador u operador";
+    			confirmacion="El perfil debe ser administrador u operador. Intente nuevamente.";
     		}
     			
     	}

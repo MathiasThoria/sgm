@@ -113,7 +113,7 @@ public class VistaUsuariosDelSistema {
 		System.out.println("Se modificará la informacion el siguiente usuario:");
 		System.out.println(controlador.obtenerUsuarioDelSistema(id));
 		
-		System.out.println("Ingrese perfil de usuario:");			
+		System.out.println("Ingrese perfil de usuario(administrado u operador):");			
 		perfil=sc.nextLine();
 		System.out.println("Ingrese contraseña de usuario:");			
 		contraseña=sc.nextLine();
