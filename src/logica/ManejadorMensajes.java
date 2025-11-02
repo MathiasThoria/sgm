@@ -36,8 +36,8 @@ public class ManejadorMensajes {
      * @param usuarios Colección de usuarios deudores
      * @return Resumen de envíos realizados
      */ 
-    public int procesarEnvioMensajes(Usuarios usuarios) {
-        String resultado = "=== PROCESO DE ENVÍO DE MENSAJES ===\n\n";
+    public String procesarEnvioMensajes(Usuarios usuarios) {
+        String resultado = "";
         
         int enviados = 0;
         int errores = 0;
@@ -72,28 +72,28 @@ public class ManejadorMensajes {
                         historialMensajes.agregarMensaje(mensaje);
                         mensajesSinPersistir.agregarMensaje(mensaje);
                         
-                        resultado += " ENVIADO: " + usuario.getNombre() + 
-                                   " (" + usuario.getEmail();
+                        resultado += "|" + usuario.getNombre() + 
+                                   " (" + usuario.getEmail() + ")";
                         enviados++;
                         
                     } else {
-                        resultado += " ERROR: No se pudo enviar a " + usuario.getNombre() + 
-                                   " (" + usuario.getEmail() + ")\n";
+                        resultado += "|ERROR: No se pudo enviar a " + usuario.getNombre() + 
+                                   " (" + usuario.getEmail() + ")";
                         errores++;
                     }
                 } else {
-                    resultado += " SIN ATRASOS: " + usuario.getNombre() + 
-                               " - No tiene préstamos vencidos\n";
+                    resultado += "|SIN ATRASOS: " + usuario.getNombre() + 
+                               " - No tiene préstamos vencidos";
                 }
                 
             } catch (Exception e) {
                 resultado += " EXCEPCIÓN: Error procesando usuario " + usuario.getNombre() + 
-                           " - " + e.getMessage() + "\n";
+                           " - " + e.getMessage();
                 errores++;
             }
         }
-        System.out.println(resultado);
-        return enviados;
+        
+        return resultado;
     }
     
     /**

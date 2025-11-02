@@ -64,15 +64,26 @@ import logica.Controlador;
 		}
 		
 	    private void procesarMensajes() {
-	    	int resultado = controlador.procesarMensajesDeUsuarios();
-	        if (resultado==0) {
+	    	String resultado = controlador.procesarMensajesDeUsuarios();
+
+	        if (resultado.isEmpty()) {
 	            System.out.println("\n╔════════════════════════════════╗");
 	            System.out.println("║    No se enviaron mensajes     ║");
 	            System.out.println("╚════════════════════════════════╝");
 	        } else {
-	            System.out.println("\n╔════════════════════════════════════════════════════════════════════════════════╗");
-	            System.out.println("║                               MENSAJES ENVIADOS:"+ resultado + "               ║");
-	            System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
+	            String[] lineas = resultado.split("\\|");
+	            
+	            System.out.println("\n╔══════════════════════════════════════════════════════════════════════════╗");
+	            System.out.println("║                           MENSAJES ENVIADOS                              ║");
+	            System.out.println("╠══════════════════════════════════════════════════════════════════════════╣");
+
+	            for (String linea : lineas) {
+	                if (!linea.trim().isEmpty()) {
+	                    System.out.printf("║ > %-70s ║%n", linea.trim());
+	                }
+	            }
+
+	            System.out.println("╚════════════════════════════════════════════════════════════════════════╝");
 	        }
 	    }
 

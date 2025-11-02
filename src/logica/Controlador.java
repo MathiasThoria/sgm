@@ -71,13 +71,14 @@ public class Controlador {
     	return constancia;
     }
     // ---------- MENSAJES ------------//
-    public int procesarMensajesDeUsuarios() {    	
-    	int res= manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
-    	if ( res > 0 )
-    		//deprecated
-    		//manejadorBD.persistirMensajesNuevos(manejadorMensajes.getMensajesSinPersistir()); 
-    		manejadorBD.persistirMensajesNuevos();
-    	return res;
+    public String procesarMensajesDeUsuarios() {    	
+        String res = manejadorMensajes.procesarEnvioMensajes(manejadorDatos.getColeccionUsuario());
+        
+        // Si se devolvieron mensajes, persistirlos
+        if (!res.isEmpty()) {
+            manejadorBD.persistirMensajesNuevos();
+        }
+        return res;
     }
     
     
