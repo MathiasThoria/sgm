@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 10, 2025 at 12:12 AM
+-- Generation Time: Nov 06, 2025 at 12:46 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -46,6 +46,15 @@ CREATE TABLE `usuariosistema` (
   `perfil` char(20) DEFAULT NULL,
   `contrasenia` char(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `usuariosistema`
+--
+
+INSERT INTO `usuariosistema` (`id`, `perfil`, `contrasenia`) VALUES
+(1, 'administrador', '123'),
+(2, 'operador', '123'),
+(3, 'administrador', '123');
 
 --
 -- Indexes for dumped tables

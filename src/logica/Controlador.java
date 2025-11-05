@@ -26,6 +26,7 @@ public class Controlador {
         this.historias= new Historias();
         this.usuarios = new Usuarios();
         this.usuariosSistema = new UsuariosSistema();
+        
         this.manejadorDatos = new ManejadorDatos(usuarios);
         this.manejadorMensajes = new ManejadorMensajes(historias);
         this.manejadorBD = new ManejadorBD(usuariosSistema,historias);        
