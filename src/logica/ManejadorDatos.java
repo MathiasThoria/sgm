@@ -39,13 +39,9 @@ public class ManejadorDatos {
 	    for (String fila : filas) {
 	        if (encabezado) {	        
 	        	encabezado=false;
-	        }else {	
-	        
+	        }else {		        
 		        String[] campos = fila.split(",");      
-	            try {	            
-		        	
-					// falta chequear que campos no esten vaciois porq sino tira
-					// Exception en los cambios de tipo 			
+	            try {	
 	            	
 		            Usuario usuario = new Usuario(
 		            		parseNumero(campos[3]), //id
@@ -93,8 +89,7 @@ public class ManejadorDatos {
 	
 	
 	public LocalDate parseFecha(String fechaStr) {
-	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	    //System.out.println(fechaStr);
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");	   
 	    try {
 	        return LocalDate.parse(fechaStr, formatter);
 	    } catch (DateTimeParseException e) {
@@ -103,15 +98,13 @@ public class ManejadorDatos {
 	    }	    
 	}
 	
-	public int parseNumero(String valor) {
-				
+	public int parseNumero(String valor) {				
 		//cuando una celda viene vacia no es "" sino " "
 		if(!valor.equals(" ")) {			
 			return (int)Double.parseDouble(valor);
 		}else {
 			return 0;
-		}
-			
+		}			
 	}
 	
 	 public String obtenerUsuariosComoString() {    	 

@@ -237,14 +237,14 @@ import logica.Controlador;
 	    } 
 	    
 	    
-	 // Dibuja el título centrado en la tabla
+	 // Metodos accesorios para dibujado de tablas 
 	    private void drawTitulo(String titulo) {
 	        int totalWidth = 3 + 11 + 8 + 30 + 40 + 4; // suma de anchos + bordes ║
 	        int padding = (totalWidth - titulo.length()) / 2;
 	        System.out.printf("║%s%s%s║%n", repeat(' ', padding), titulo, repeat(' ', totalWidth - padding - titulo.length()));
 	    }
 
-	    // Dibuja la línea superior de la tabla
+
 	    private void drawTopTitulo() {
 	        System.out.printf("╔%s═%s═%s═%s═%s╗%n",
 	            repeat('═', 3),   // ID
@@ -255,7 +255,7 @@ import logica.Controlador;
 	        );
 	    }
 
-	    // Dibuja el encabezado con nombres de columna
+	 
 	    private void drawEncabezado() {
 	        System.out.printf("╠%s╦%s╦%s╦%s╦%s╣%n",
 	            repeat('═', 3),
@@ -268,7 +268,7 @@ import logica.Controlador;
 	            "ID", "FECHA ENVIO", "ID USER", "CORREO", "TITULOS Y DIAS");
 	    }
 
-	    // Dibuja la línea intermedia de la tabla (entre encabezado y filas)
+
 	    private void drawMiddle() {
 	        System.out.printf("╠%s╬%s╬%s╬%s╬%s╣%n",
 	            repeat('═', 3),
@@ -279,7 +279,7 @@ import logica.Controlador;
 	        );
 	    }
 
-	    // Dibuja la línea inferior de la tabla
+
 	    private void drawBottom() {
 	        System.out.printf("╚%s╩%s╩%s╩%s╩%s╝%n",
 	            repeat('═', 3),

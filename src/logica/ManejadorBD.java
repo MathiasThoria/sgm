@@ -23,8 +23,7 @@ public class ManejadorBD {
 		this.historiasBD= new HistoriasBD();
 		this.usuarioSistemaBD = new UsuarioSistemaBD();
 		this.usuariosSistema=usuariosSistema;
-		this.historias=historias;
-		
+		this.historias=historias;		
 	}	
 	
 	/*
@@ -71,13 +70,7 @@ public class ManejadorBD {
 						
 				historias.agregarMensaje(msj);
 			}
-		}
-		
-	/* (Deprecated)
-	 * 	// Guardo el último id generado en la BD
-		if (msj!=null)
-			historias.setUltimoId(msj.getId());
-	*/	
+		}		
 		
 		String usuarios= usuarioSistemaBD.obtener();
 		
@@ -87,13 +80,12 @@ public class ManejadorBD {
 				String[] columnasUsuarios = u.split("\\|");
 				usuariosSistema.agregarUsuario(Integer.parseInt(columnasUsuarios[0]),
 						columnasUsuarios[1],
-						columnasUsuarios[2]);
-				
+						columnasUsuarios[2]);				
 			}
-		}
-		
+		}		
 	}
 		
+	
 	public void borrarTodasHistoriasBD() {
 		historiasBD.borrarTodo();
 	}
@@ -101,8 +93,6 @@ public class ManejadorBD {
 	public int ultimoIdHistorias() {
 		return historiasBD.obtenerUltimoId();
 	}
-	
-	
 
 	public void agregarUsuarioSistema(int id, String perfil, String contraseña) {
 		usuarioSistemaBD.alta(id, perfil, contraseña);		
